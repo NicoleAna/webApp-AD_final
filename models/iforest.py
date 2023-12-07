@@ -34,7 +34,7 @@ class iForest():
         fpr, tpr, _ = metrics.roc_curve(self.y_true, y_pred)
         auc_roc_iforest = metrics.auc(fpr, tpr)
 
-        print("Classification Report (LOF): ")
+        print("Classification Report (IForest): ")
         print('Precision: {:.4f}'.format(precision_iforest))
         print('Recall: {:.4f}'.format(recall_iforest))
         print('F1 score: {:.4f}'.format(f1_score_iforest))
