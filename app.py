@@ -6,6 +6,7 @@ from flask_caching import Cache
 from models.gan import GAN
 from models.lof import Lof
 from models.iforest import iForest
+from models.autoencoders import AutoEncoder
 from plots.visuals import Gen_Plot
 
 import io
@@ -86,6 +87,11 @@ def inputs():
     elif algo == "Isolation Forest(IForest)":
         iforest_model = iForest(dataset)
         y_true, y_pred, fpr, tpr, auc_roc = iforest_model.train_test()
+
+    elif algo == "AutoEncoders":
+        auto_model = AutoEncoder(dataset)
+        auto_model.auto()
+        y_true, y_pred, fpr, tpr, auc_roc = auto_model.train_test(epochs=50, batch_size=64)
 
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
