@@ -1,1 +1,13 @@
 <!-- login page -->
+{% extends "layout.html" %} 
+
+{% block body %}
+<div class="tc">
+    <h1 class="f-subheadline lh-title">Log In</h1>
+    <form action="/login" method="post" class="f2 lh-copy">
+        <input type="text" name="name" autocomplete="off" autofocus placeholder="Enter your name">
+        <!-- <button type="submit">Log In</button> -->
+        <input type="button" value="Log In">
+    </form>
+</div>
+{% endblock %}

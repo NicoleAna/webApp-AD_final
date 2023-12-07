@@ -1,1 +1,20 @@
 <!-- landing page -->
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="tc pa2 header">
+            <h1 class="f-subheadline lh-title">Hello, {{ session_name }}</h1>
+            <h2 class="f1 lh-title">Dive deeper into the world of Anomaly Detection</h2>
+    </div>
+    <div class="container tc f3 lh-copy pa2">
+        <div class="ba b--gray br3 shadow-3 pa3 grow">
+            <h1>What is Anomaly Detection?</h1>
+        </div>
+        <div class="ba b--gray br3 shadow-3 pa3 grow">
+            <h1>Learn More about our Models</h1>
+        </div>
+        <div class="ba b--gray br3 shadow-3 pa3 grow dib">
+            <a href="/visualize"><h1>Visualize Results</h1></a>
+        </div>
+    </div>
+{% endblock %}
