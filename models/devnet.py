@@ -37,7 +37,7 @@ class Devnet():
         fpr, tpr, _ = metrics.roc_curve(self.test_lab, preds)
         auc_roc_dev = metrics.auc(fpr, tpr)
 
-        print("Classification Report (AutoEncoders): ")
+        print("Classification Report (Deviation Net): ")
         print('Precision: {:.4f}'.format(precision_dev))
         print('Recall: {:.4f}'.format(recall_dev))
         print('F1 score: {:.4f}'.format(f1_score_dev))
