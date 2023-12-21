@@ -10,6 +10,7 @@ from models.iforest import iForest
 from models.autoencoders import AutoEncoder
 from models.devnet import Devnet
 from models.elliptic import ellipticEnvelope
+from models.dagmm1 import Dagmm1
 from plots.visuals import Gen_Plot
 
 import io
@@ -121,6 +122,10 @@ def inputs():
     elif algo == "Elliptic Envelope":
         env_model = ellipticEnvelope(dataset)
         y_true, y_pred, fpr, tpr, auc_roc = env_model.train_test()
+
+    elif algo == "DAGMM":
+        dagmm_model = Dagmm1(dataset)
+        y_true, y_pred, fpr, tpr, auc_roc = dagmm_model.train_test()
 
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
