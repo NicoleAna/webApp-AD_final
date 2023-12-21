@@ -1,11 +1,11 @@
-/* Style sheet */
+/* stylesheet */
+
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
 
 body {
     font-family: 'HELVETICA', sans-serif;
     margin: 0;
     padding: 0;
-    /* background-image: linear-gradient(#ff8a00, #e52e71); */
 }
 /* h1, h2 {
     background: -webkit-linear-gradient(RGB(0, 179, 255), RGB(0, 76, 255));
@@ -47,6 +47,25 @@ a:active, a:focus {
     margin: 0 auto;
     gap: 20px;
 }
+
+/* .box {
+    border: 2px solid green;
+    background: lightblue;
+    border-radius: 40px;
+    position: relative;
+    transform: translate(0);
+    transform-style: preserve-3d;
+}
+
+.shadow:before {
+    content:"";
+    position: absolute;
+    inset: -5px;
+    transform: translate3d(10px,8px,-1px);
+    background: conic-gradient(from 90deg at 40% -25%, #ffd700, #f79d03, #ee6907, #e6390a, #de0d0d, #d61039, #cf1261, #c71585, #cf1261, #d61039, #de0d0d, #ee6907, #f79d03, #ffd700, #ffd700, #ffd700);
+    filter: blur(10px);
+    border-radius: inherit;
+} */
 
 /* .user-form {
     display: flex;
