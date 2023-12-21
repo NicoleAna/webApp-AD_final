@@ -1,4 +1,5 @@
 # flask app
+
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from flask_caching import Cache
@@ -7,22 +8,40 @@ from models.gan import GAN
 from models.lof import Lof
 from models.iforest import iForest
 from models.autoencoders import AutoEncoder
+from models.devnet import Devnet
 from plots.visuals import Gen_Plot
 
 import io
+import secrets
+from datetime import timedelta
 
 # configure flask app
 app = Flask(__name__)
+
+# secure key for session management
+app.secret_key = secrets.token_hex(16)
 
 # configure flask caching
 cache = Cache(app, config={'CACHE_TYPE':'SimpleCache', 'CACHE_DEFAULT_TIMEOUT':300})
 
 # configure flask session
-app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_PERMANENT"] = True
+# session lifetime of 30 mins
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=30) 
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-ALGO = ["Generative Adversarial Networks(GAN)", "Local Outlier Factor(LOF)", "Isolation Forest(IForest)", "AutoEncoders", "DevNet", "DAGMM", "Elliptic Envelope", "Quantile Regression", "Long Short Term Memory(LSTM)"]
+ALGO = [
+    "Generative Adversarial Networks(GAN)", 
+    "Local Outlier Factor(LOF)", 
+    "Isolation Forest(IForest)", 
+    "AutoEncoders", 
+    # "DevNet", 
+    "DAGMM", 
+    "Elliptic Envelope", 
+    "Quantile Regression", 
+    "Long Short Term Memory(LSTM)"
+]
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -37,7 +56,7 @@ def login():
     if request.method == "POST":
         session["name"] = request.form.get("name")
         return redirect("/")
-    return render_template("login.html")    
+    return render_template("login.html") 
 
 
 @app.route("/about", methods=["GET"])
@@ -69,6 +88,7 @@ def inputs():
     dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
     # generating unique cache key based on dataset and model
     cache_key = f"{file.filename}-{algo}"
+    print(cache_key)
 
     # check if result is cached
     if cache_key in session:
@@ -93,6 +113,10 @@ def inputs():
         auto_model.auto()
         y_true, y_pred, fpr, tpr, auc_roc = auto_model.train_test(epochs=50, batch_size=64)
 
+    elif algo == "DevNet":
+        devnet_model = Devnet(dataset)
+        y_true, y_pred, fpr, tpr, auc_roc = devnet_model.train_test(epochs=10)
+
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
         
@@ -102,15 +126,16 @@ def inputs():
     # cache the result with timeout of 300s
     cache.set(cache_key, {'auc_roc':auc_roc, 'plot':plot}, timeout=300)
     session[cache_key] = {'auc_roc':auc_roc, 'plot':plot}
-    
+
     if plot:    
         return render_template("visualize.html", algo=algo, auc_roc=auc_roc, plot=plot, algos=ALGO, submitted=True)
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
 
-  
+
 @app.route("/logout")
 def logout():
     cache.clear()
     session["name"] = None
     return redirect("/")
+
