@@ -1,0 +1,45 @@
+<!-- visualize results page -->
+
+{% extends "layout.html" %}
+
+{% block navbar %}
+    <a class="nav-link active pr2" href="/">Home</a>
+    {% if submitted %}
+    <a class="nav-link active pr2" href="/visualize">Back</a>
+    {% endif %}
+    <a class="nav-link active pl2" href="/logout">Log Out</a>
+{% endblock %}
+
+{% block body %}
+    {% if not submitted %}
+    <div class="my-form">
+        <form action="/inputs" method="post" enctype="multipart/form-data">
+            <div class="form-item">
+                <label for="algo">Please select a Model from the dropdown</label>
+                <select name="algo">
+                    <option disabled selected>Model</option>
+                    {% for a in algos %}
+                        <option value="{{ a }}">{{ a }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="iform-tem">
+                <label for="file">Upload a dataset</label>
+                <input type="file" name="dataset" accept=".csv">
+            </div>
+            <div class="form-item">
+                <button type="submit" class="learn-more">Visualize</button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+    {% if submitted %}
+    <div class="tc">
+        <h1 class="f2 lh-copy">Visualization of Results for {{ algo }} model</h1>
+        <img src="data:image/png;base64,{{ plot }}" alt="AUC-ROC Curve">        
+    </div>  
+    {% endif %}  
+    {% if error %}
+        <h1 class="tc">{{ error }}</h1>
+    {% endif %}
+{% endblock %}
