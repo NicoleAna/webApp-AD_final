@@ -132,7 +132,7 @@ def inputs():
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
         
     plot_model = Gen_Plot()
-    plot = plot_model.gen_auc_plot(fpr, tpr, auc_roc)
+    plot = plot_model.gen_auc_plot(y_true, y_pred, fpr, tpr, auc_roc)
 
     # cache the result with timeout of 300s
     cache.set(cache_key, {'auc_roc':auc_roc, 'plot':plot}, timeout=300)
@@ -155,6 +155,7 @@ def dataVis():
     dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
     plot_graph = Gen_Plot()
     plot = plot_graph.uni_data_visualise(dataset)
+
     if plot:    
         return render_template("visualize.html", plot=plot, submitted='unidata')
     else:

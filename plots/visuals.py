@@ -1,6 +1,9 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 import seaborn as sns
+
+from sklearn.metrics import confusion_matrix
 
 from io import BytesIO
 import base64
@@ -9,14 +12,26 @@ class Gen_Plot():
     def __init__(self) -> None:
         pass
 
-    def gen_auc_plot(self, fpr, tpr, auc_roc):
-        fig = Figure()
-        ax = fig.subplots()
-        ax.plot(fpr, tpr, label=f'AUC = {auc_roc:.4f}')
-        ax.set_xlabel('False Positive Rate')
-        ax.set_ylabel('True Positive Rate')
-        ax.set_title('Receiver Operating Characteristic (ROC) Curve')
-        ax.legend(loc='best')
+    def gen_auc_plot(self, y_true, y_pred, fpr, tpr, auc_roc):
+        fig = plt.figure(figsize=(6, 10))
+        fig.subplots_adjust(hspace=0.5) 
+
+        ax1 = fig.add_subplot(2, 1, 1)
+        ax2 = fig.add_subplot(2, 1, 2)
+        ax1.plot(fpr, tpr, label=f'AUC = {auc_roc:.4f}', color='royalblue')
+        ax1.set_xlabel('False Positive Rate', fontsize=14, labelpad=20)
+        ax1.set_ylabel('True Positive Rate', fontsize=14, labelpad=20)
+        ax1.set_title('Receiver Operating Characteristic (ROC) Curve', fontsize=16, pad=20)
+        ax1.legend(loc='best')
+
+        cf_matrix = confusion_matrix(y_true, y_pred)
+        sns.heatmap(cf_matrix, annot=True, cmap='Blues', fmt='d', cbar=False, ax=ax2)
+        ax2.set_title('Confusion Matrix', fontsize=16, pad=20)
+        ax2.set_xlabel('Predicted', fontsize=14, labelpad=20)
+        ax2.xaxis.set_ticklabels(['Negative', 'Positive'])
+        ax2.set_ylabel('Actual', fontsize=14, labelpad=20)
+        ax2.yaxis.set_ticklabels(['Positive', 'Negative'])
+
         buf = BytesIO()  
         fig.savefig(buf, format="png")
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
@@ -29,14 +44,22 @@ class Gen_Plot():
         anomalies_df = X[y == 1]
         non_anomalies_df = X[y == 0]
 
-        fig = Figure()
-        ax = fig.subplots()
-        sns.scatterplot(data=non_anomalies_df['Value'], label='Normal Data', ax=ax)
-        sns.scatterplot(data=anomalies_df['Value'], label='Anomalies', ax=ax)
-        ax.set_title('Data with Labeled Anomalies')
-        ax.set_xlabel('Index')
-        ax.set_ylabel('Value')
-        ax.legend(loc='best')
+        fig = plt.figure(figsize=(8, 12), tight_layout=True)
+        fig.subplots_adjust(hspace=0.5) 
+        ax1 = fig.add_subplot(2, 1, 1)
+        ax2 = fig.add_subplot(2, 1, 2)
+        sns.scatterplot(data=non_anomalies_df['Value'], label='Normal Data', ax=ax1, color='skyblue')
+        sns.scatterplot(data=anomalies_df['Value'], label='Anomalies', ax=ax1, color='crimson')
+        ax1.set_title('Data with Labeled Anomalies', fontsize=16, pad=20)
+        ax1.set_xlabel('Index')
+        ax1.set_ylabel('Value')
+        ax1.legend(loc='best')
+
+        sns.histplot(data=df['Value'], kde=True, ax=ax2, color='cornflowerblue')
+        ax2.set_title('Data distribution', fontsize=16, pad=20)
+        ax2.set_xlabel('Value')
+        ax2.set_ylabel('Count')
+
         buf = BytesIO()
         fig.savefig(buf, format="png")
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
