@@ -1,5 +1,4 @@
-# flask app
-
+# Flask app
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from flask_caching import Cache
@@ -38,11 +37,13 @@ ALGO = [
     "Local Outlier Factor(LOF)", 
     "Isolation Forest(IForest)", 
     "AutoEncoders", 
-    # "DevNet", 
-    "DAGMM", 
+    # "DevNet",  
     "Elliptic Envelope", 
+    "DAGMM",
     "Quantile Regression", 
-    "Long Short Term Memory(LSTM)"
+    "Long Short Term Memory(LSTM)",
+    "MGBTAI",
+    "DBTAI"
 ]
 
 
@@ -95,7 +96,7 @@ def inputs():
     # check if result is cached
     if cache_key in session:
         result = cache.get(cache_key)
-        return render_template("visualize.html", algo=algo, plot=result['plot'], algos=ALGO, submitted=True)
+        return render_template("visualize.html", algo=algo, plot=result['plot'], algos=ALGO, submitted='res')
 
     if algo == "Generative Adversarial Networks(GAN)":
         gan_model = GAN(dataset)
@@ -130,15 +131,32 @@ def inputs():
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
         
-    plot_model = Gen_Plot(fpr, tpr, auc_roc)
-    plot = plot_model.gen_plot()
+    plot_model = Gen_Plot()
+    plot = plot_model.gen_auc_plot(fpr, tpr, auc_roc)
 
     # cache the result with timeout of 300s
     cache.set(cache_key, {'auc_roc':auc_roc, 'plot':plot}, timeout=300)
     session[cache_key] = {'auc_roc':auc_roc, 'plot':plot}
 
     if plot:    
-        return render_template("visualize.html", algo=algo, auc_roc=auc_roc, plot=plot, algos=ALGO, submitted=True)
+        return render_template("visualize.html", algo=algo, auc_roc=auc_roc, plot=plot, algos=ALGO, submitted='res')
+    else:
+        return render_template("visualize.html", error="Some error occured", algos=ALGO)
+
+
+@app.route("/datavis", methods=["POST"])
+def dataVis():
+    if not session.get("name"):
+        return redirect("/login")
+    file = request.files.get("dataset")
+    if not file:
+        return render_template("visualize.html", error="Please upload a csv file", algos=ALGO)
+    
+    dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
+    plot_graph = Gen_Plot()
+    plot = plot_graph.uni_data_visualise(dataset)
+    if plot:    
+        return render_template("visualize.html", plot=plot, submitted='unidata')
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
 

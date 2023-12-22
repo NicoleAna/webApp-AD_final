@@ -32,13 +32,30 @@
             </div>
         </form>
     </div>
+    <div class="my-form">
+        <form action="/datavis" method="post" enctype="multipart/form-data">
+            <div class="iform-tem">
+                <label for="file">Upload a dataset</label>
+                <input type="file" name="dataset" accept=".csv">
+            </div>
+            <div class="form-item">
+                <button type="submit" class="learn-more">Visualize Univariate Data</button>
+            </div>
+        </form>
+    </div>
     {% endif %}
-    {% if submitted %}
+    {% if submitted == 'res' %}
     <div class="tc">
         <h1 class="f2 lh-copy">Visualization of Results for {{ algo }} model</h1>
         <img src="data:image/png;base64,{{ plot }}" alt="AUC-ROC Curve">        
     </div>  
-    {% endif %}  
+    {% endif %} 
+    {% if submitted == 'unidata' %}
+    <div class="tc">
+        <h1 class="f2 lh-copy">Visualization of Univariate Data</h1>
+        <img src="data:image/png;base64,{{ plot }}" alt="Data Visualization">        
+    </div>  
+    {% endif %}   
     {% if error %}
         <h1 class="tc">{{ error }}</h1>
     {% endif %}
