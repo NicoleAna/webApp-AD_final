@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from flask_caching import Cache
+from celery import Celery
 
 from models.gan import GAN
 from models.lof import Lof
@@ -16,6 +17,9 @@ from plots.visuals import Gen_Plot
 import io
 import secrets
 from datetime import timedelta
+import warnings
+
+warnings.filterwarnings('ignore')
 
 # configure flask app
 app = Flask(__name__)
@@ -68,7 +72,7 @@ def aboutus():
     if not session.get("name"):
         return redirect("/login")
     return render_template("aboutus.html")
-
+    
 
 @app.route("/visualize", methods=["GET", "POST"])
 def visual():
@@ -77,17 +81,28 @@ def visual():
     return render_template("visualize.html", algos=ALGO)
 
 
+@app.route("/visualizedata", methods=["GET", "POST"])
+def datavis():
+    if not session.get("name"):
+        return redirect("/login")
+    return render_template("visualize_data.html")
+
+
+
 @app.route("/inputs", methods=["POST"])
 def inputs():
     if not session.get("name"):
         return redirect("/login")
-    
+
     file = request.files.get("dataset")
     algo = request.form.get("algo")
-    if algo not in ALGO:
-        return render_template("visualize.html", error="Please select a model", algos=ALGO)
-    if not file:
-        return render_template("visualize.html", error="Please upload a csv file", algos=ALGO)
+    
+    if algo not in ALGO and not file:
+        return render_template("visualize.html", error="Please select a model and upload a CSV file", algos=ALGO)
+    elif algo not in ALGO:
+        return render_template("visualize.html", error="Please select a model", algos=ALGO, selected_file=file)
+    elif not file:
+        return render_template("visualize.html", error="Please upload a CSV file", algos=ALGO, selected_algo=algo)
     
     dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
     # generating unique cache key based on dataset and model
@@ -134,6 +149,11 @@ def inputs():
         qreg_model.build_model()
         y_true, y_pred, fpr, tpr, auc_roc = qreg_model.train_test()
 
+    # elif algo == "Long Short Term Memory(LSTM)":
+    #     lstm_model = Lstm(dataset)
+    #     lstm_model.build_model()
+    #     y_true, y_pred, fpr, tpr, auc_roc = lstm_model.train_test(epochs=50, batch_size=64)
+
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
         
@@ -156,16 +176,16 @@ def dataVis():
         return redirect("/login")
     file = request.files.get("dataset")
     if not file:
-        return render_template("visualize.html", error="Please upload a csv file", algos=ALGO)
+        return render_template("visualize_data.html", error="Please upload a csv file")
     
     dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
     plot_graph = Gen_Plot()
     plot = plot_graph.uni_data_visualise(dataset)
 
     if plot:    
-        return render_template("visualize.html", plot=plot, submitted='unidata')
+        return render_template("visualize_data.html", plot=plot, submitted=True)
     else:
-        return render_template("visualize.html", error="Some error occured", algos=ALGO)
+        return render_template("visualize_data.html", error="Some error occured")
 
 
 @app.route("/logout")
