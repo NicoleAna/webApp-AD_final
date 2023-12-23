@@ -10,6 +10,7 @@ from models.autoencoders import AutoEncoder
 from models.devnet import Devnet
 from models.elliptic import ellipticEnvelope
 from models.dagmm1 import Dagmm1
+from models.quantilereg import QReg
 from plots.visuals import Gen_Plot
 
 import io
@@ -127,6 +128,11 @@ def inputs():
     elif algo == "DAGMM":
         dagmm_model = Dagmm1(dataset)
         y_true, y_pred, fpr, tpr, auc_roc = dagmm_model.train_test()
+
+    elif algo == "Quantile Regression":
+        qreg_model = QReg(dataset)
+        qreg_model.build_model()
+        y_true, y_pred, fpr, tpr, auc_roc = qreg_model.train_test()
 
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)

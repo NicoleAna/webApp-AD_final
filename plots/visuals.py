@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
 import seaborn as sns
 
 from sklearn.metrics import confusion_matrix
@@ -13,7 +12,7 @@ class Gen_Plot():
         pass
 
     def gen_auc_plot(self, y_true, y_pred, fpr, tpr, auc_roc):
-        fig = plt.figure(figsize=(6, 10))
+        fig = plt.figure(figsize=(6, 12))
         fig.subplots_adjust(hspace=0.5) 
 
         ax1 = fig.add_subplot(2, 1, 1)
@@ -28,7 +27,7 @@ class Gen_Plot():
         sns.heatmap(cf_matrix, annot=True, cmap='Blues', fmt='d', cbar=False, ax=ax2)
         ax2.set_title('Confusion Matrix', fontsize=16, pad=20)
         ax2.set_xlabel('Predicted', fontsize=14, labelpad=20)
-        ax2.xaxis.set_ticklabels(['Negative', 'Positive'])
+        ax2.xaxis.set_ticklabels(['Positive', 'Negative'])
         ax2.set_ylabel('Actual', fontsize=14, labelpad=20)
         ax2.yaxis.set_ticklabels(['Positive', 'Negative'])
 
