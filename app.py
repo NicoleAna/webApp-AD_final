@@ -12,6 +12,7 @@ from models.devnet import Devnet
 from models.elliptic import ellipticEnvelope
 from models.dagmm1 import Dagmm1
 from models.quantilereg import QReg
+from models.lstm import Lstm
 from plots.visuals import Gen_Plot
 
 import io
@@ -149,10 +150,10 @@ def inputs():
         qreg_model.build_model()
         y_true, y_pred, fpr, tpr, auc_roc = qreg_model.train_test()
 
-    # elif algo == "Long Short Term Memory(LSTM)":
-    #     lstm_model = Lstm(dataset)
-    #     lstm_model.build_model()
-    #     y_true, y_pred, fpr, tpr, auc_roc = lstm_model.train_test(epochs=50, batch_size=64)
+    elif algo == "Long Short Term Memory(LSTM)":
+        lstm_model = Lstm(dataset)
+        lstm_model.build_model()
+        y_true, y_pred, fpr, tpr, auc_roc = lstm_model.train_test(epochs=50, batch_size=64)
 
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
@@ -193,4 +194,3 @@ def logout():
     cache.clear()
     session["name"] = None
     return redirect("/")
-
