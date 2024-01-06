@@ -15,6 +15,8 @@ import math
 class QReg():
     def __init__(self, dataset) -> None:
         df = pd.read_csv(dataset)
+        if 'Date' in df.columns:
+            df = df.drop('Date', axis=1)
         X = df.iloc[:, :-1].values
         y = df.iloc[:, -1].values
         self.n_steps = 3
@@ -44,7 +46,6 @@ class QReg():
         perc = np.array(perc_points).reshape(-1)
         perc.sort()
         perc = perc.reshape(1, -1)
-        print(perc)
 
         def _qloss(y_true, y_pred):
             I = tf.cast(y_true <= y_pred, tf.float32)
@@ -68,6 +69,7 @@ class QReg():
                 Dense(5, activation='sigmoid')
             ]
         )
+        print(model.summary())
         return model
 
     def train_test(self):

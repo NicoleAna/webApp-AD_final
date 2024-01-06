@@ -1,3 +1,4 @@
+# LSTM
 import numpy as np
 import pandas as pd
 
@@ -24,13 +25,13 @@ class Lstm():
 
         self.X_train, self.y_train = self.split_sequence(self.X_data[:train_threshold][self.y[:train_threshold] == 0])
         self.X_test, self.y_test = self.split_sequence(self.X_data)
+        # self.y_train.reshape(-1, 1)
 
         X = np.array(self.X_data)
         min_val = tf.reduce_min(X)
         max_val = tf.reduce_max(X)
         X = (X - min_val) / (max_val - min_val)
         X = tf.cast(X, tf.float32)
-        print(X)
 
         self.ip_dim = X.shape[1]
         self.lstm_units = 14
@@ -54,7 +55,7 @@ class Lstm():
         lstm_layer = LSTM(units=self.lstm_units, activation='tanh', return_sequences=True)(ip_layer)
         lstm_layer = Dropout(0.2)(lstm_layer)
         lstm_layer = LSTM(units=8, activation='tanh')(lstm_layer)
-        op_layer = Dense(1, activation='tanh')(lstm_layer)
+        op_layer = Dense(self.y_train.shape[1], activation='tanh')(lstm_layer)
 
         lstm_model = Model(ip_layer, op_layer)
 
@@ -70,9 +71,6 @@ class Lstm():
         return lstm_model
     
     def train_test(self, epochs, batch_size):
-        print('ip shape', self.ip_dim)
-        self.lstm.summary()
-
         history = self.lstm.fit(
             self.X_train, self.y_train,
             epochs=epochs,
@@ -84,10 +82,11 @@ class Lstm():
         ).history
 
         x_test_preds = self.lstm.predict(self.X_test)
+        num_features_to_match = x_test_preds.shape[1]
         X_test_flattened = self.X_test.reshape(self.X_test.shape[0], -1) 
-        mse = np.mean(np.power(X_test_flattened - x_test_preds, 2), axis=1)
-        mean_mse = np.mean(mse)
-        std_mse = np.std(mse)
+        X_test_flattened_subset = X_test_flattened[:, :num_features_to_match]
+
+        mse = np.mean(np.power(X_test_flattened_subset - x_test_preds, 2), axis=1)
         lper = np.percentile(mse, 5)
         uper = np.percentile(mse, 95)
 

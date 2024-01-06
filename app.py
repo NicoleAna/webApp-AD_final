@@ -2,7 +2,6 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from flask_caching import Cache
-from celery import Celery
 
 from models.gan import GAN
 from models.lof import Lof
@@ -87,7 +86,6 @@ def datavis():
     if not session.get("name"):
         return redirect("/login")
     return render_template("visualize_data.html")
-
 
 
 @app.route("/inputs", methods=["POST"])
