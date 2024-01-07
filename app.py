@@ -12,6 +12,7 @@ from models.elliptic import ellipticEnvelope
 from models.dagmm1 import Dagmm1
 from models.quantilereg import QReg
 from models.lstm import Lstm
+from models.dbtai import DBTAI
 from plots.visuals import Gen_Plot
 
 import io
@@ -152,6 +153,11 @@ def inputs():
         lstm_model = Lstm(dataset)
         lstm_model.build_model()
         y_true, y_pred, fpr, tpr, auc_roc = lstm_model.train_test(epochs=50, batch_size=64)
+
+    elif algo == "DBTAI":
+        dbtai_model = DBTAI(dataset)
+        dbtai_model.train_dbtai()
+        y_true, y_pred, fpr, tpr, auc_roc = dbtai_model.evaluate_dbtai()
 
     else:
         return render_template("visualize.html", error="Some error occured", algos=ALGO)
