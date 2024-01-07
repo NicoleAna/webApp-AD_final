@@ -11,12 +11,12 @@
         <form action="/inputs" method="post" enctype="multipart/form-data">
             <div class="form-item">
                 <label for="algo">Please select a Model from the dropdown</label>
-                <select name="algo">
-                    <option disabled selected>Model</option>
-                    {% for a in algos %}
-                        <option value="{{ a }}" {% if selected_algo == a %} selected {% endif %}>{{ a }}</option>
-                    {% endfor %}
-                </select>
+                {% for a in algos %}
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="algo" value="{{ a }}">
+                        <label for="{{ a }}">{{ a }}</label>
+                    </div>
+                {% endfor %}
             </div>
             <div class="form-tem">
                 <label for="file">Upload a dataset</label>

@@ -1,16 +1,15 @@
-# LOF
 from pyod.models.lof import LOF
 
 import numpy as np
-import pandas as pd
 
 from sklearn import metrics
 
+import warnings
+warnings.filterwarnings('ignore')
+
 class Lof():
     def __init__(self, dataset) -> None:
-        dataset = pd.read_csv(dataset)
         self.X_data = dataset.iloc[:, :-1]
-        df_shape = len(self.X_data.columns)
         self.y_true = dataset.iloc[:, -1]
         tmp = len(self.X_data)
         df = self.X_data.astype('float32')
@@ -47,4 +46,15 @@ class Lof():
         print('F1 score: {:.4f}'.format(f1_score_lof))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_lof))
 
-        return self.y_true, y_pred, fpr, tpr, auc_roc_lof
+        lof_res = {
+            'y_true' : self.y_true,
+            'y_pred' : y_pred,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_lof,
+            'precision' : precision_lof,
+            'recall' : recall_lof,
+            'f1_score' : f1_score_lof,
+        }
+
+        return lof_res

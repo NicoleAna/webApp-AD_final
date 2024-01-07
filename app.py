@@ -1,4 +1,6 @@
 # Flask app
+import pandas as pd
+
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from flask_caching import Cache
@@ -103,87 +105,86 @@ def inputs():
         return redirect("/login")
 
     file = request.files.get("dataset")
-    algo = request.form.get("algo")
+    algo = request.form.getlist("algo")
     
-    if algo not in ALGO and not file:
-        return render_template("input_form.html", error="Please select a model and upload a CSV file", algos=ALGO)
-    elif algo not in ALGO:
-        return render_template("input_form.html", error="Please select a model", algos=ALGO, selected_file=file)
     if not file:
         return render_template("input_form.html", error="Please upload a CSV file", algos=ALGO, selected_algo=algo)
     
-    dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
-    # generating unique cache key based on dataset and model
-    cache_key = f"{file.filename}-{algo}"
-    print(cache_key)
+    data = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
+    dataset = pd.read_csv(data)
 
-    # check if result is cached
-    if cache_key in session:
-        result = cache.get(cache_key)
-        return render_template("visualize.html", algo=algo, plot=result['plot'], auc_roc=result['auc_roc'])
-
-    if algo == "Generative Adversarial Networks(GAN)":
-        gan_model = GAN(dataset)
-        gan_model.train(epochs=50, batch_size=32)
-        y_true, y_pred, fpr, tpr, auc_roc = gan_model.test()
-
-    elif algo == "Local Outlier Factor(LOF)":
-        lof_model = Lof(dataset)
-        y_true, y_pred, fpr, tpr, auc_roc = lof_model.train_test()
-
-    elif algo == "Isolation Forest(IForest)":
-        iforest_model = iForest(dataset)
-        y_true, y_pred, fpr, tpr, auc_roc = iforest_model.train_test()
-
-    elif algo == "AutoEncoders":
-        auto_model = AutoEncoder(dataset)
-        auto_model.auto()
-        y_true, y_pred, fpr, tpr, auc_roc = auto_model.train_test(epochs=50, batch_size=64)
-
-    elif algo == "DevNet":
-        devnet_model = Devnet(dataset)
-        y_true, y_pred, fpr, tpr, auc_roc = devnet_model.train_test(epochs=10)
-
-    elif algo == "Elliptic Envelope":
-        env_model = ellipticEnvelope(dataset)
-        y_true, y_pred, fpr, tpr, auc_roc = env_model.train_test()
-
-    elif algo == "DAGMM":
-        dagmm_model = Dagmm1(dataset)
-        y_true, y_pred, fpr, tpr, auc_roc = dagmm_model.train_test()
-
-    elif algo == "Quantile Regression":
-        qreg_model = QReg(dataset)
-        qreg_model.build_model()
-        y_true, y_pred, fpr, tpr, auc_roc = qreg_model.train_test()
-
-    elif algo == "Long Short Term Memory(LSTM)":
-        lstm_model = Lstm(dataset)
-        lstm_model.build_model()
-        y_true, y_pred, fpr, tpr, auc_roc = lstm_model.train_test(epochs=50, batch_size=64)
-
-    elif algo == "MGBTAI":
-        mgbtai_model = MGBTAI(dataset)
-        mgbtai_model.train_mgbtai()
-        y_true, y_pred, fpr, tpr, auc_roc = mgbtai_model.evaluate_mgbtai()
-
-    elif algo == "DBTAI":
-        dbtai_model = DBTAI(dataset)
-        dbtai_model.train_dbtai()
-        y_true, y_pred, fpr, tpr, auc_roc = dbtai_model.evaluate_dbtai()
-
-    else:
-        return render_template("visualize.html", error="Some error occured", algos=ALGO)
-        
     plot_model = Gen_Plot()
-    plot = plot_model.gen_auc_plot(y_true, y_pred, fpr, tpr, auc_roc)
+    plots = dict()
 
-    # cache the result with timeout of 300s
-    cache.set(cache_key, {'auc_roc':auc_roc, 'plot':plot}, timeout=300)
-    session[cache_key] = {'auc_roc':auc_roc, 'plot':plot}
+    for model in algo:
+        if model == "Generative Adversarial Networks(GAN)":
+            gan_model = GAN(dataset)
+            gan_model.train(epochs=50, batch_size=32)
+            gan_res = gan_model.test()
+            plots["Generative Adversarial Networks(GAN)"] = plot_model.gen_auc_plot(gan_res)
+        
+        elif model == "Local Outlier Factor(LOF)":
+            print(dataset)
+            lof_model = Lof(dataset)
+            lof_res = lof_model.train_test()
+            plots["Local Outlier Factor(LOF)"] = plot_model.gen_auc_plot(lof_res)
 
-    if len(plot) != 0:    
-        return render_template("visualize.html", algo=algo, auc_roc=auc_roc, plot=plot)
+        elif model == "Isolation Forest(IForest)":
+            print(dataset)
+            iforest_model = iForest(dataset)
+            iforest_res = iforest_model.train_test()
+            plots["Isolation Forest(IForest)"] = plot_model.gen_auc_plot(iforest_res)
+
+        elif model == "AutoEncoders":
+            auto_model = AutoEncoder(dataset)
+            auto_model.auto()
+            auto_res = auto_model.train_test(epochs=50, batch_size=64)
+            plots["AutoEncoders"] = plot_model.gen_auc_plot(auto_res)
+
+        elif model == "DevNet":
+            devnet_model = Devnet(dataset)
+            devnet_res = devnet_model.train_test(epochs=10)
+            plots["DevNet"] = plot_model.gen_auc_plot(devnet_res)
+
+        elif model == "Elliptic Envelope":
+            env_model = ellipticEnvelope(dataset)
+            env_res = env_model.train_test()
+            plots["Elliptic Envelope"] = plot_model.gen_auc_plot(env_res)
+
+        elif model == "DAGMM":
+            dagmm_model = Dagmm1(dataset)
+            dagmm_res = dagmm_model.train_test()
+            plots["DAGMM"] = plot_model.gen_auc_plot(dagmm_res)
+
+        elif model == "Quantile Regression":
+            qreg_model = QReg(dataset)
+            qreg_model.build_model()
+            qreg_res = qreg_model.train_test()
+            plots["Quantile Regression"] = plot_model.gen_auc_plot(qreg_res)
+
+        elif model == "Long Short Term Memory(LSTM)":
+            lstm_model = Lstm(dataset)
+            lstm_model.build_model()
+            lstm_res = lstm_model.train_test(epochs=50, batch_size=64)
+            plots["Long Short Term Memory(LSTM)"] = plot_model.gen_auc_plot(lstm_res)
+
+        elif model == "MGBTAI":
+            mgbtai_model = MGBTAI(dataset)
+            mgbtai_model.train_mgbtai()
+            mgbtai_res = mgbtai_model.evaluate_mgbtai()
+            plots["MGBTAI"] = plot_model.gen_auc_plot(mgbtai_res)
+
+        elif model == "DBTAI":
+            dbtai_model = DBTAI(dataset)
+            dbtai_model.train_dbtai()
+            dbtai_res = dbtai_model.evaluate_dbtai()
+            plots["DBTAI"] = plot_model.gen_auc_plot(dbtai_res)
+        
+        else:
+            return render_template("visualize.html", error="Some error occured", algos=ALGO)
+        
+    if len(plots) != 0:    
+        return render_template("visualize.html", algos=algo, plot=plots)
     else:
         return render_template("input_form.html", error="Some error occured", algos=ALGO)
 

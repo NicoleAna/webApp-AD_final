@@ -8,7 +8,9 @@
 
 {% block body %}
     <div class="tc">
-        <h1 class="f2 lh-copy">Visualization of Results for {{ algo }} model</h1>
-        <img src="data:image/png;base64,{{ plot }}" alt="AUC-ROC Curve">  
+        {% for a in algos %}
+            <h1 class="f2 lh-copy">Visualization of Results for {{ a }} model</h1>
+            <img src="data:image/png;base64,{{ plot[a] }}" alt="AUC-ROC Curve">  
+        {% endfor %}
     </div>  
 {% endblock %}

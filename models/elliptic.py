@@ -1,14 +1,14 @@
-# Elliptic Envelope
 import numpy as np 
-import pandas as pd
 
 from sklearn.covariance import EllipticEnvelope
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
+import warnings
+warnings.filterwarnings('ignore')
+
 class ellipticEnvelope():
     def __init__(self, dataset) -> None:
-        dataset = pd.read_csv(dataset)
         self.X_data = dataset.iloc[:, :-1]
         self.y_true = dataset.iloc[:, -1]
         df = self.X_data.astype('float32')
@@ -39,4 +39,15 @@ class ellipticEnvelope():
         print('F1 score: {:.4f}'.format(f1_score_env))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_env))
 
-        return self.y_true, y_pred, fpr, tpr, auc_roc_env
+        env_res = {
+            'y_true' : self.y_true,
+            'y_pred' : y_pred,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_env,
+            'precision' : precision_env,
+            'recall' : recall_env,
+            'f1_score' : f1_score_env,
+        }
+
+        return env_res

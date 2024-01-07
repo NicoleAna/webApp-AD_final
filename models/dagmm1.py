@@ -1,4 +1,3 @@
-# DAGMM
 import math
 
 import numpy as np
@@ -7,14 +6,15 @@ import pandas as pd
 import tensorflow.compat.v1 as tf 
 tf.disable_v2_behavior()
 
-from sklearn.model_selection import train_test_split
 from sklearn import metrics
 
 from models.DAGMM_module.dagmm import DAGMM
 
+import warnings
+warnings.filterwarnings('ignore')
+
 class Dagmm1():
     def __init__(self, dataset) -> None:
-        dataset = pd.read_csv(dataset)
         X = dataset.iloc[:, :-1].values
         self.y = dataset.iloc[:, -1].values
         self.X_train = []
@@ -42,8 +42,6 @@ class Dagmm1():
         y_pred = model.predict(self.X_test)
 
         anomaly_energy_threshold = np.percentile(y_pred, 90)
-        print(f"Energy threshold to detect anomaly: {anomaly_energy_threshold:.3f}")
-
         y_pred_flag = np.where(y_pred >= anomaly_energy_threshold, 1, 0)
 
         mean_mse = np.mean(y_pred)
@@ -61,4 +59,15 @@ class Dagmm1():
         print('F1 score: {:.4f}'.format(f1_score_dagmm))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_dagmm))
 
-        return self.y, y_pred_flag, fpr, tpr, auc_roc_dagmm
+        dagmm_res = {
+            'y_true' : self.y,
+            'y_pred' : y_pred_flag,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_dagmm,
+            'precision' : precision_dagmm,
+            'recall' : recall_dagmm,
+            'f1_score' : f1_score_dagmm,
+        }
+
+        return dagmm_res

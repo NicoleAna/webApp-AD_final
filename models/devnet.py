@@ -1,14 +1,14 @@
-# DevNet
 from deepod.models.devnet import DevNet
 
 import numpy as np
-import pandas as pd
 
 from sklearn import metrics
 
+import warnings
+warnings.filterwarnings('ignore')
+
 class Devnet():
     def __init__(self, dataset) -> None:
-        dataset = pd.read_csv(dataset)
         train_feat = dataset.iloc[:, :-1].values
         train_lab = dataset.iloc[:, -1].values
         normal_data = train_feat[train_lab == 0]
@@ -43,5 +43,15 @@ class Devnet():
         print('F1 score: {:.4f}'.format(f1_score_dev))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_dev))
 
-        return self.test_lab, preds, fpr, tpr, auc_roc_dev
-        
+        dev_res = {
+            'y_true' : self.test_lab,
+            'y_pred' : preds,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_dev,
+            'precision' : precision_dev,
+            'recall' : recall_dev,
+            'f1_score' : f1_score_dev,
+        }
+
+        return dev_res

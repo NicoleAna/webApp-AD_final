@@ -1,6 +1,4 @@
-# DBTAI
 import numpy as np
-import pandas as pd
 
 from sklearn import metrics
 from sklearn.cluster import KMeans
@@ -8,13 +6,14 @@ from sklearn.cluster import KMeans
 from kneed import KneeLocator
 
 import math
+import warnings
+warnings.filterwarnings('ignore')
 
 class DBTAI():
-    def __init__(self, dataset) -> None:
+    def __init__(self, df) -> None:
         self.leaf_nodes = []
         self.child_tree = []
         
-        df = pd.read_csv(dataset)
         self.X = df.iloc[:, :-1]
         self.X = np.array(self.X)
         self.y_true = df.iloc[:, -1]
@@ -233,4 +232,15 @@ class DBTAI():
         print('F1 score: {:.4f}'.format(f1_score_dbtai))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_dbtai))
 
-        return self.y_true, y_pred, fpr, tpr, auc_roc_dbtai
+        dbtai_res = {
+            'y_true' : self.y_true,
+            'y_pred' : y_pred,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_dbtai,
+            'precision' : precision_dbtai,
+            'recall' : recall_dbtai,
+            'f1_score' : f1_score_dbtai,
+        }
+
+        return dbtai_res

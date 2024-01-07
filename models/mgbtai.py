@@ -1,22 +1,18 @@
-# MGBTAI
 import numpy as np
-import pandas as pd
 
 from sklearn import metrics
 from sklearn.cluster import KMeans
 
 import math
 import warnings
-
 warnings.simplefilter('ignore')
 
 class MGBTAI():
-    def __init__(self, dataset) -> None:
+    def __init__(self, df) -> None:
         self.leaf_nodes = []
         self.child_tree = []
         self.leaf_level_threshold = 4
 
-        df = pd.read_csv(dataset)
         self.X = df.iloc[:, :-1]
         self.X = np.array(self.X)
         self.y_true = df.iloc[:, -1]
@@ -154,4 +150,15 @@ class MGBTAI():
         print('F1 score: {:.4f}'.format(f1_score_mgbtai))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_mgbtai))
 
-        return self.y_true, y_pred, fpr, tpr, auc_roc_mgbtai
+        mgbtai_res = {
+            'y_true' : self.y_true,
+            'y_pred' : y_pred,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_mgbtai,
+            'precision' : precision_mgbtai,
+            'recall' : recall_mgbtai,
+            'f1_score' : f1_score_mgbtai,
+        }
+
+        return mgbtai_res

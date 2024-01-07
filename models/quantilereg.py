@@ -1,4 +1,3 @@
-# Quantile Regression
 import numpy as np
 import pandas as pd
 
@@ -11,10 +10,11 @@ from keras.optimizers.legacy import Adam
 from keras import backend as K
 
 import math
+import warnings
+warnings.filterwarnings('ignore')
 
 class QReg():
-    def __init__(self, dataset) -> None:
-        df = pd.read_csv(dataset)
+    def __init__(self, df) -> None:
         if 'Date' in df.columns:
             df = df.drop('Date', axis=1)
         X = df.iloc[:, :-1].values
@@ -69,7 +69,6 @@ class QReg():
                 Dense(5, activation='sigmoid')
             ]
         )
-        print(model.summary())
         return model
 
     def train_test(self):
@@ -103,4 +102,15 @@ class QReg():
         print('F1 score: {:.4f}'.format(f1_score_qreg))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_qreg))
 
-        return self.y_true, y_pred, fpr, tpr, auc_roc_qreg
+        qreg_res = {
+            'y_true' : self.y_true,
+            'y_pred' : y_pred,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_qreg,
+            'precision' : precision_qreg,
+            'recall' : recall_qreg,
+            'f1_score' : f1_score_qreg,
+        }
+
+        return qreg_res

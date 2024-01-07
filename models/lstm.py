@@ -1,6 +1,4 @@
-# LSTM
 import numpy as np
-import pandas as pd
 
 from sklearn import metrics
 
@@ -11,10 +9,11 @@ from keras.callbacks import EarlyStopping
 from keras.optimizers.legacy import Adam
 
 import math
+import warnings
+warnings.filterwarnings('ignore')
 
 class Lstm():
-    def __init__(self, dataset) -> None:
-        df = pd.read_csv(dataset)
+    def __init__(self, df) -> None:
         if 'Date' in df.columns:
             df = df.drop('Date', axis=1)
         self.X_data = df.iloc[:, :-1].values
@@ -87,6 +86,8 @@ class Lstm():
         X_test_flattened_subset = X_test_flattened[:, :num_features_to_match]
 
         mse = np.mean(np.power(X_test_flattened_subset - x_test_preds, 2), axis=1)
+        mean_mse = np.mean(mse)
+        std_mse = np.std(mse)
         lper = np.percentile(mse, 5)
         uper = np.percentile(mse, 95)
 
@@ -111,4 +112,15 @@ class Lstm():
         print('F1 score: {:.4f}'.format(f1_score_lstm))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_lstm))
 
-        return self.y_true, y_pred, fpr, tpr, auc_roc_lstm
+        lstm_res = {
+            'y_true' : self.y_true,
+            'y_pred' : y_pred,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_lstm,
+            'precision' : precision_lstm,
+            'recall' : recall_lstm,
+            'f1_score' : f1_score_lstm,
+        }
+
+        return lstm_res

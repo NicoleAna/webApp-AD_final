@@ -1,6 +1,4 @@
-# GAN
 import numpy as np
-import pandas as pd
 
 from sklearn import metrics
 
@@ -8,9 +6,11 @@ from keras.layers import Input, Dense, Activation, BatchNormalization
 from keras.models import Model, Sequential
 from keras.optimizers.legacy import Adam
 
+import warnings
+warnings.filterwarnings('ignore')
+
 class GAN():
     def __init__(self, dataset) -> None:
-        dataset = pd.read_csv(dataset)
         self.X_data = dataset.iloc[:, :-1]
         df_shape = len(self.X_data.columns)
         self.y_true = dataset.iloc[:, -1]
@@ -69,8 +69,6 @@ class GAN():
         model.add(BatchNormalization(momentum=0.8))
         model.add(Dense(self.ip_shape, activation='tanh'))
 
-        # model.summary()
-
         noise = Input(shape=(self.ip_shape,))
         genData = model(noise)
 
@@ -89,8 +87,6 @@ class GAN():
         model.add(Dense(128))
         model.add(Activation('tanh'))
         model.add(Dense(1, activation='sigmoid'))
-
-        # model.summary()
 
         data = Input(self.ip_shape)
         validity = model(data)
@@ -129,8 +125,6 @@ class GAN():
 
             g_loss = self.gan.train_on_batch(noise, valid)
 
-            # print("%d [D loss: %f, acc: %.2f%%] [G loss: %f]" % (epoch, d_loss[0], 100*d_loss[1], g_loss))
-
     # testing on discriminator
     def test(self):
         preds = self.discriminator.predict(self.test_data)
@@ -153,4 +147,15 @@ class GAN():
         print('F1 score: {:.4f}'.format(f1_score_gan))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_gan))
 
-        return self.y_true, y_pred, fpr, tpr, auc_roc_gan   
+        gan_res = {
+            'y_true' : self.y_true,
+            'y_pred' : y_pred,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_gan,
+            'precision' : precision_gan,
+            'recall' : recall_gan,
+            'f1_score' : f1_score_gan,
+        }
+
+        return gan_res   

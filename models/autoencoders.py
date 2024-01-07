@@ -1,8 +1,6 @@
-# AutoEncoder
 import math
 
 import numpy as np
-import pandas as pd
 
 from sklearn import metrics
 
@@ -13,9 +11,11 @@ from keras.models import Model
 from keras.callbacks import EarlyStopping
 from keras.regularizers import L2
 
+import warnings
+warnings.filterwarnings('ignore')
+
 class AutoEncoder():
     def __init__(self, dataset) -> None:
-        dataset = pd.read_csv(dataset)
         self.X_data = dataset.iloc[:, :-1].values
         self.y_true = dataset.iloc[:, -1].values
         tmp = len(self.X_data)
@@ -105,4 +105,15 @@ class AutoEncoder():
         print('F1 score: {:.4f}'.format(f1_score_auto))
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_auto))
 
-        return self.y_true, y_pred, fpr, tpr, auc_roc_auto 
+        auto_res = {
+            'y_true' : self.y_true,
+            'y_pred' : y_pred,
+            'fpr' : fpr,
+            'tpr' : tpr,
+            'auc_roc' : auc_roc_auto,
+            'precision' : precision_auto,
+            'recall' : recall_auto,
+            'f1_score' : f1_score_auto,
+        }
+
+        return auto_res 

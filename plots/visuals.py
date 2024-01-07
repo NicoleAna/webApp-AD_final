@@ -11,19 +11,19 @@ class Gen_Plot():
     def __init__(self) -> None:
         pass
 
-    def gen_auc_plot(self,y_true, y_pred, fpr, tpr, auc_roc):
+    def gen_auc_plot(self, res_dic):
         fig = plt.figure(figsize=(6, 12), dpi=100)
         fig.subplots_adjust(hspace=0.5) 
 
         ax1 = fig.add_subplot(2, 1, 1)
         ax2 = fig.add_subplot(2, 1, 2)
-        ax1.plot(fpr, tpr, label=f'AUC = {auc_roc:.4f}', color='royalblue')
+        ax1.plot(res_dic['fpr'], res_dic['tpr'], label=f"AUC = {res_dic['auc_roc']:.4f}", color='royalblue')
         ax1.set_xlabel('False Positive Rate', fontsize=14, labelpad=15)
         ax1.set_ylabel('True Positive Rate', fontsize=14, labelpad=15)
         ax1.set_title('Receiver Operating Characteristic (ROC) Curve', fontsize=16, pad=20)
         ax1.legend(loc='best')
 
-        cf_matrix = confusion_matrix(y_true, y_pred)
+        cf_matrix = confusion_matrix(res_dic['y_true'], res_dic['y_pred'])
         sns.heatmap(cf_matrix, annot=True, cmap='Blues', fmt='d', cbar=False, ax=ax2)
         ax2.set_title('Confusion Matrix', fontsize=16, pad=20)
         ax2.set_xlabel('Predicted', fontsize=14, labelpad=15)
