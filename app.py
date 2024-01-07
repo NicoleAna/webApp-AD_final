@@ -76,6 +76,13 @@ def aboutus():
     return render_template("aboutus.html")
     
 
+@app.route("/input_form")
+def ip_form():
+    if not session.get("name"):
+        return redirect("/login")
+    return render_template("input_form.html", algos=ALGO)
+
+
 @app.route("/visualize", methods=["GET", "POST"])
 def visual():
     if not session.get("name"):
@@ -99,11 +106,11 @@ def inputs():
     algo = request.form.get("algo")
     
     if algo not in ALGO and not file:
-        return render_template("visualize.html", error="Please select a model and upload a CSV file", algos=ALGO)
+        return render_template("input_form.html", error="Please select a model and upload a CSV file", algos=ALGO)
     elif algo not in ALGO:
-        return render_template("visualize.html", error="Please select a model", algos=ALGO, selected_file=file)
-    elif not file:
-        return render_template("visualize.html", error="Please upload a CSV file", algos=ALGO, selected_algo=algo)
+        return render_template("input_form.html", error="Please select a model", algos=ALGO, selected_file=file)
+    if not file:
+        return render_template("input_form.html", error="Please upload a CSV file", algos=ALGO, selected_algo=algo)
     
     dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
     # generating unique cache key based on dataset and model
@@ -113,7 +120,7 @@ def inputs():
     # check if result is cached
     if cache_key in session:
         result = cache.get(cache_key)
-        return render_template("visualize.html", algo=algo, plot=result['plot'], algos=ALGO, submitted='res')
+        return render_template("visualize.html", algo=algo, plot=result['plot'], auc_roc=result['auc_roc'])
 
     if algo == "Generative Adversarial Networks(GAN)":
         gan_model = GAN(dataset)
@@ -175,10 +182,10 @@ def inputs():
     cache.set(cache_key, {'auc_roc':auc_roc, 'plot':plot}, timeout=300)
     session[cache_key] = {'auc_roc':auc_roc, 'plot':plot}
 
-    if plot:    
-        return render_template("visualize.html", algo=algo, auc_roc=auc_roc, plot=plot, algos=ALGO, submitted='res')
+    if len(plot) != 0:    
+        return render_template("visualize.html", algo=algo, auc_roc=auc_roc, plot=plot)
     else:
-        return render_template("visualize.html", error="Some error occured", algos=ALGO)
+        return render_template("input_form.html", error="Some error occured", algos=ALGO)
 
 
 @app.route("/datavis", methods=["POST"])

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block navbar %}
+    <a class="nav-link active pr2" href="/">Home</a>
+    <a class="nav-link active pr2" href="/">Back</a>
+    <a class="nav-link active pl2" href="/logout">Log Out</a>
+{% endblock %}
+
+{% block body %}
+    <div class="my-form">
+        <form action="/inputs" method="post" enctype="multipart/form-data">
+            <div class="form-item">
+                <label for="algo">Please select a Model from the dropdown</label>
+                <select name="algo">
+                    <option disabled selected>Model</option>
+                    {% for a in algos %}
+                        <option value="{{ a }}" {% if selected_algo == a %} selected {% endif %}>{{ a }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-tem">
+                <label for="file">Upload a dataset</label>
+                <input type="file" name="dataset" accept=".csv">
+            </div>
+            <div class="form-item">
+                <button type="submit" class="learn-more">Visualize Results</button>
+            </div>
+        </form>
+    </div>
+    {% if error %}
+        <h1 class="tc">{{ error }}</h1>
+    {% endif %}
+{% endblock %}
