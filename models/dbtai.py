@@ -4,7 +4,6 @@ import pandas as pd
 
 from sklearn import metrics
 from sklearn.cluster import KMeans
-from sklearn.preprocessing import MinMaxScaler
 
 from kneed import KneeLocator
 

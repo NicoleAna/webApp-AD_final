@@ -13,6 +13,7 @@ from models.dagmm1 import Dagmm1
 from models.quantilereg import QReg
 from models.lstm import Lstm
 from models.dbtai import DBTAI
+from models.mgbtai import MGBTAI
 from plots.visuals import Gen_Plot
 
 import io
@@ -153,6 +154,11 @@ def inputs():
         lstm_model = Lstm(dataset)
         lstm_model.build_model()
         y_true, y_pred, fpr, tpr, auc_roc = lstm_model.train_test(epochs=50, batch_size=64)
+
+    elif algo == "MGBTAI":
+        mgbtai_model = MGBTAI(dataset)
+        mgbtai_model.train_mgbtai()
+        y_true, y_pred, fpr, tpr, auc_roc = mgbtai_model.evaluate_mgbtai()
 
     elif algo == "DBTAI":
         dbtai_model = DBTAI(dataset)
