@@ -17,6 +17,10 @@
                         <label for="{{ a }}">{{ a }}</label>
                     </div>
                 {% endfor %}
+                <div class="checkbox-item">
+                    <input type="checkbox" id="select-all-checkbox" onclick="toggleCheckboxes()">
+                    <label for="select-all-checkbox">Select All</label>
+                </div>
             </div>
             <div class="form-tem">
                 <label for="file">Upload a dataset</label>
@@ -30,4 +34,15 @@
     {% if error %}
         <h1 class="tc">{{ error }}</h1>
     {% endif %}
+
+    <script>
+        function toggleCheckboxes() {
+            var checkboxs = document.querySelectorAll('input[type="checkbox"][name="algo"]');
+            var selectAllCheckbox = document.getElementById('select-all-checkbox');
+
+            checkboxs.forEach(function(checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            }); 
+        }
+    </script>
 {% endblock %}
