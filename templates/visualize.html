@@ -10,7 +10,11 @@
     <div class="tc">
         {% for a in algos %}
             <h1 class="f2 lh-copy">Visualization of Results for {{ a }} model</h1>
-            <img src="data:image/png;base64,{{ plot[a] }}" alt="AUC-ROC Curve">  
+            <img src="data:image/png;base64,{{ plot[a] }}" alt="{{ a }} plots">  
         {% endfor %}
+        {% if auc_plot %}
+            <h1 class="f2 lh-copy">AUC-ROC of models</h1>
+            <img src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve">  
+        {% endif %}
     </div>  
 {% endblock %}

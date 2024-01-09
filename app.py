@@ -115,76 +115,90 @@ def inputs():
 
     plot_model = Gen_Plot()
     plots = dict()
+    selected_algo = dict()
 
     for model in algo:
         if model == "Generative Adversarial Networks(GAN)":
             gan_model = GAN(dataset)
             gan_model.train(epochs=50, batch_size=32)
             gan_res = gan_model.test()
-            plots["Generative Adversarial Networks(GAN)"] = plot_model.gen_auc_plot(gan_res)
+            selected_algo[model] = gan_res
+            plots[model] = plot_model.gen_auc_plot(gan_res)
         
         elif model == "Local Outlier Factor(LOF)":
-            print(dataset)
             lof_model = Lof(dataset)
             lof_res = lof_model.train_test()
-            plots["Local Outlier Factor(LOF)"] = plot_model.gen_auc_plot(lof_res)
+            selected_algo[model] = lof_res
+            plots[model] = plot_model.gen_auc_plot(lof_res)
 
         elif model == "Isolation Forest(IForest)":
-            print(dataset)
             iforest_model = iForest(dataset)
             iforest_res = iforest_model.train_test()
-            plots["Isolation Forest(IForest)"] = plot_model.gen_auc_plot(iforest_res)
+            selected_algo[model] = iforest_res
+            plots[model] = plot_model.gen_auc_plot(iforest_res)
 
         elif model == "AutoEncoders":
             auto_model = AutoEncoder(dataset)
             auto_model.auto()
             auto_res = auto_model.train_test(epochs=50, batch_size=64)
-            plots["AutoEncoders"] = plot_model.gen_auc_plot(auto_res)
+            selected_algo[model] = auto_res
+            plots[model] = plot_model.gen_auc_plot(auto_res)
 
         elif model == "DevNet":
             devnet_model = Devnet(dataset)
             devnet_res = devnet_model.train_test(epochs=10)
-            plots["DevNet"] = plot_model.gen_auc_plot(devnet_res)
+            selected_algo[model] = devnet_res
+            plots[model] = plot_model.gen_auc_plot(devnet_res)
 
         elif model == "Elliptic Envelope":
             env_model = ellipticEnvelope(dataset)
             env_res = env_model.train_test()
-            plots["Elliptic Envelope"] = plot_model.gen_auc_plot(env_res)
+            selected_algo[model] = env_res
+            plots[model] = plot_model.gen_auc_plot(env_res)
 
         elif model == "DAGMM":
             dagmm_model = Dagmm1(dataset)
             dagmm_res = dagmm_model.train_test()
-            plots["DAGMM"] = plot_model.gen_auc_plot(dagmm_res)
+            selected_algo[model] = dagmm_res
+            plots[model] = plot_model.gen_auc_plot(dagmm_res)
 
         elif model == "Quantile Regression":
             qreg_model = QReg(dataset)
             qreg_model.build_model()
             qreg_res = qreg_model.train_test()
-            plots["Quantile Regression"] = plot_model.gen_auc_plot(qreg_res)
+            selected_algo[model] = qreg_res
+            plots[model] = plot_model.gen_auc_plot(qreg_res)
 
         elif model == "Long Short Term Memory(LSTM)":
             lstm_model = Lstm(dataset)
             lstm_model.build_model()
             lstm_res = lstm_model.train_test(epochs=50, batch_size=64)
-            plots["Long Short Term Memory(LSTM)"] = plot_model.gen_auc_plot(lstm_res)
+            selected_algo[model] = lstm_res
+            plots[model] = plot_model.gen_auc_plot(lstm_res)
 
         elif model == "MGBTAI":
             mgbtai_model = MGBTAI(dataset)
             mgbtai_model.train_mgbtai()
             mgbtai_res = mgbtai_model.evaluate_mgbtai()
-            plots["MGBTAI"] = plot_model.gen_auc_plot(mgbtai_res)
+            selected_algo[model] = mgbtai_res
+            plots[model] = plot_model.gen_auc_plot(mgbtai_res)
 
         elif model == "DBTAI":
             dbtai_model = DBTAI(dataset)
             dbtai_model.train_dbtai()
             dbtai_res = dbtai_model.evaluate_dbtai()
-            plots["DBTAI"] = plot_model.gen_auc_plot(dbtai_res)
+            selected_algo[model] = dbtai_res
+            plots[model] = plot_model.gen_auc_plot(dbtai_res)
         
         else:
             return render_template("visualize.html", error="Some error occured", algos=ALGO)
         
-    if len(plots) != 0:    
-        return render_template("visualize.html", algos=algo, plot=plots)
+    if len(plots) != 0:
+        if len(plots) == 1:    
+            return render_template("visualize.html", algos=algo, plot=plots)
+        else:
+            auc_plots = plot_model.comp_auc(selected_algo)
+            return render_template("visualize.html", algos=algo, plot=plots, auc_plot=auc_plots)
     else:
         return render_template("input_form.html", error="Some error occured", algos=ALGO)
 
