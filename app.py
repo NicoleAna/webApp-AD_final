@@ -1,9 +1,7 @@
 # Flask app
 import pandas as pd
 
-from flask import Flask, render_template, request, redirect, session
-from flask_session import Session
-from flask_caching import Cache
+from flask import Flask, render_template, request
 
 from models.gan import GAN
 from models.lof import Lof
@@ -19,8 +17,6 @@ from models.mgbtai import MGBTAI
 from plots.visuals import Gen_Plot
 
 import io
-import secrets
-from datetime import timedelta
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -28,18 +24,6 @@ warnings.filterwarnings('ignore')
 # configure flask app
 app = Flask(__name__)
 
-# secure key for session management
-app.secret_key = secrets.token_hex(16)
-
-# configure flask caching
-cache = Cache(app, config={'CACHE_TYPE':'SimpleCache', 'CACHE_DEFAULT_TIMEOUT':300})
-
-# configure flask session
-app.config["SESSION_PERMANENT"] = True
-# session lifetime of 30 mins
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=30) 
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
 
 ALGO = [
     "Generative Adversarial Networks(GAN)", 
@@ -58,52 +42,31 @@ ALGO = [
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    if not session.get("name"):
-        return redirect("/login")
-    return render_template("index.html", session_name=session.get("name"))
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        session["name"] = request.form.get("name")
-        return redirect("/")
-    return render_template("login.html") 
+    return render_template("index.html")
 
 
 @app.route("/about", methods=["GET"])
 def aboutus():
-    if not session.get("name"):
-        return redirect("/login")
     return render_template("aboutus.html")
     
 
 @app.route("/input_form")
 def ip_form():
-    if not session.get("name"):
-        return redirect("/login")
-    return render_template("input_form.html", algos=ALGO)
+    return render_template("input_form.html", algos=ALGO, loading=False)
 
 
 @app.route("/visualize", methods=["GET", "POST"])
 def visual():
-    if not session.get("name"):
-        return redirect("/login")
     return render_template("visualize.html", algos=ALGO)
 
 
 @app.route("/visualizedata", methods=["GET", "POST"])
 def datavis():
-    if not session.get("name"):
-        return redirect("/login")
     return render_template("visualize_data.html")
 
 
 @app.route("/inputs", methods=["POST"])
 def inputs():
-    if not session.get("name"):
-        return redirect("/login")
-
     file = request.files.get("dataset")
     algo = request.form.getlist("algo")
     
@@ -116,6 +79,8 @@ def inputs():
     plot_model = Gen_Plot()
     plots = dict()
     selected_algo = dict()
+
+    loading_temp = render_template("input_form.html", loading=True)
 
     for model in algo:
         if model == "Generative Adversarial Networks(GAN)":
@@ -193,6 +158,7 @@ def inputs():
         else:
             return render_template("visualize.html", error="Some error occured", algos=ALGO)
         
+    
     if len(plots) != 0:
         if len(plots) == 1:    
             return render_template("visualize.html", algos=algo, plot=plots)
@@ -205,8 +171,6 @@ def inputs():
 
 @app.route("/datavis", methods=["POST"])
 def dataVis():
-    if not session.get("name"):
-        return redirect("/login")
     file = request.files.get("dataset")
     if not file:
         return render_template("visualize_data.html", error="Please upload a csv file")
@@ -219,10 +183,3 @@ def dataVis():
         return render_template("visualize_data.html", plot=plot, submitted=True)
     else:
         return render_template("visualize_data.html", error="Some error occured")
-
-
-@app.route("/logout")
-def logout():
-    cache.clear()
-    session["name"] = None
-    return redirect("/")
