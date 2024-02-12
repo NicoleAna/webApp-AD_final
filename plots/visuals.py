@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, classification_report
 
 from io import BytesIO
 import base64
@@ -30,6 +30,9 @@ class Gen_Plot():
         ax2.xaxis.set_ticklabels(['Positive', 'Negative'])
         ax2.set_ylabel('Actual', fontsize=14, labelpad=15)
         ax2.yaxis.set_ticklabels(['Positive', 'Negative'])
+
+        report = classification_report(res_dic['y_true'], res_dic['y_pred'])
+        ax3.text(0.5, 0.5, report, fontsize=12, ha='center', va='center', transform=ax3.transAxes, bbox=dict(facecolor='none', edgecolor='black', boxstyle='round,pad=1'))
 
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
