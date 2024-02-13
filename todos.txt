@@ -1,0 +1,4 @@
+fix mgbtai and dbtai results
+loading page
+design for webapp
+plots for data visualization and result visualization
