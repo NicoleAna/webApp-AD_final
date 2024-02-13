@@ -6,14 +6,17 @@
 {% endblock %}
 
 {% block body %}
-    <div class="tc">
+    <div class="data-plots">
+        <h1 class="f1 b tc">Result Visualization</h1>
         {% for a in algos %}
             <h1 class="f2 lh-copy">Visualization of Results for {{ a }} model</h1>
-            <img src="data:image/png;base64,{{ plot[a] }}" alt="{{ a }} plots">  
+            {% for p in plot[a] %}
+            <img class="plot-img" src="data:image/png;base64,{{ p }}" alt="{{ a }} plots">  
+            {% endfor %}
         {% endfor %}
         {% if auc_plot %}
             <h1 class="f2 lh-copy">AUC-ROC of models</h1>
-            <img src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve">  
+            <img class="plot-img" src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve">  
         {% endif %}
     </div>  
 {% endblock %}

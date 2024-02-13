@@ -14,7 +14,8 @@ from models.quantilereg import QReg
 from models.lstm import Lstm
 from models.dbtai import DBTAI
 from models.mgbtai import MGBTAI
-from plots.visuals import Gen_Plot
+from plots.dataViz import Gen_Plot1
+from plots.resViz import Gen_Plot
 
 import io
 import warnings
@@ -84,76 +85,109 @@ def inputs():
 
     for model in algo:
         if model == "Generative Adversarial Networks(GAN)":
+            subplot = list()
             gan_model = GAN(dataset)
             gan_model.train(epochs=50, batch_size=32)
             gan_res = gan_model.test()
             selected_algo[model] = gan_res
-            plots[model] = plot_model.gen_auc_plot(gan_res)
+            subplot.append(plot_model.gen_auc_plot(gan_res))
+            subplot.append(plot_model.gen_confusion_matrix(gan_res))
+            plots[model] = subplot
         
         elif model == "Local Outlier Factor(LOF)":
+            subplot = list()
             lof_model = Lof(dataset)
             lof_res = lof_model.train_test()
             selected_algo[model] = lof_res
-            plots[model] = plot_model.gen_auc_plot(lof_res)
+            subplot.append(plot_model.gen_auc_plot(lof_res))
+            subplot.append(plot_model.gen_confusion_matrix(lof_res))
+            plots[model] = subplot
 
         elif model == "Isolation Forest(IForest)":
+            subplot = list()
             iforest_model = iForest(dataset)
             iforest_res = iforest_model.train_test()
             selected_algo[model] = iforest_res
-            plots[model] = plot_model.gen_auc_plot(iforest_res)
+            subplot.append(plot_model.gen_auc_plot(iforest_res))
+            subplot.append(plot_model.gen_confusion_matrix(iforest_res))
+            plots[model] = subplot
 
         elif model == "AutoEncoders":
+            subplot = list()
             auto_model = AutoEncoder(dataset)
             auto_model.auto()
             auto_res = auto_model.train_test(epochs=50, batch_size=64)
             selected_algo[model] = auto_res
-            plots[model] = plot_model.gen_auc_plot(auto_res)
+            subplot.append(plot_model.gen_auc_plot(auto_res))
+            subplot.append(plot_model.gen_confusion_matrix(auto_res))
+            plots[model] = subplot
 
         elif model == "DevNet":
+            subplot = list()
             devnet_model = Devnet(dataset)
             devnet_res = devnet_model.train_test(epochs=10)
             selected_algo[model] = devnet_res
-            plots[model] = plot_model.gen_auc_plot(devnet_res)
+            subplot.append(plot_model.gen_auc_plot(devnet_res))
+            subplot.append(plot_model.gen_confusion_matrix(devnet_res))
+            plots[model] = subplot
 
         elif model == "Elliptic Envelope":
+            subplot = list()
             env_model = ellipticEnvelope(dataset)
             env_res = env_model.train_test()
             selected_algo[model] = env_res
-            plots[model] = plot_model.gen_auc_plot(env_res)
+            subplot.append(plot_model.gen_auc_plot(env_res))
+            subplot.append(plot_model.gen_confusion_matrix(env_res))
+            plots[model] = subplot
 
         elif model == "DAGMM":
+            subplot = list()
             dagmm_model = Dagmm1(dataset)
             dagmm_res = dagmm_model.train_test()
             selected_algo[model] = dagmm_res
-            plots[model] = plot_model.gen_auc_plot(dagmm_res)
+            subplot.append(plot_model.gen_auc_plot(dagmm_res))
+            subplot.append(plot_model.gen_confusion_matrix(dagmm_res))
+            plots[model] = subplot
 
         elif model == "Quantile Regression":
+            subplot = list()
             qreg_model = QReg(dataset)
             qreg_model.build_model()
             qreg_res = qreg_model.train_test()
             selected_algo[model] = qreg_res
-            plots[model] = plot_model.gen_auc_plot(qreg_res)
+            subplot.append(plot_model.gen_auc_plot(qreg_res))
+            subplot.append(plot_model.gen_confusion_matrix(qreg_res))
+            plots[model] = subplot
 
         elif model == "Long Short Term Memory(LSTM)":
+            subplot = list()
             lstm_model = Lstm(dataset)
             lstm_model.build_model()
             lstm_res = lstm_model.train_test(epochs=50, batch_size=64)
             selected_algo[model] = lstm_res
-            plots[model] = plot_model.gen_auc_plot(lstm_res)
+            subplot.append(plot_model.gen_auc_plot(lstm_res))
+            subplot.append(plot_model.gen_confusion_matrix(lstm_res))
+            plots[model] = subplot
 
         elif model == "MGBTAI":
+            subplot = list()
             mgbtai_model = MGBTAI(dataset)
             mgbtai_model.train_mgbtai()
             mgbtai_res = mgbtai_model.evaluate_mgbtai()
             selected_algo[model] = mgbtai_res
-            plots[model] = plot_model.gen_auc_plot(mgbtai_res)
+            subplot.append(plot_model.gen_auc_plot(mgbtai_res))
+            subplot.append(plot_model.gen_confusion_matrix(mgbtai_res))
+            plots[model] = subplot
 
         elif model == "DBTAI":
+            subplot = list()
             dbtai_model = DBTAI(dataset)
             dbtai_model.train_dbtai()
             dbtai_res = dbtai_model.evaluate_dbtai()
             selected_algo[model] = dbtai_res
-            plots[model] = plot_model.gen_auc_plot(dbtai_res)
+            subplot.append(plot_model.gen_auc_plot(dbtai_res))
+            subplot.append(plot_model.gen_confusion_matrix(dbtai_res))
+            plots[model] = subplot
         
         else:
             return render_template("visualize.html", error="Some error occured", algos=ALGO)
@@ -175,9 +209,11 @@ def dataVis():
     if not file:
         return render_template("visualize_data.html", error="Please upload a csv file")
     
+    plot = list()
     dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
-    plot_graph = Gen_Plot()
-    plot = plot_graph.uni_data_visualise(dataset)
+    plot_graph = Gen_Plot1(dataset)
+    plot.append(plot_graph.scatterplot())
+    plot.append(plot_graph.histogram())
 
     if plot:    
         return render_template("visualize_data.html", plot=plot, submitted=True)
