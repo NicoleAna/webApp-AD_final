@@ -1,1 +1,5 @@
 data/**/*
+venv
+__pycache__
+models/__pycache__
+plots/__pycache__

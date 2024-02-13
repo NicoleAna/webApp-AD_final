@@ -31,8 +31,8 @@ class Gen_Plot():
         ax2.set_ylabel('Actual', fontsize=14, labelpad=15)
         ax2.yaxis.set_ticklabels(['Positive', 'Negative'])
 
-        report = classification_report(res_dic['y_true'], res_dic['y_pred'])
-        ax3.text(0.5, 0.5, report, fontsize=12, ha='center', va='center', transform=ax3.transAxes, bbox=dict(facecolor='none', edgecolor='black', boxstyle='round,pad=1'))
+        # report = classification_report(res_dic['y_true'], res_dic['y_pred'])
+        # ax3.text(0.5, 0.5, report, fontsize=12, ha='center', va='center', transform=ax3.transAxes, bbox=dict(facecolor='none', edgecolor='black', boxstyle='round,pad=1'))
 
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
