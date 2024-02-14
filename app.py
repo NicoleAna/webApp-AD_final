@@ -76,7 +76,7 @@ def inputs():
     
     data = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
     dataset = pd.read_csv(data)
-
+    #x=5
     plot_model = Gen_Plot()
     plots = dict()
     selected_algo = dict()
