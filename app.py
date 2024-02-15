@@ -195,10 +195,10 @@ def inputs():
     
     if len(plots) != 0:
         if len(plots) == 1:    
-            return render_template("visualize.html", algos=algo, plot=plots)
+            return render_template("visualize.html", algos=algo, plot=plots, selected_algo=selected_algo)
         else:
             auc_plots = plot_model.comp_auc(selected_algo)
-            return render_template("visualize.html", algos=algo, plot=plots, auc_plot=auc_plots)
+            return render_template("visualize.html", algos=algo, plot=plots, auc_plot=auc_plots, selected_algo=selected_algo)
     else:
         return render_template("input_form.html", error="Some error occured", algos=ALGO)
 
