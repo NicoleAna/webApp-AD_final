@@ -44,11 +44,11 @@ class AutoEncoder():
         self.lr = 1e-7
 
         # build and compile autoencoder model
-        self.autoencoder = self.auto()
+        self.autoencoder = self.build_model()
         self.autoencoder.compile(metrics=['accuracy'], loss='mean_squared_error', optimizer='adam')
 
     # defining autoencoder
-    def auto(self):
+    def build_model(self):
         # encoder
         ip_layer = Input(shape=(self.ip_shape,))
         encoder = Dense(self.encoding_dim, activation='tanh', activity_regularizer=L2(self.lr))(ip_layer)
@@ -75,7 +75,7 @@ class AutoEncoder():
 
         return autoencoder
     
-    def train_test(self, epochs, batch_size):
+    def train_test(self, epochs=50, batch_size=64):
         history = self.autoencoder.fit(
             self.train_data, self.train_data,
             epochs=epochs,

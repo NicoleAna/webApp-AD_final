@@ -69,7 +69,7 @@ class Lstm():
 
         return lstm_model
     
-    def train_test(self, epochs, batch_size):
+    def train_test(self, epochs=50, batch_size=64):
         history = self.lstm.fit(
             self.X_train, self.y_train,
             epochs=epochs,

@@ -94,7 +94,7 @@ class GAN():
         return Model(data, validity)
     
     # training models
-    def train(self, epochs, batch_size = 128):
+    def train(self, epochs=50, batch_size=128):
         # 
         valid = np.ones((batch_size, 1))
         fake = np.zeros((batch_size, 1))
