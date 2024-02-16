@@ -63,6 +63,7 @@ def visual():
 @app.route("/visualizedata", methods=["GET", "POST"])
 def datavis():
     return render_template("visualize_data.html")
+    
 
 
 @app.route("/inputs", methods=["POST"])
