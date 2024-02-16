@@ -64,7 +64,7 @@ class MGBTAI():
             k = max(tree_dic)
             self.leaf_nodes.append(k)
     
-    def train_mgbtai(self):
+    def train(self):
         count = 0
         tree_dic = {}
         data_size = len(self.X)
@@ -117,7 +117,7 @@ class MGBTAI():
             
             curr_itr = curr_itr + 1
 
-    def evaluate_mgbtai(self):
+    def test(self):
         childtree = np.vstack(self.child_tree)
         ind = []
         count = 0

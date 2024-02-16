@@ -26,19 +26,18 @@ warnings.filterwarnings('ignore')
 app = Flask(__name__)
 
 
-ALGO = [
-    "Generative Adversarial Networks(GAN)", 
-    "Local Outlier Factor(LOF)", 
-    "Isolation Forest(IForest)", 
-    "AutoEncoders", 
-    # "DevNet",  
-    "Elliptic Envelope", 
-    "DAGMM",
-    "Quantile Regression", 
-    "Long Short Term Memory(LSTM)",
-    "MGBTAI",
-    "DBTAI"
-]
+ALGO = {
+    "Generative Adversarial Networks(GAN)": GAN,
+    "Local Outlier Factor(LOF)": Lof,
+    "Isolation Forest(IForest)": iForest,
+    "AutoEncoders": AutoEncoder,
+    "Elliptic Envelope": ellipticEnvelope,
+    "DAGMM": Dagmm1,
+    "Quantile Regression": QReg,
+    "Long Short Term Memory(LSTM)": Lstm,
+    "MGBTAI": MGBTAI,
+    "DBTAI": DBTAI
+}
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -81,119 +80,29 @@ def inputs():
     plots = dict()
     selected_algo = dict()
 
-    loading_temp = render_template("input_form.html", loading=True)
-
     for model in algo:
-        if model == "Generative Adversarial Networks(GAN)":
-            subplot = list()
-            gan_model = GAN(dataset)
-            gan_model.train(epochs=50, batch_size=32)
-            gan_res = gan_model.test()
-            selected_algo[model] = gan_res
-            subplot.append(plot_model.gen_auc_plot(gan_res))
-            subplot.append(plot_model.gen_confusion_matrix(gan_res))
-            plots[model] = subplot
+        if model not in ALGO:
+            return render_template("visualize.html", error="Invalid model selected", algos=ALGO.keys())
         
-        elif model == "Local Outlier Factor(LOF)":
-            subplot = list()
-            lof_model = Lof(dataset)
-            lof_res = lof_model.train_test()
-            selected_algo[model] = lof_res
-            subplot.append(plot_model.gen_auc_plot(lof_res))
-            subplot.append(plot_model.gen_confusion_matrix(lof_res))
-            plots[model] = subplot
+        model_class = ALGO[model]
+        model_instance = model_class(dataset)
+        subplot = []
 
-        elif model == "Isolation Forest(IForest)":
-            subplot = list()
-            iforest_model = iForest(dataset)
-            iforest_res = iforest_model.train_test()
-            selected_algo[model] = iforest_res
-            subplot.append(plot_model.gen_auc_plot(iforest_res))
-            subplot.append(plot_model.gen_confusion_matrix(iforest_res))
-            plots[model] = subplot
-
-        elif model == "AutoEncoders":
-            subplot = list()
-            auto_model = AutoEncoder(dataset)
-            auto_model.auto()
-            auto_res = auto_model.train_test(epochs=50, batch_size=64)
-            selected_algo[model] = auto_res
-            subplot.append(plot_model.gen_auc_plot(auto_res))
-            subplot.append(plot_model.gen_confusion_matrix(auto_res))
-            plots[model] = subplot
-
-        elif model == "DevNet":
-            subplot = list()
-            devnet_model = Devnet(dataset)
-            devnet_res = devnet_model.train_test(epochs=10)
-            selected_algo[model] = devnet_res
-            subplot.append(plot_model.gen_auc_plot(devnet_res))
-            subplot.append(plot_model.gen_confusion_matrix(devnet_res))
-            plots[model] = subplot
-
-        elif model == "Elliptic Envelope":
-            subplot = list()
-            env_model = ellipticEnvelope(dataset)
-            env_res = env_model.train_test()
-            selected_algo[model] = env_res
-            subplot.append(plot_model.gen_auc_plot(env_res))
-            subplot.append(plot_model.gen_confusion_matrix(env_res))
-            plots[model] = subplot
-
-        elif model == "DAGMM":
-            subplot = list()
-            dagmm_model = Dagmm1(dataset)
-            dagmm_res = dagmm_model.train_test()
-            selected_algo[model] = dagmm_res
-            subplot.append(plot_model.gen_auc_plot(dagmm_res))
-            subplot.append(plot_model.gen_confusion_matrix(dagmm_res))
-            plots[model] = subplot
-
-        elif model == "Quantile Regression":
-            subplot = list()
-            qreg_model = QReg(dataset)
-            qreg_model.build_model()
-            qreg_res = qreg_model.train_test()
-            selected_algo[model] = qreg_res
-            subplot.append(plot_model.gen_auc_plot(qreg_res))
-            subplot.append(plot_model.gen_confusion_matrix(qreg_res))
-            plots[model] = subplot
-
-        elif model == "Long Short Term Memory(LSTM)":
-            subplot = list()
-            lstm_model = Lstm(dataset)
-            lstm_model.build_model()
-            lstm_res = lstm_model.train_test(epochs=50, batch_size=64)
-            selected_algo[model] = lstm_res
-            subplot.append(plot_model.gen_auc_plot(lstm_res))
-            subplot.append(plot_model.gen_confusion_matrix(lstm_res))
-            plots[model] = subplot
-
-        elif model == "MGBTAI":
-            subplot = list()
-            mgbtai_model = MGBTAI(dataset)
-            mgbtai_model.train_mgbtai()
-            mgbtai_res = mgbtai_model.evaluate_mgbtai()
-            selected_algo[model] = mgbtai_res
-            subplot.append(plot_model.gen_auc_plot(mgbtai_res))
-            subplot.append(plot_model.gen_confusion_matrix(mgbtai_res))
-            plots[model] = subplot
-
-        elif model == "DBTAI":
-            subplot = list()
-            dbtai_model = DBTAI(dataset)
-            dbtai_model.train_dbtai()
-            dbtai_res = dbtai_model.evaluate_dbtai()
-            selected_algo[model] = dbtai_res
-            subplot.append(plot_model.gen_auc_plot(dbtai_res))
-            subplot.append(plot_model.gen_confusion_matrix(dbtai_res))
-            plots[model] = subplot
-        
+        if hasattr(model_instance, 'train'):
+            model_instance.train()
+            res = model_instance.test()
+        elif hasattr(model_instance, 'build_model'):
+            model_instance.build_model()
+            res = model_instance.train_test()
         else:
-            return render_template("visualize.html", error="Some error occured", algos=ALGO)
-        
+            res = model_instance.train_test()
+
+        selected_algo[model] = res
+        subplot.append(plot_model.gen_auc_plot(res))
+        subplot.append(plot_model.gen_confusion_matrix(res))
+        plots[model] = subplot
     
-    if len(plots) != 0:
+    if plots:
         if len(plots) == 1:    
             return render_template("visualize.html", algos=algo, plot=plots, selected_algo=selected_algo)
         else:

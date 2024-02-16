@@ -1,0 +1,162 @@
+const form = document.getElementsByClassName("my-form");
+const loader = document.getElementById('loader');
+const socket = new WebSocket('ws://localhost:5000/long-process');
+
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    loader.style.display = 'block'; 
+    socket.send(JSON.stringify({ status: 'form_submitted' }));            
+    this.submit();
+});
+
+socket.onopen = function(event) {
+    loader.style.display = 'block';
+};
+
+socket.onmessage = function(event) {
+const data = JSON.parse(event.data);
+console.log('Received message:', data);
+
+if (data.status === 'complete') {
+    loader.style.display = 'none';
+}
+};
+
+socket.onerror = function(error) {
+console.error('WebSocket error:', error);
+};
+
+@sockets.route('/long-process')
+def long_process(ws):
+    for i in range(1, 11):
+        time.sleep(1)
+        ws.send(json.dumps({'status': 'progress', 'message': f'Processing step {i}/10...'}))
+    ws.send(json.dumps({'status': 'complete', 'message': 'Processing complete.'}))
+
+
+server = pywsgi.WSGIServer(('localhost', 5000), app, handler_class=WebSocketHandler)
+print("Server running at http://localhost:5000")
+server.serve_forever()
+
+
+#loader {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+
+
+
+for model in algo:
+        if model == "Generative Adversarial Networks(GAN)":
+            subplot = list()
+            gan_model = GAN(dataset)
+            gan_model.train(epochs=50, batch_size=32)
+            gan_res = gan_model.test()
+            selected_algo[model] = gan_res
+            subplot.append(plot_model.gen_auc_plot(gan_res))
+            subplot.append(plot_model.gen_confusion_matrix(gan_res))
+            plots[model] = subplot
+        
+        elif model == "Local Outlier Factor(LOF)":
+            subplot = list()
+            lof_model = Lof(dataset)
+            lof_res = lof_model.train_test()
+            selected_algo[model] = lof_res
+            subplot.append(plot_model.gen_auc_plot(lof_res))
+            subplot.append(plot_model.gen_confusion_matrix(lof_res))
+            plots[model] = subplot
+
+        elif model == "Isolation Forest(IForest)":
+            subplot = list()
+            iforest_model = iForest(dataset)
+            iforest_res = iforest_model.train_test()
+            selected_algo[model] = iforest_res
+            subplot.append(plot_model.gen_auc_plot(iforest_res))
+            subplot.append(plot_model.gen_confusion_matrix(iforest_res))
+            plots[model] = subplot
+
+        elif model == "AutoEncoders":
+            subplot = list()
+            auto_model = AutoEncoder(dataset)
+            auto_model.build_model()
+            auto_res = auto_model.train_test(epochs=50, batch_size=64)
+            selected_algo[model] = auto_res
+            subplot.append(plot_model.gen_auc_plot(auto_res))
+            subplot.append(plot_model.gen_confusion_matrix(auto_res))
+            plots[model] = subplot
+
+        elif model == "DevNet":
+            subplot = list()
+            devnet_model = Devnet(dataset)
+            devnet_res = devnet_model.train_test(epochs=10)
+            selected_algo[model] = devnet_res
+            subplot.append(plot_model.gen_auc_plot(devnet_res))
+            subplot.append(plot_model.gen_confusion_matrix(devnet_res))
+            plots[model] = subplot
+
+        elif model == "Elliptic Envelope":
+            subplot = list()
+            env_model = ellipticEnvelope(dataset)
+            env_res = env_model.train_test()
+            selected_algo[model] = env_res
+            subplot.append(plot_model.gen_auc_plot(env_res))
+            subplot.append(plot_model.gen_confusion_matrix(env_res))
+            plots[model] = subplot
+
+        elif model == "DAGMM":
+            subplot = list()
+            dagmm_model = Dagmm1(dataset)
+            dagmm_res = dagmm_model.train_test()
+            selected_algo[model] = dagmm_res
+            subplot.append(plot_model.gen_auc_plot(dagmm_res))
+            subplot.append(plot_model.gen_confusion_matrix(dagmm_res))
+            plots[model] = subplot
+
+        elif model == "Quantile Regression":
+            subplot = list()
+            qreg_model = QReg(dataset)
+            qreg_model.build_model()
+            qreg_res = qreg_model.train_test()
+            selected_algo[model] = qreg_res
+            subplot.append(plot_model.gen_auc_plot(qreg_res))
+            subplot.append(plot_model.gen_confusion_matrix(qreg_res))
+            plots[model] = subplot
+
+        elif model == "Long Short Term Memory(LSTM)":
+            subplot = list()
+            lstm_model = Lstm(dataset)
+            lstm_model.build_model()
+            lstm_res = lstm_model.train_test(epochs=50, batch_size=64)
+            selected_algo[model] = lstm_res
+            subplot.append(plot_model.gen_auc_plot(lstm_res))
+            subplot.append(plot_model.gen_confusion_matrix(lstm_res))
+            plots[model] = subplot
+
+        elif model == "MGBTAI":
+            subplot = list()
+            mgbtai_model = MGBTAI(dataset)
+            mgbtai_model.train()
+            mgbtai_res = mgbtai_model.test()
+            selected_algo[model] = mgbtai_res
+            subplot.append(plot_model.gen_auc_plot(mgbtai_res))
+            subplot.append(plot_model.gen_confusion_matrix(mgbtai_res))
+            plots[model] = subplot
+
+        elif model == "DBTAI":
+            subplot = list()
+            dbtai_model = DBTAI(dataset)
+            dbtai_model.train()
+            dbtai_res = dbtai_model.test()
+            selected_algo[model] = dbtai_res
+            subplot.append(plot_model.gen_auc_plot(dbtai_res))
+            subplot.append(plot_model.gen_confusion_matrix(dbtai_res))
+            plots[model] = subplot
+        
+        else:
+            return render_template("visualize.html", error="Some error occured", algos=ALGO)
+        

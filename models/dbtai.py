@@ -120,7 +120,7 @@ class DBTAI():
 
         return ano_large_clusters
 
-    def train_dbtai(self):
+    def train(self):
         count = 0
         tree_dic = {}
         data_size = len(self.X)
@@ -200,7 +200,7 @@ class DBTAI():
 
         print('Total number of anomalies: ', len(self.y_anom))
 
-    def evaluate_dbtai(self):
+    def test(self):
         ind = []
         count = 0
         y_anom1 = np.vstack(self.y_anom)
