@@ -1,22 +1,57 @@
 {% extends "layout.html" %}
-
+{% block head %}
+ 
+{% endblock %}
 {% block body %}
+    <video autoplay muted loop id="background-video">
+        <source src="{{ url_for('static', filename='video3.mp4') }}" type="video/mp4">
+
+        Your browser does not support the video tag.
+    </video>
     <div class="tc pa2 header">
-        <h1 class="f-subheadline lh-title">Hello, Scientist</h1>
+        <h1 class="f-subheadline lh-title">Hello , Scientist</h1>
+    
         <h2 class="f1 lh-title">Dive deeper into the world of Anomaly Detection</h2>
     </div>
-    <div class="container">
+    <div class="card-container" >
+        <div class="card">
+            <div class="card-info">
+                <h3 class="title">What is Anomaly Detection?</h3>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-info">
+                <h3 class="title">More About Our Models</h3>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-info">
+                <a href="/input_form"><h3 class="title">Result Visualization</h3></a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-info">
+                <a href="/visualizedata"><h3 class="title">Data Visualization</h3></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="container">
         <div class="custom-box">
             <h1>What is Anomaly Detection?</h1>
         </div>
         <div class="custom-box">
             <h1>Learn More about our Models</h1>
         </div>
+        
         <div class="custom-box">
             <a href="/input_form"><h1>Visualization of Results</h1></a>
         </div>
         <div class="custom-box">
             <a href="/visualizedata"><h1>Visualization of Data</h1></a>
-        </div>
+        </div> -->
     </div>
 {% endblock %}
