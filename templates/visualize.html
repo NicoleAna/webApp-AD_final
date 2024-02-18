@@ -6,33 +6,31 @@
 {% block body %}
 <div class="data-plots">
   <h1 class="f1 b tc">Result Visualization</h1>
-
-  {% for a in algos %}
-    <h1 class="f2 lh-copy">Visualization of Results for {{ a }} model</h1>
-    {% for k,i in selected_algo[a].items() %}
-      {% if k=='precision' %}
-        <h2>Precision: {{ i }}</h2>
-      {% elif k=='recall' %}
-        <h2>Recall: {{ i }}</h2>
-      {% elif k=='f1_score' %}
-        <h2>F1-score: {{ i }}</h2>
-      {% endif %}
-    {% endfor %}
+  <div class="results-container">
+    {% for a in algos %}
+    <div class="results-item {% if algos|length % 2 == 1 %} child {% endif %}">
+      <h1 class="f2 lh-copy">{{ a }}</h1>
+      <div class="clf-report">
+        {% for k,i in selected_algo[a].items() %}
+          {% if k=='precision' %}
+            <p>Precision: {{ i }}</p>
+          {% elif k=='recall' %}
+            <p>Recall: {{ i }}</p>
+          {% elif k=='f1_score' %}
+            <p>F1-score: {{ i }}</p>
+          {% endif %}
+        {% endfor %}
+      </div>
       {% for p in plot[a] %}
-      <img
-        class="plot-img"
-        src="data:image/png;base64,{{ p }}"
-        alt="{{ a }} plots"
-      />
-    {% endfor %} 
+        <img class="plot-img" src="data:image/png;base64,{{ p }}" alt="{{ a }} plots" />
+      {% endfor %} 
+    </div>
   {% endfor %} 
+  </div>
+  
   {% if auc_plot %}
-  <h1 class="f2 lh-copy">AUC-ROC of models</h1>
-  <img
-    class="plot-img"
-    src="data:image/png;base64,{{ auc_plot }}"
-    alt="AUC-ROC Curve"
-  />
+    <h1 class="f2 lh-copy">AUC-ROC of models</h1>
+    <img class="plot-img1" src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve" />
   {% endif %}
 </div>
 {% endblock %}

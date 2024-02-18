@@ -155,10 +155,10 @@ class MGBTAI():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_mgbtai,
-            'precision' : precision_mgbtai,
-            'recall' : recall_mgbtai,
-            'f1_score' : f1_score_mgbtai,
+            'auc_roc' : round(auc_roc_mgbtai, 4),
+            'precision' : round(precision_mgbtai, 4),
+            'recall' : round(recall_mgbtai, 4),
+            'f1_score' : round(f1_score_mgbtai, 4),
         }
 
         return mgbtai_res

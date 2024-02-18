@@ -64,10 +64,10 @@ class Dagmm1():
             'y_pred' : y_pred_flag,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_dagmm,
-            'precision' : precision_dagmm,
-            'recall' : recall_dagmm,
-            'f1_score' : f1_score_dagmm,
+            'auc_roc' : round(auc_roc_dagmm, 4),
+            'precision' : round(precision_dagmm, 4),
+            'recall' : round(recall_dagmm, 4),
+            'f1_score' : round(f1_score_dagmm, 4),
         }
 
         return dagmm_res

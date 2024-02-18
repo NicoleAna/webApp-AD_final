@@ -237,10 +237,10 @@ class DBTAI():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_dbtai,
-            'precision' : precision_dbtai,
-            'recall' : recall_dbtai,
-            'f1_score' : f1_score_dbtai,
+            'auc_roc' : round(auc_roc_dbtai, 4),
+            'precision' : round(precision_dbtai, 4),
+            'recall' : round(recall_dbtai, 4),
+            'f1_score' : round(f1_score_dbtai, 4),
         }
 
         return dbtai_res

@@ -44,10 +44,10 @@ class ellipticEnvelope():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_env,
-            'precision' : precision_env,
-            'recall' : recall_env,
-            'f1_score' : f1_score_env,
+            'auc_roc' : round(auc_roc_env, 4),
+            'precision' : round(precision_env, 4),
+            'recall' : round(recall_env, 4),
+            'f1_score' : round(f1_score_env, 4),
         }
 
         return env_res

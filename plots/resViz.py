@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix
 
 from io import BytesIO
 import base64
@@ -40,10 +40,6 @@ class Gen_Plot():
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
         return plot
-    
-    # def gen_classification_report(self, res_dic):
-        # report = classification_report(res_dic['y_true'], res_dic['y_pred'])
-        # ax3.text(0.5, 0.5, report, fontsize=12, ha='center', va='center', transform=ax3.transAxes, bbox=dict(facecolor='none', edgecolor='black', boxstyle='round,pad=1'))
     
     def comp_auc(self, selected_algo):
         fig, ax = plt.subplots(figsize=(12, 12), dpi=100)

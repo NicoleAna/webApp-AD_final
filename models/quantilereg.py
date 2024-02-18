@@ -107,10 +107,10 @@ class QReg():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_qreg,
-            'precision' : precision_qreg,
-            'recall' : recall_qreg,
-            'f1_score' : f1_score_qreg,
+            'auc_roc' : round(auc_roc_qreg, 4),
+            'precision' : round(precision_qreg, 4),
+            'recall' : round(recall_qreg, 4),
+            'f1_score' : round(f1_score_qreg, 4),
         }
 
         return qreg_res
