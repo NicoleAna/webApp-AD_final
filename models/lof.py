@@ -51,10 +51,10 @@ class Lof():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_lof,
-            'precision' : precision_lof,
-            'recall' : recall_lof,
-            'f1_score' : f1_score_lof,
+            'auc_roc' : round(auc_roc_lof, 4),
+            'precision' : round(precision_lof, 4),
+            'recall' : round(recall_lof, 4),
+            'f1_score' : round(f1_score_lof, 4),
         }
 
         return lof_res

@@ -152,10 +152,10 @@ class GAN():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_gan,
-            'precision' : precision_gan,
-            'recall' : recall_gan,
-            'f1_score' : f1_score_gan,
+            'auc_roc' : round(auc_roc_gan, 4),
+            'precision' : round(precision_gan, 4),
+            'recall' : round(recall_gan, 4),
+            'f1_score' : round(f1_score_gan, 4),
         }
 
         return gan_res   

@@ -45,10 +45,10 @@ class iForest():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_iforest,
-            'precision' : precision_iforest,
-            'recall' : recall_iforest,
-            'f1_score' : f1_score_iforest,
+            'auc_roc' : round(auc_roc_iforest, 4),
+            'precision' : round(precision_iforest, 4),
+            'recall' : round(recall_iforest, 4),
+            'f1_score' : round(f1_score_iforest, 4),
         }
 
         return iforest_res

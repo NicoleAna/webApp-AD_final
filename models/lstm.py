@@ -117,10 +117,10 @@ class Lstm():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_lstm,
-            'precision' : precision_lstm,
-            'recall' : recall_lstm,
-            'f1_score' : f1_score_lstm,
+            'auc_roc' : round(auc_roc_lstm, 4),
+            'precision' : round(precision_lstm, 4),
+            'recall' : round(recall_lstm, 4),
+            'f1_score' : round(f1_score_lstm, 4),
         }
 
         return lstm_res

@@ -68,12 +68,51 @@ a:active, a:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 5px;
 }
 
 .plot-img {
+  width: 100%;
+  height: auto;
+}
+
+.plot-img1 {
   width: 70%;
   height: auto;
 }
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.results-item {
+  width: calc(50% - 10px);
+  border: 1.5px solid black;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .results-item {
+    width: 100%;
+  }
+}
+
+.child:first-child {
+  width: 100%;
+}
+
+.child:first-child .plot-img {
+  width: 50%;
+  height: auto;
+}
+
+.clf-report p {
+  margin: 0;
+}
+
 /* .box {
   border: 2px solid green;
   background: lightblue;

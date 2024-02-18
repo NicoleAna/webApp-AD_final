@@ -110,10 +110,10 @@ class AutoEncoder():
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,
-            'auc_roc' : auc_roc_auto,
-            'precision' : precision_auto,
-            'recall' : recall_auto,
-            'f1_score' : f1_score_auto,
+            'auc_roc' : round(auc_roc_auto, 4),
+            'precision' : round(precision_auto, 4),
+            'recall' : round(recall_auto, 4),
+            'f1_score' : round(f1_score_auto, 4),
         }
 
         return auto_res 
