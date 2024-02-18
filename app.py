@@ -2,6 +2,7 @@
 import pandas as pd
 
 from flask import Flask, render_template, request
+import concurrent.futures
 
 from models.gan import GAN
 from models.lof import Lof
@@ -66,6 +67,27 @@ def datavis():
     
 
 
+def train_model(algo, dataset, selected_algo, plots, model):
+    plot_model = Gen_Plot()
+    model_class = ALGO[model]
+    model_instance = model_class(dataset)
+    subplot = []
+
+    if hasattr(model_instance, 'train'):
+        model_instance.train()
+        res = model_instance.test()
+    elif hasattr(model_instance, 'build_model'):
+        model_instance.build_model()
+        res = model_instance.train_test()
+    else:
+        res = model_instance.train_test()
+
+    selected_algo[model] = res
+    subplot.append(plot_model.gen_auc_plot(res))
+    subplot.append(plot_model.gen_confusion_matrix(res))
+    plots[model] = subplot
+
+
 @app.route("/inputs", methods=["POST"])
 def inputs():
     file = request.files.get("dataset")
@@ -80,28 +102,14 @@ def inputs():
     plot_model = Gen_Plot()
     plots = dict()
     selected_algo = dict()
-
-    for model in algo:
-        if model not in ALGO:
-            return render_template("visualize.html", error="Invalid model selected", algos=ALGO.keys())
         
-        model_class = ALGO[model]
-        model_instance = model_class(dataset)
-        subplot = []
-
-        if hasattr(model_instance, 'train'):
-            model_instance.train()
-            res = model_instance.test()
-        elif hasattr(model_instance, 'build_model'):
-            model_instance.build_model()
-            res = model_instance.train_test()
-        else:
-            res = model_instance.train_test()
-
-        selected_algo[model] = res
-        subplot.append(plot_model.gen_auc_plot(res))
-        subplot.append(plot_model.gen_confusion_matrix(res))
-        plots[model] = subplot
+    with concurrent.futures.ThreadPoolExecutor() as e:
+        futures = []
+        for model in algo:
+            f = e.submit(train_model, algo, dataset, selected_algo, plots, model)
+            futures.append(f)
+        
+        concurrent.futures.wait(futures)
     
     if plots:
         if len(plots) == 1:    
