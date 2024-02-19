@@ -1,18 +1,18 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 body {
-  font-family: 'HELVETICA', sans-serif;
-  /* font-family: 'Raleway', sans-serif; */
+  /* font-family: 'HELVETICA', sans-serif; */
+  font-family: 'Raleway', sans-serif;
   margin: 0;
   padding: 0;
 }
-/* h1, h2 {
-  background: -webkit-linear-gradient(RGB(0, 179, 255), RGB(0, 76, 255));
+h1, h2, .navbar {
+  background: linear-gradient(to bottom right, RGB(245, 245, 245), RGB(241, 228, 228)); /* RGB(193, 220, 193), RGB(62, 60, 60) */
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-} */
+}
 
 a {
   text-decoration: none;
@@ -30,6 +30,8 @@ a:active, a:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: larger;
+  font-weight: 500;
 }
 
 .left, .right {
@@ -38,30 +40,49 @@ a:active, a:focus {
 
 .right {
   margin-left: auto;
+  font-size: larger;
 }
 
 .container {
   font-size: larger;
   text-align: center;
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  /* grid-auto-flow: column;
+  grid-auto-columns: 1fr; */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   margin: 0 auto;
   gap: 15px;
 }
 
 .custom-box {
-  border: 1.5px solid black;
+  border: 1.5px solid RGB(241, 228, 228);
   border-radius: 5px;
   padding: 10px;
   transition: all 0.5s ease;
-  display: inline-block; 
+  display: inline-block;
+  background: #939393;
+  background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179));
+  color: black;
+  font-size: xx-large; 
+  font-weight: 500;
+}
+
+.custom-box .p {
+  background: linear-gradient(to bottom right, RGB(13, 13, 13), RGB(85, 83, 83));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .custom-box:hover {
   transform: scale(1.1); 
 }
 
+@media screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
 
 .data-plots {
   text-align: center;
@@ -92,6 +113,8 @@ a:active, a:focus {
   width: calc(50% - 10px);
   border: 1.5px solid black;
   border-radius: 5px;
+  color: black;
+  background-color: white;
 }
 
 @media screen and (max-width: 768px) {
@@ -153,7 +176,7 @@ a:active, a:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: white;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -163,7 +186,7 @@ a:active, a:focus {
 
 .loader {
   border: 4px solid #f3f3f3; /* Light grey */
-  border-top: 4px solid #3498db; /* Blue */
+  border-top: 4px solid #fdfeff; /* Blue */
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -175,21 +198,29 @@ a:active, a:focus {
   100% { transform: rotate(360deg); }
 }
 
+#background-video {
+  position: fixed; /* Fixed positioning so it covers the entire window */
+  top: 0;
+  left: 0;
+  min-width: 100%; /* Minimum width to cover the entire viewport */
+  min-height: 100%; /* Minimum height to cover the entire viewport */
+  width: auto; /* Allow the width to adjust proportionally */
+  height: auto; /* Allow the height to adjust proportionally */
+  z-index: -1; /* Set a lower z-index to keep it behind other content */
+}
+
 .my-form {
   max-width: 600px; 
   margin: 20px auto; 
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
+  background: #939393;
+  background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179)); /* #939393, #E2E2E2 */
   box-sizing: border-box; 
   font-size: 20px;
-}
-
-.form-item {
-  margin-bottom: 20px;
-}
-
+}  
 .checkbox-item {
   display: flex;
   vertical-align: middle;
