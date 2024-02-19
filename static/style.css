@@ -35,13 +35,19 @@ a:active, a:focus {
   font-size: larger;
   font-weight: 500;
   background: black;
-  opacity: 0.7;
+  /* opacity: 0.7; */
   /* z-index: 10; */
 }
 
-.navbar .pr2 {
+.navbar li {
   color: whitesmoke;
-  margin-right: 2rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.dropdown-menu li {
+  color: black;
 }
 
 .left, .right {
@@ -246,9 +252,12 @@ a:active, a:focus {
   border-radius: 8px;
   /* background-color: #f9f9f9; */
   background: #939393;
-  background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179)); /* #939393, #E2E2E2 */
+  /* background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179));  */
+  background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+  /* #939393, #E2E2E2 */
   box-sizing: border-box; 
   font-size: 20px;
+  /* opacity: 0.7; */
 }  
 .checkbox-item {
   display: flex;
@@ -261,6 +270,7 @@ a:active, a:focus {
   display: block;
   /* margin-bottom: 8px; */
   font-weight: bold;
+  font-size: larger;
 }
 
 select,
@@ -286,11 +296,11 @@ button {
   font-family: inherit;
 &.learn-more {
     font-weight: 600;
-    color: #382b22;
+    color: whitesmoke;
     text-transform: uppercase;
     padding: 1.25em 2em;
-    background: #fff0f0;
-    border: 2px solid #b18597;
+    background: #4579c7;
+    border: 2px solid #1419a4;
     border-radius: 0.75em;
     transform-style: preserve-3d;
     transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
@@ -303,25 +313,25 @@ button {
       left: 0;
       right: 0;
       bottom: 0;
-      background: #f9c4d2;
+      background: #271992;
       border-radius: inherit;
-      box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+      box-shadow: 0 0 0 2px #4449cb, 0 0.625em 0 0 #5786d1;
       transform: translate3d(0, 0.75em, -1em);
       transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
     }
     &:hover {
-      background: #ffe9e9;
+      background: #4129dd;
       transform: translate(0, 0.25em);
       &::before {
-        box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+        box-shadow: 0 0 0 2px #4449cb, 0 0.5em 0 0 #5786d1;
         transform: translate3d(0, 0.5em, -1em);
       }
     }
     &:active {
-      background: #ffe9e9;
+      background: #4129dd;
       transform: translate(0em, 0.75em);
       &::before {
-        box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+        box-shadow: 0 0 0 2px #4449cb, 0 0 #5786d1;
         transform: translate3d(0, 0, -1em);
       }
     }

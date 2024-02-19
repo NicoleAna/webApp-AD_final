@@ -48,7 +48,7 @@ def index():
 
 @app.route("/about", methods=["GET"])
 def aboutus():
-    return render_template("About.html")
+    return render_template("aboutus.html")
 
 
 @app.route("/blog", methods=["GET"])
