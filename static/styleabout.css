@@ -1,6 +1,6 @@
-* {
+/* * {
     font-family: Nunito, sans-serif;
-  }
+  } */
   
   .text-blk {
     margin-top: 0px;
@@ -36,7 +36,7 @@
     padding-right: 30px;
     padding-bottom: 10px;
     padding-left: 30px;
-    background-image: url("https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb29.png");
+    /* background-image: url("https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/bb29.png"); */
     background-position-x: initial;
     background-position-y: initial;
     background-size: cover;
@@ -47,7 +47,6 @@
     background-repeat-x: no-repeat;
     background-repeat-y: no-repeat;
   }
-  
   .responsive-container-block.Container {
     max-width: 800px;
     flex-direction: column;

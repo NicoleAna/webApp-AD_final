@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
 }
-h1, h2, .navbar {
+h1, h2 {
   background: linear-gradient(to bottom right, RGB(245, 245, 245), RGB(241, 228, 228)); /* RGB(193, 220, 193), RGB(62, 60, 60) */
   -webkit-background-clip: text;
   background-clip: text;
@@ -34,6 +34,14 @@ a:active, a:focus {
   align-items: center;
   font-size: larger;
   font-weight: 500;
+  background: black;
+  opacity: 0.7;
+  /* z-index: 10; */
+}
+
+.navbar .pr2 {
+  color: whitesmoke;
+  margin-right: 2rem;
 }
 
 .left, .right {
@@ -57,24 +65,42 @@ a:active, a:focus {
 }
 
 .custom-box {
-  border: 1.5px solid RGB(241, 228, 228);
-  border-radius: 5px;
-  padding: 10px;
+  /* border: 1.5px solid RGB(241, 228, 228); */
+  border-radius: 10px;
+  padding: 20px;
   transition: all 0.5s ease;
   display: inline-block;
-  background: #939393;
-  background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179));
-  color: black;
+  /* background: #939393; */
+  background: rgb(0, 0, 0);
+  /* background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179)); */
+  color: rgb(0, 0, 0);
   font-size: xx-large; 
   font-weight: 500;
-  opacity: 0.7;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  
+  /* opacity: 0.7; */
 }
 
-.custom-box .p {
-  background: linear-gradient(to bottom right, RGB(13, 13, 13), RGB(85, 83, 83));
+.custom-box p {
+  /* background: linear-gradient(to bottom right, RGB(13, 13, 13), RGB(85, 83, 83));
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: white;
+  font-weight: 200;
+  text-align: left;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  
+}
+.custom-box img
+{
+  height: 100px;
+  width: 100px;
 }
 
 .custom-box:hover {
@@ -231,7 +257,7 @@ a:active, a:focus {
   margin-top: 5px;
 }
 
-label {
+.form-title {
   display: block;
   /* margin-bottom: 8px; */
   font-weight: bold;

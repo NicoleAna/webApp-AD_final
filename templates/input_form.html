@@ -9,7 +9,7 @@
     <div class="my-form">
         <form action="/inputs" method="post" enctype="multipart/form-data">
             <div class="form-item">
-                <label for="algo">Please Model(s) from the below</label>
+                <label class="form-title" ="algo">Please Model(s) from the below</label>
                 {% for a in algos %}
                     <div class="checkbox-item">
                         <input type="checkbox" name="algo" value="{{ a }}">
