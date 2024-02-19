@@ -9,7 +9,7 @@
   <div class="results-container">
     {% for a in algos %}
     <div class="results-item {% if algos|length % 2 == 1 %} child {% endif %}">
-      <h1 class="f2 lh-copy">{{ a }}</h1>
+      <p class="f2 lh-copy">{{ a }}</p>
       <div class="clf-report">
         {% for k,i in selected_algo[a].items() %}
           {% if k=='precision' %}

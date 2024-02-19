@@ -1,18 +1,18 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 body {
-  font-family: 'HELVETICA', sans-serif;
-  /* font-family: 'Raleway', sans-serif; */
+  /* font-family: 'HELVETICA', sans-serif; */
+  font-family: 'Raleway', sans-serif;
   margin: 0;
   padding: 0;
 }
-/* h1, h2 {
-  background: -webkit-linear-gradient(RGB(0, 179, 255), RGB(0, 76, 255));
+h1, h2, .navbar {
+  background: linear-gradient(to bottom right, RGB(245, 245, 245), RGB(241, 228, 228)); /* RGB(193, 220, 193), RGB(62, 60, 60) */
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-} */
+}
 
 a {
   text-decoration: none;
@@ -30,6 +30,8 @@ a:active, a:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: larger;
+  font-weight: 500;
 }
 
 .left, .right {
@@ -38,30 +40,49 @@ a:active, a:focus {
 
 .right {
   margin-left: auto;
+  font-size: larger;
 }
 
 .container {
   font-size: larger;
   text-align: center;
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  /* grid-auto-flow: column;
+  grid-auto-columns: 1fr; */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   margin: 0 auto;
   gap: 15px;
 }
 
 .custom-box {
-  border: 1.5px solid black;
+  border: 1.5px solid RGB(241, 228, 228);
   border-radius: 5px;
   padding: 10px;
   transition: all 0.5s ease;
-  display: inline-block; 
+  display: inline-block;
+  background: #939393;
+  background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179));
+  color: black;
+  font-size: xx-large; 
+  font-weight: 500;
+}
+
+.custom-box .p {
+  background: linear-gradient(to bottom right, RGB(13, 13, 13), RGB(85, 83, 83));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .custom-box:hover {
   transform: scale(1.1); 
 }
 
+@media screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
 
 .data-plots {
   text-align: center;
@@ -92,6 +113,8 @@ a:active, a:focus {
   width: calc(50% - 10px);
   border: 1.5px solid black;
   border-radius: 5px;
+  color: black;
+  background-color: white;
 }
 
 @media screen and (max-width: 768px) {
@@ -175,146 +198,29 @@ a:active, a:focus {
   100% { transform: rotate(360deg); }
 }
 
+#background-video {
+  position: fixed; /* Fixed positioning so it covers the entire window */
+  top: 0;
+  left: 0;
+  min-width: 100%; /* Minimum width to cover the entire viewport */
+  min-height: 100%; /* Minimum height to cover the entire viewport */
+  width: auto; /* Allow the width to adjust proportionally */
+  height: auto; /* Allow the height to adjust proportionally */
+  z-index: -1; /* Set a lower z-index to keep it behind other content */
+}
+
 .my-form {
   max-width: 600px; 
   margin: 20px auto; 
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
+  background: #939393;
+  background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179)); /* #939393, #E2E2E2 */
   box-sizing: border-box; 
   font-size: 20px;
-}
-.navbar {
-  color: white; /* Set the color of the text inside the navbar to white */
-}
-
-.navbar a {
-  color: white; /* Set the color of the links inside the navbar to white */
-}
-
-.header {
-  color: white;
-  /* Set the color of the text to white */
-}
-.container {
-  color: white; /* Set the color of the text inside the container to white */
-}
-
-.container h1 {
-  color: white; /* Set the color of the h1 elements inside the container to white */
-}
-
-.form-item {
-  margin-bottom: 20px;
-}
-.card {
-  --background: linear-gradient(to left, #6c0e40 0%, #041a87 100%);
-  width: 230px;
-  height: 265px;
-  padding: 5px;
-  border-radius: 1rem;
-  box-shadow: 0 4px 8px rgba(161, 15, 15, 2);
-  transition: transform 0.3s, box-shadow 0.3s;
-  overflow: visible;
-  background: #f7ba2b;
-  background: var(--background);
-  position: relative;
-  z-index: 1;
-  
- }
- .nav-links {
-  display: flex; /* Use flexbox to align items */
-  gap: 10px; /* Add gap between buttons */
-  vertical-align: middle;
-  align-items: center;
-  
-}
- .nav-link {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px; /* Adjust padding to increase button size */
-  background-color: #8103a4; /* Set button background color */
-  color: #fff; /* Set button text color */
-  text-decoration: none; /* Remove default underline */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Add border radius for rounded corners */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
-  margin-right: 20px; /* Add some margin between buttons */
-  text-align: center; /* Center the text horizontally */
-  width: 150px; /* Set fixed width for the buttons */
-  height: 60px; /* Set fixed height for the buttons */
-  line-height: 40px; /* Align text vertically in the center */
-
-  
-}
-
-.nav-link:hover {
-  background-color: #373738; /* Change background color on hover */
-}
-
- /* .card::after {
-  position: absolute;
-  content: "";
-  top: 30px;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  transform: scale(0.8);
-  filter: blur(25px);
-  background: #f7ba2b;
-  background: var(--background);
-  transition: opacity .5s;
- } */
- .card-container {
-  display: flex;
-  justify-content: center; /* Horizontally center the cards */
-  align-items: center; /* Vertically center the cards */
-  gap: 60px;
-}
-  .card-info {
-  --color: #181818;
-  background: var(--color);
-  color: var(--color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  border-radius: .7rem;
- 
-  text-align: center; /* Center the text horizontally */
-}
-.card:hover {
-  transform: scale(1.1); /* Enlarge the card being hovered */
-  /* transform: translateY(-5px); */
-
-  box-shadow: 0 8px 16px rgba(161, 15, 15, 2); /* Make the shadow more prominent */
-}
-.card:hover .title {
-  color: #2eb7f2;
-}
- 
- 
-.card .title {
-  font-weight: bold;
-  letter-spacing: .1em;
-  color:white;
- }
-
- /*Hover*/
- /* .card:hover::after {
-  opacity: 0;
- }
- 
- .card:hover .card-info {
-  color: #f7ba2b;
-  transition: color 1s;
- } */
-  
+}  
 .checkbox-item {
   display: flex;
   vertical-align: middle;
@@ -338,17 +244,6 @@ button {
   border-radius: 4px;
   box-sizing: border-box;
 }
-/* Assuming your video element has the id 'background-video' */
-#background-video {
-  position: fixed; /* Fixed positioning so it covers the entire window */
-  top: 0;
-  left: 0;
-  min-width: 100%; /* Minimum width to cover the entire viewport */
-  min-height: 100%; /* Minimum height to cover the entire viewport */
-  width: auto; /* Allow the width to adjust proportionally */
-  height: auto; /* Allow the height to adjust proportionally */
-  z-index: -1; /* Set a lower z-index to keep it behind other content */
-}
 
 button {
   position: relative;
@@ -362,11 +257,11 @@ button {
   font-family: inherit;
 &.learn-more {
     font-weight: 600;
-    color: white;
+    color: #382b22;
     text-transform: uppercase;
     padding: 1.25em 2em;
     background: #fff0f0;
-    border: 2px solid #f2f0f1;
+    border: 2px solid #b18597;
     border-radius: 0.75em;
     transform-style: preserve-3d;
     transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
@@ -379,9 +274,9 @@ button {
       left: 0;
       right: 0;
       bottom: 0;
-      background: white;
+      background: #f9c4d2;
       border-radius: inherit;
-      box-shadow: 0 0 0 2px #f8f6f7, 0 0.625em 0 0 #ffe3e2;
+      box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
       transform: translate3d(0, 0.75em, -1em);
       transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
     }
@@ -397,7 +292,7 @@ button {
       background: #ffe9e9;
       transform: translate(0em, 0.75em);
       &::before {
-        box-shadow: 0 0 0 2px rgb(252, 248, 249), 0 0 #ffe3e2;
+        box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
         transform: translate3d(0, 0, -1em);
       }
     }
