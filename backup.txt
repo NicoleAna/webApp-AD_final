@@ -328,3 +328,34 @@ button {
         transform: translate3d(0, 0, -1em);
       }
     }
+
+
+<video autoplay muted loop id="background-video">
+        <source src="{{ url_for('static', filename='video1.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video> -->
+    <!-- <div class="card-container" >
+        <div class="card">
+            <div class="card-info">
+                <h3 class="title">What is Anomaly Detection?</h3>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-info">
+                <h3 class="title">More About Our Models</h3>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-info">
+                <a href="/input_form"><h3 class="title">Result Visualization</h3></a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-info">
+                <a href="/visualizedata"><h3 class="title">Data Visualization</h3></a>
+            </div>
+        </div>
+    </div>
