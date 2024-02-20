@@ -1,15 +1,10 @@
 {% extends "layout.html" %}
 
-{% block navbar %}
-    <a class="nav-link active pr2" href="/">Home</a>
-    <a class="nav-link active pr2" href="/">Back</a>
-{% endblock %}
-
 {% block body %}
     <div class="my-form">
         <form action="/inputs" method="post" enctype="multipart/form-data">
             <div class="form-item">
-                <label for="algo">Please Model(s) from the below</label>
+                <label class="form-title" for="algo">Select Model(s) of your choice</label>
                 {% for a in algos %}
                     <div class="checkbox-item">
                         <input type="checkbox" name="algo" value="{{ a }}">
@@ -21,8 +16,8 @@
                     <label for="select-all-checkbox">Select All</label>
                 </div>
             </div>
-            <div class="form-tem">
-                <label for="file">Upload a dataset</label>
+            <div class="form-item">
+                <label for="file" class="form-title">Upload a dataset</label>
                 <input type="file" name="dataset" accept=".csv">
             </div>
             <div class="form-item">

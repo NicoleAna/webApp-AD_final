@@ -1,20 +1,11 @@
 {% extends "layout.html" %}
 
-{% block navbar %}
-    <a class="nav-link active pr2" href="/">Home</a>
-    {% if submitted %}
-    <a class="nav-link active pr2" href="/visualizedata">Back</a>
-    {% else %}
-    <a class="nav-link active pr2" href="/">Back</a>
-    {% endif %}
-{% endblock %}
-
 {% block body %}
     {% if not submitted %}
     <div class="my-form">
         <form action="/datavis" method="post" enctype="multipart/form-data">
-            <div class="iform-tem">
-                <label for="file">Upload a dataset</label>
+            <div class="form-item">
+                <label for="file" class="form-title">Upload a dataset</label>
                 <input type="file" name="dataset" accept=".csv">
             </div>
             <div class="form-item">

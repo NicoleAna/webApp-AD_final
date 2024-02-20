@@ -4,52 +4,27 @@
 {% endblock %}
 {% block body %}
     <div class="tc pa2 header">
-        <h1 class="f-subheadline lh-title">Hello , Scientist</h1>
+        <h1 class="f-subheadline lh-title">Hello, Scientist</h1>
     
         <h2 class="f1 lh-title">Dive deeper into the world of Anomaly Detection</h2>
     </div>
-    <!-- <video autoplay muted loop id="background-video">
-        <source src="{{ url_for('static', filename='video1.mp4') }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video> -->
-    <!-- <div class="card-container" >
-        <div class="card">
-            <div class="card-info">
-                <h3 class="title">What is Anomaly Detection?</h3>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-info">
-                <h3 class="title">More About Our Models</h3>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-info">
-                <a href="/input_form"><h3 class="title">Result Visualization</h3></a>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-info">
-                <a href="/visualizedata"><h3 class="title">Data Visualization</h3></a>
-            </div>
-        </div>
-    </div> -->
     
     <div class="container">
         <div class="custom-box">
-            <p>What is Anomaly Detection?</p>
+            <img src="/static/icons8-questions-100.png" alt="">
+            <a href="/what_is_AD"><p>What is Anomaly Detection?</p></a>
         </div>
         <div class="custom-box">
-            <p>Learn More about our Models</p>
+            <img src="/static/icons8-info-100.png" alt="">
+            <a href="/learn_more"><p>Learn More about our Models</p></a>
         </div>
         
         <div class="custom-box">
+            <img src="/static/icons8-graph-96.png" alt="">
             <a href="/input_form"><p>Visualization of Results</p></a>
         </div>
         <div class="custom-box">
+            <img src="/static/icons8-combo-chart-100.png" alt="">
             <a href="/visualizedata"><p>Visualization of Data</p></a>
         </div>
     </div>

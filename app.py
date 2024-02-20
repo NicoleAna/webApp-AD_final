@@ -49,6 +49,21 @@ def index():
 @app.route("/about", methods=["GET"])
 def aboutus():
     return render_template("aboutus.html")
+
+
+@app.route("/blog", methods=["GET"])
+def blog():
+    return render_template("blog.html")
+
+
+@app.route("/learn_more", methods=["GET"])
+def learn_more():
+    return render_template("learn_more.html")
+
+
+@app.route("/what_is_AD", methods=["GET"])
+def what_is_AD():
+    return render_template("what_is_AD.html")
     
 
 @app.route("/input_form")
@@ -64,6 +79,7 @@ def visual():
 @app.route("/visualizedata", methods=["GET", "POST"])
 def datavis():
     return render_template("visualize_data.html")
+    
 
 
 def train_model(algo, dataset, selected_algo, plots, model):
@@ -97,7 +113,7 @@ def inputs():
     
     data = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
     dataset = pd.read_csv(data)
-
+    #x=5
     plot_model = Gen_Plot()
     plots = dict()
     selected_algo = dict()
