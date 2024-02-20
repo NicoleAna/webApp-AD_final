@@ -115,7 +115,10 @@ def inputs():
             return render_template("visualize.html", algos=algo, plot=plots, selected_algo=selected_algo)
         else:
             auc_plots = plot_model.comp_auc(selected_algo)
-            return render_template("visualize.html", algos=algo, plot=plots, auc_plot=auc_plots, selected_algo=selected_algo)
+            prec_plots = plot_model.comp_precision(selected_algo)
+            recall_plots = plot_model.comp_recall(selected_algo)
+            f1_plots = plot_model.comp_f1(selected_algo)
+            return render_template("visualize.html", algos=algo, plot=plots, auc_plot=auc_plots, prec_plot=prec_plots, recall_plot=recall_plots,f1_plot=f1_plots,selected_algo=selected_algo)
     else:
         return render_template("input_form.html", error="Some error occured", algos=ALGO)
 

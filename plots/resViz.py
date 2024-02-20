@@ -57,3 +57,75 @@ class Gen_Plot():
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
         return plot
+    
+    def comp_precision(self, selected_algo):
+        fig, ax = plt.subplots(figsize=(10, 6), dpi=80)
+
+        models = []
+        precisions = []
+
+        for model, metric in selected_algo.items():
+            precision = metric['precision']
+            models.append(model)
+            precisions.append(precision)
+
+        ax.bar(models, precisions, color='skyblue')
+
+        ax.set_xlabel('Algorithms', fontsize=14, labelpad=15)
+        ax.set_ylabel('Precision', fontsize=14, labelpad=15)
+        ax.set_title('Precision of Different Algorithms', fontsize=16, pad=20)
+        ax.tick_params(axis='x', rotation=45)
+
+        buf = BytesIO()  
+        fig.savefig(buf, format="png", bbox_inches='tight')
+        plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
+        plt.close(fig)  # Close the figure to release memory
+        return plot
+    
+    def comp_recall(self, selected_algo):
+        fig, ax = plt.subplots(figsize=(10, 6), dpi=80)
+
+        models = []
+        recalls = []
+
+        for model, metric in selected_algo.items():
+            recall = metric['recall']
+            models.append(model)
+            recalls.append(recall)
+
+        ax.bar(models, recalls, color='red')
+
+        ax.set_xlabel('Algorithms', fontsize=14, labelpad=15)
+        ax.set_ylabel('Recall', fontsize=14, labelpad=15)
+        ax.set_title('Recall of Different Algorithms', fontsize=16, pad=20)
+        ax.tick_params(axis='x', rotation=45)
+
+        buf = BytesIO()  
+        fig.savefig(buf, format="png", bbox_inches='tight')
+        plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
+        plt.close(fig)  # Close the figure to release memory
+        return plot
+    
+    def comp_f1(self, selected_algo):
+        fig, ax = plt.subplots(figsize=(10, 6), dpi=80)
+
+        models = []
+        f1s = []
+
+        for model, metric in selected_algo.items():
+            f1 = metric['f1_score']
+            models.append(model)
+            f1s.append(f1)
+
+        ax.bar(models, f1s, color='green')
+
+        ax.set_xlabel('Algorithms', fontsize=14, labelpad=15)
+        ax.set_ylabel('Precision', fontsize=14, labelpad=15)
+        ax.set_title('F1-Score of Different Algorithms', fontsize=16, pad=20)
+        ax.tick_params(axis='x', rotation=45)
+
+        buf = BytesIO()  
+        fig.savefig(buf, format="png", bbox_inches='tight')
+        plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
+        plt.close(fig)  # Close the figure to release memory
+        return plot
