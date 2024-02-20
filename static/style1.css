@@ -29,11 +29,17 @@ img.article-thumbnail {
 }
 
 img.article-thumbnail {
-    height: 250px;
     -o-object-fit: cover;
     object-fit: cover;
     width: 100%;
     display: block;
+}
+
+img {
+    width: 485px;
+    height: 330px;
+    object-fit: cover;
+    object-position:50% 50%;
 }
 
 .article-article {
