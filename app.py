@@ -61,9 +61,9 @@ def learn_more():
     return render_template("learn_more.html")
 
 
-@app.route("/what_is_AD", methods=["GET"])
-def what_is_AD():
-    return render_template("what_is_AD.html")
+@app.route("/dataset_char", methods=["GET"])
+def dataset_char():
+    return render_template("dataset_char.html")
     
 
 @app.route("/input_form")
