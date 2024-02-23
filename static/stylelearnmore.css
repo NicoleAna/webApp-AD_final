@@ -1,3 +1,9 @@
+.model-title {
+    font-size: 52px;
+    font-weight: 600;
+    text-align: center;
+}
+
 .article-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -6,8 +12,6 @@
 }
 
 .article-card {
-    /* background: #fff; */
-    /* background: rgb(147 147 147 / 10%); */
     background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
     color: #474747;
     border-radius: 8px;
@@ -35,13 +39,6 @@ img.article-thumbnail {
     display: block;
 }
 
-/* img {
-    width: 485px;
-    height: 330px;
-    object-fit: cover;
-    object-position:50% 50%; 
-} */
-
 .article-article {
     flex: 1;
     position: relative;
@@ -53,11 +50,14 @@ img.article-thumbnail {
 
 .article-article p {
     color: #474747;
-    font-size: xx-large;
+    font-size: 40px;
+    font-weight: 500;
 }
 
 .card-content {
     color: #474747;
+    text-align: justify;
+    font-size: 16px;
 }
 
 .author-row {

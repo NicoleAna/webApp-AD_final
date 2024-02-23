@@ -5,8 +5,10 @@ body {
   margin: 0;
   padding: 0;
 }
+
 h1, h2 {
-  background: linear-gradient(to bottom right, RGB(245, 245, 245), RGB(241, 228, 228)); 
+  /* background: linear-gradient(to bottom right, RGB(245, 245, 245), RGB(241, 228, 228));  */
+  background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -29,10 +31,10 @@ a:active, a:focus {
   justify-content: space-between;
   align-items: center;
   font-size: larger;
-  font-weight: 500;
-  background: black;
+  font-weight: 400;
+  background: rgba(0, 0, 0, 0.8);
   background-image: paint(fleck);
-  border-bottom: 1px solid #676767
+  border-bottom: 0.5px solid #676767
 }
 
 .navbar li {
@@ -53,64 +55,6 @@ a:active, a:focus {
 .right {
   margin-left: auto;
   font-size: larger;
-}
-
-.container {
-  font-size: larger;
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  margin: 0 auto;
-  gap: 15px;
-}
-
-.custom-box {
-  /* border: 1.5px solid RGB(241, 228, 228); */
-  border-radius: 10px;
-  padding: 20px;
-  transition: all 0.5s ease;
-  display: inline-block;
-  /* background: #939393; */
-  background: rgb(0, 0, 0);
-  /* background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179)); */
-  color: rgb(0, 0, 0);
-  font-size: xx-large; 
-  font-weight: 500;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  
-  /* opacity: 0.7; */
-}
-
-.custom-box p {
-  /* background: linear-gradient(to bottom right, RGB(13, 13, 13), RGB(85, 83, 83));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent; */
-  color: white;
-  font-weight: 200;
-  text-align: left;
-  font-size: 1.3rem;
-  line-height: 1.5rem;
-  
-}
-.custom-box img
-{
-  height: 100px;
-  width: 100px;
-}
-
-.custom-box:hover {
-  transform: scale(1.1); 
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
 }
 
 .data-plots {
@@ -210,15 +154,12 @@ a:active, a:focus {
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  /* background-color: #f9f9f9; */
   background: #939393;
   background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
-  /* background: linear-gradient(135deg, RGB(234, 230, 230), RGB(188, 179, 179));  */
-  /* #939393, #E2E2E2 */
   box-sizing: border-box; 
   font-size: 20px;
-  /* opacity: 0.7; */
 }  
+
 .checkbox-item {
   display: flex;
   vertical-align: middle;
