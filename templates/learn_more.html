@@ -1,96 +1,102 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h1 class="f1 lh-title tc">Learn more about our Models</h1>
+<h1 class="f1 lh-title tc">Classical Machine Learning Models</h1>
+<div class="article-grid">
+    <article class="article-card article" id="m2">
+        <!-- <div class="articel-thumbnail-wrap">
+            <img src="/static/lof.png" alt="some-image">
+        </div> -->
+        <div class="article-article">
+            <a href="https://dl.acm.org/doi/10.1145/335191.335388" target="_blank"><p>Local Outlier Factor</p></a>
+            <div class="card-content">The Local Outlier Factor (LOF) algorithm is an unsupervised anomaly detection method which computes the local density deviation of a given data point with respect to its neighbors. It considers as outliers the samples that have a substantially lower density than their neighbors.</div>
+        </div>  
+    </article>
+    <article class="article-card article" id="m3">
+        <!-- <div class="articel-thumbnail-wrap">
+            <img src="/static/iforest.png" alt="some-image">
+        </div> -->
+        <div class="article-article">
+            <a href="https://ieeexplore.ieee.org/abstract/document/4781136" target="_blank"><p>Isolation Forest</p></a>
+            <div class="card-content">Isolation Forest is an unsupervised machine learning algorithm for anomaly detection. As the name implies, Isolation Forest is an ensemble method (similar to random forest). In other words, it use the average of the predictions by several decision trees when assigning the final anomaly score to a given data point. Unlike other anomaly detection algorithms, which first define what’s “normal” and then report anything else as anomalous, Isolation Forest attempts to isolate anomalous data points from the get go.</div>
+        </div>
+    </article>
+    <article class="article-card article" id="m4">
+        <!-- <div class="articel-thumbnail-wrap">
+            <img src="/static/elliptic.png" alt="some-image">
+        </div> -->
+        <div class="article-article">
+            <a href="https://aiblog.co.za/technology/elliptic-envelope-anomaly-detection" target="_blank"><p>Elliptic Envelope</p></a>
+            <div class="card-content">Elliptic Envelope is a statistical method used for anomaly detection, particularly effective for detecting outliers in multivariate data assumed to be normally distributed. It fits an ellipse to the central data points, considering them as the "inliers," while data points outside the ellipse are considered potential outliers or anomalies. This method is robust to outliers and can handle data with a Gaussian distribution assumption, making it suitable for various applications such as fraud detection or network intrusion detection.</div>
+        </div>
+    </article>
+</div>
+<h1 class="f1 lh-title tc">Deep Learning Models</h1>
 <div class="article-grid">
     <article class="article-card article" id="m1">
-        <div class="articel-thumbnail-wrap">
+        <!-- <div class="articel-thumbnail-wrap">
             <img src="/static/gan.jpeg" alt="some-image">
-        </div>
+        </div> -->
         <div class="article-article">
             <a href="https://dl.acm.org/doi/abs/10.1145/3422622" target="_blank"><p>Generative Adversarial Network</p></a>
             <div class="card-content">A GAN, or Generative Adversarial Network, is a generative model that simultaneously trains two models: a generative model (G) that captures the data distribution, and a discriminative model (D)that estimates the probability that a sample came from the training data rather than G. The training procedure for G is to maximize the probability of D making a mistake. This framework corresponds to a minimax two-player game. In the space of arbitrary functions Gand D, a unique solution exists, with G recovering the training data distribution and D equal to 1/2 everywhere. In the case where G and D are defined by multilayer perceptrons, the entire system can be trained with backpropagation.</div>
             <!-- <div class="author-row">Ian J. Goodfellow</div> -->
         </div>
     </article>
-    <article class="article-card article" id="m2">
-        <div class="articel-thumbnail-wrap">
-            <img src="/static/lof.png" alt="some-image">
-        </div>
+    <article class="article-card article" id="m6">
+        <!-- <div class="articel-thumbnail-wrap">
+            <img src="/static/autoencoders.png" alt="some-image">
+        </div> -->
         <div class="article-article">
-            <p>Local Outlier Factor</p>
-            <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
-        </div>  
-    </article>
-    <article class="article-card article" id="m3">
-        <div class="articel-thumbnail-wrap">
-            <img src="/static/iforest.png" alt="some-image">
-        </div>
-        <div class="article-article">
-            <p>Isolation Forest</p>
-            <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
-        </div>
-    </article>
-    <article class="article-card article" id="m4">
-        <div class="articel-thumbnail-wrap">
-            <img src="/static/elliptic.png" alt="some-image">
-        </div>
-        <div class="article-article">
-            <p>Elliptic Envelope</p>
-            <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
+            <a href="https://dl.acm.org/doi/abs/10.1145/3097983.3098052" target="_blank"><p>AutoEncoders</p></a>
+            <div class="card-content">Autoencoders, a type of neural network, are used for unsupervised learning tasks like anomaly detection. They compress input data into a lower-dimensional space and then reconstruct it. During training, they minimize reconstruction error, learning to represent normal data patterns. Anomalies, with higher reconstruction errors, can be detected by setting a threshold. This approach works well for unlabeled data, adapting to various anomaly severities. Modifications like convolutional layers enhance their ability to capture complex patterns, making autoencoders effective for anomaly detection by learning and identifying deviations from normal data.</div>
         </div>
     </article>
     <article class="article-card article" id="m5">
-        <div class="articel-thumbnail-wrap">
+        <!-- <div class="articel-thumbnail-wrap">
             <img src="/static/dagmm.png" alt="some-image">
-        </div>
+        </div> -->
         <div class="article-article">
-            <p>DAGMM</p>
-            <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
-        </div>
-    </article>
-    <article class="article-card article" id="m6">
-        <div class="articel-thumbnail-wrap">
-            <img src="/static/autoencoders.png" alt="some-image">
-        </div>
-        <div class="article-article">
-            <p>AutoEncoders</p>
-            <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
+            <a href="https://openreview.net/forum?id=BJJLHbb0-" target="_blank"><p>DAGMM</p></a>
+            <div class="card-content">Deep Autoencoding Gaussian Mixture Model (DAGMM) is a neural network-based approach for anomaly detection that combines deep autoencoder architecture with a Gaussian mixture model (GMM). DAGMM learns to reconstruct input data while simultaneously estimating the probability density function of the latent space using a GMM. By jointly optimizing reconstruction error and the log-likelihood of the latent space, DAGMM effectively captures normal data patterns while identifying anomalies as data points with low probability under the learned density function. This method allows DAGMM to detect anomalies without requiring labeled anomaly data for training, making it particularly useful for unsupervised anomaly detection tasks in various domains.</div>
         </div>
     </article>
     <article class="article-card article" id="m7">
-        <div class="articel-thumbnail-wrap">
+        <!-- <div class="articel-thumbnail-wrap">
             <img src="/static/lstm.png" alt="some-image">
-        </div>
+        </div> -->
         <div class="article-article">
-            <p>LSTM</p>
-            <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
+            <a href="https://ieeexplore.ieee.org/abstract/document/8836638" target="_blank"><p>LSTM</p></a>
+            <div class="card-content">Long Short-Term Memory (LSTM) networks, a type of recurrent neural network, excel in capturing temporal dependencies in sequential data, making them valuable for anomaly detection in time-series data. Trained on normal sequences, LSTMs predict the next data point and detect anomalies through significant deviations from predicted values. Leveraging their ability to recognize complex patterns in sequential data, LSTMs are widely used for anomaly detection across various domains, including finance, cybersecurity, and industrial monitoring.</div>
         </div>
     </article>
     <article class="article-card article" id="m8">
-        <div class="articel-thumbnail-wrap">
+        <!-- <div class="articel-thumbnail-wrap">
             <img src="/static/qreg.png" alt="some-image">
-        </div>
+        </div> -->
         <div class="article-article">
-            <p>Quantile Regression</p>
-            <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
+            <a href="https://link.springer.com/article/10.1007/s42979-021-00866-4" target="_blank"><p>Quantile Regression</p></a>
+            <div class="card-content">Quantile regression in anomaly detection involves modeling conditional quantiles of the target variable to identify deviations from normal behavior. By fitting separate quantile regression models to normal data, it enables the detection of anomalies by comparing the predicted quantiles of unseen data points with actual observations, thus capturing outliers and extreme values that may be missed by mean-based methods. This approach provides flexibility by allowing users to focus on specific quantiles relevant to their application, making it a robust and versatile tool for anomaly detection across various domains.</div>
         </div>
     </article>
+</div>
+<h1 class="f1 lh-title tc">Tree Based Models</h1>
+<div class="article-grid">
     <article class="article-card article" id="m9">
-        <div class="articel-thumbnail-wrap">
+        <!-- <div class="articel-thumbnail-wrap">
             <img src="" alt="some-image">
-        </div>
+        </div> -->
         <div class="article-article">
-            <p>Model</p>
+            <a href="https://link.springer.com/article/10.1007/s10489-022-03940-3" target="_blank"><p>MG Tree</p></a>
             <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
         </div>
     </article>
     <article class="article-card article" id="m10">
-        <div class="articel-thumbnail-wrap">
+        <!-- <div class="articel-thumbnail-wrap">
             <img src="" alt="some-image">
-        </div>
+        </div> -->
         <div class="article-article">
-            <p>Model</p>
+            <a href="https://link.springer.com/chapter/10.1007/978-3-030-79463-7_44" target="_blank"><p>d-BTAI</p></a>
             <div class="card-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id laborum eaque in dolores deserunt odio nostrum repellat amet! Maxime magni nam et error illum laudantium nisi eveniet ullam magnam aliquam?</div>
         </div>
     </article>
