@@ -1,7 +1,36 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <div class="my-form">
+    <div class="my-form" id="opt-form">
+        <input type="button" value="Univariate" id="uni-btn" onclick="showForm('uni')">
+        <input type="button" value="Multivariate" id="multi-btn" onclick="showForm('multi')">
+    </div>
+    <div class="my-form" id="uni-form" style="display: none;">
+        <form action="/inputs" method="post" enctype="multipart/form-data">
+            <div class="form-item">
+                <label class="form-title" for="algo">Select Model(s) of your choice</label>
+                {% for a in algos %}
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="algo" value="{{ a }}">
+                        <label for="{{ a }}">{{ a }}</label>
+                    </div>
+                {% endfor %}
+                <div class="checkbox-item">
+                    <input type="checkbox" id="select-all-checkbox" onclick="toggleCheckboxes()">
+                    <label for="select-all-checkbox">Select All</label>
+                </div>
+            </div>
+            <div class="form-item">
+                <label for="file" class="form-title">Upload a dataset</label>
+                <input type="file" name="dataset" accept=".csv">
+            </div>
+            <div class="form-item">
+                <button type="submit" class="learn-more">Visualize Results</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="my-form" id="multi-form" style="display: none;">
         <form action="/inputs" method="post" enctype="multipart/form-data">
             <div class="form-item">
                 <label class="form-title" for="algo">Select Model(s) of your choice</label>
@@ -28,15 +57,4 @@
     {% if error %}
         <h1 class="tc">{{ error }}</h1>
     {% endif %}
-
-    <script>
-        function toggleCheckboxes() {
-            var checkboxs = document.querySelectorAll('input[type="checkbox"][name="algo"]');
-            var selectAllCheckbox = document.getElementById('select-all-checkbox');
-
-            checkboxs.forEach(function(checkbox) {
-                checkbox.checked = selectAllCheckbox.checked;
-            }); 
-        }
-    </script>
 {% endblock %}

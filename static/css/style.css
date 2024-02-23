@@ -30,6 +30,7 @@ a:active, a:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
   font-size: larger;
   font-weight: 400;
   background: rgba(0, 0, 0, 0.8);
@@ -173,7 +174,7 @@ a:active, a:focus {
   font-size: larger;
 }
 
-select,
+/* select,
 input[type="file"],
 button {
   width: calc(100% - 20px); 
@@ -182,9 +183,9 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
+} */
 
-button {
+/* button {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -236,4 +237,4 @@ button {
       }
     }
   }
-}
+} */
