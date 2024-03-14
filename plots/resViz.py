@@ -59,7 +59,7 @@ class Gen_Plot():
         return plot
     
     def comp_precision(self, selected_algo):
-        fig, ax = plt.subplots(figsize=(10, 6), dpi=80)
+        fig, ax = plt.subplots(figsize=(12, 12), dpi=100)
 
         models = []
         precisions = []
@@ -83,7 +83,7 @@ class Gen_Plot():
         return plot
     
     def comp_recall(self, selected_algo):
-        fig, ax = plt.subplots(figsize=(10, 6), dpi=80)
+        fig, ax = plt.subplots(figsize=(12, 12), dpi=100)
 
         models = []
         recalls = []
@@ -93,7 +93,7 @@ class Gen_Plot():
             models.append(model)
             recalls.append(recall)
 
-        ax.bar(models, recalls, color='red')
+        ax.bar(models, recalls, color='crimson')
 
         ax.set_xlabel('Algorithms', fontsize=14, labelpad=15)
         ax.set_ylabel('Recall', fontsize=14, labelpad=15)
@@ -107,7 +107,7 @@ class Gen_Plot():
         return plot
     
     def comp_f1(self, selected_algo):
-        fig, ax = plt.subplots(figsize=(10, 6), dpi=80)
+        fig, ax = plt.subplots(figsize=(12, 12), dpi=100)
 
         models = []
         f1s = []
@@ -117,7 +117,7 @@ class Gen_Plot():
             models.append(model)
             f1s.append(f1)
 
-        ax.bar(models, f1s, color='green')
+        ax.bar(models, f1s, color='mediumseagreen')
 
         ax.set_xlabel('Algorithms', fontsize=14, labelpad=15)
         ax.set_ylabel('Precision', fontsize=14, labelpad=15)

@@ -1,11 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <div class="my-form" id="opt-form">
-        <input type="button" value="Univariate" id="uni-btn" onclick="showForm('uni')">
-        <input type="button" value="Multivariate" id="multi-btn" onclick="showForm('multi')">
-    </div>
-    <div class="my-form" id="uni-form" style="display: none;">
+    <div class="my-form">
         <form action="/inputs" method="post" enctype="multipart/form-data">
             <div class="form-item">
                 <label class="form-title" for="algo">Select Model(s) of your choice</label>
@@ -21,8 +17,112 @@
                 </div>
             </div>
             <div class="form-item">
-                <label for="file" class="form-title">Upload a dataset</label>
-                <input type="file" name="dataset" accept=".csv">
+                <!-- <label for="file" class="form-title">Upload a dataset</label>
+                <input type="file" name="dataset" accept=".csv"> -->
+                <label for="file">Select a dataset</label>
+                <select name="dataset" id="dataset">
+                    <option value="">Please Select a dataset</option>
+                    <optgroup label="Univariate">
+                        <option value="Univariate/aws1.csv">aws1</option>
+                        <option value="Univariate/aws2.csv">aws2</option>
+                        <option value="Univariate/aws3.csv">aws3</option>
+                        <option value="Univariate/aws_syn1.csv">aws_syn1</option>
+                        <option value="Univariate/aws_syn2.csv">aws_syn2</option>
+                        <option value="Univariate/aws_syn3.csv">aws_syn3</option>
+                        <option value="Univariate/yahoo1.csv">yahoo1</option>
+                        <option value="Univariate/yahoo2.csv">yahoo2</option>
+                        <option value="Univariate/yahoo3.csv">yahoo3</option>
+                        <option value="Univariate/yahoo5.csv">yahoo5</option>
+                        <option value="Univariate/yahoo6.csv">yahoo6</option>
+                        <option value="Univariate/yahoo7.csv">yahoo7</option>
+                        <option value="Univariate/yahoo8.csv">yahoo8</option>
+                        <option value="Univariate/yahoo9.csv">yahoo9</option>
+                        <option value="Univariate/yahoo_syn1.csv">yahoo_syn1</option>
+                        <option value="Univariate/yahoo_syn2.csv">yahoo_syn2</option>
+                        <option value="Univariate/yahoo_syn3.csv">yahoo_syn3</option>
+                        <option value="Univariate/yahoo_syn5.csv">yahoo_syn5</option>
+                        <option value="Univariate/yahoo_syn6.csv">yahoo_syn6</option>
+                        <option value="Univariate/yahoo_syn7.csv">yahoo_syn7</option>
+                        <option value="Univariate/yahoo_syn8.csv">yahoo_syn8</option>
+                        <option value="Univariate/yahoo_syn9.csv">yahoo_syn9</option>
+                        <option value="Univariate/Occupancy_6005.csv">Occupancy_6005</option>
+                        <option value="Univariate/Occupancy_t4013.csv">Occupancy_t4013</option>
+                        <option value="Univariate/Speed_6005.csv">Speed_6005</option>
+                        <option value="Univariate/Speed_7578.csv">Speed_7578</option>
+                        <option value="Univariate/Speed_t4013.csv">Speed_t4013</option>
+                        <option value="Univariate/TravelTime_387.csv">TravelTime_387</option>
+                        <option value="Univariate/TravelTime_451.csv">TravelTime_451</option>
+                    </optgroup>
+                    <optgroup label="Multivariate">
+                        <option value="Multivariate/Health/cmc.csv">cmc</option>
+                        <option value="Multivariate/Health/ecoli.csv">ecoli</option>
+                        <option value="Multivariate/Health/lympho_h.csv">lympho_h</option>
+                        <option value="Multivariate/Health/wbc_h.csv">wbc_h</option>
+                        <option value="Multivariate/SUTD/BATADAL_04.csv">BATADAL_04</option>
+                        <option value="Multivariate/SUTD/SWaT1.csv">SWaT1</option>
+                        <option value="Multivariate/SUTD/SWaT2.csv">SWaT2</option>
+                        <option value="Multivariate/SUTD/SWaT3.csv">SWaT3</option>
+                        <option value="Multivariate/SUTD/SWaT4.csv">SWaT4</option>
+                        <option value="Multivariate/SUTD/SWaT5.csv">SWaT5</option>
+                        <option value="Multivariate/SUTD/SWaT6.csv">SWaT6</option>
+                        <option value="Multivariate/VLDB/10_cover.csv">10_cover</option>
+                        <option value="Multivariate/VLDB/11_donors.csv">11_donors</option>
+                        <option value="Multivariate/VLDB/12_fault.csv">12_fault</option>
+                        <option value="Multivariate/VLDB/13_fraud.csv">13_fraud</option>
+                        <option value="Multivariate/VLDB/14_glass.csv">14_glass</option>
+                        <option value="Multivariate/VLDB/15_Hepatitis.csv">15_Hepatitis</option>
+                        <option value="Multivariate/VLDB/16_http.csv">16_http</option>
+                        <option value="Multivariate/VLDB/17_InternetAds.csv">17_InternetAds</option>
+                        <option value="Multivariate/VLDB/18_Ionosphere.csv">18_Ionosphere</option>
+                        <option value="Multivariate/VLDB/19_landsat.csv">19_landsat</option>
+                        <option value="Multivariate/VLDB/1_ALOI.csv">1_ALOI</option>
+                        <option value="Multivariate/VLDB/20_letter.csv">20_letter</option>
+                        <option value="Multivariate/VLDB/21_Lymphography.csv">21_Lymphography</option>
+                        <option value="Multivariate/VLDB/22_magic_gamma.csv">22_magic_gamma</option>
+                        <option value="Multivariate/VLDB/23_mammography.csv">23_mammography</option>
+                        <option value="Multivariate/VLDB/24_mnist.csv">24_mnist</option>
+                        <option value="Multivariate/VLDB/25_musk.csv">25_musk</option>
+                        <option value="Multivariate/VLDB/26_optdigits.csv">26_optdigits</option>
+                        <option value="Multivariate/VLDB/27_PageBlocks.csv">27_PageBlocks</option>
+                        <option value="Multivariate/VLDB/28_pendigits.csv">28_pendigits</option>
+                        <option value="Multivariate/VLDB/29_Pima.csv">29_Pima</option>
+                        <option value="Multivariate/VLDB/2_annthyroid.csv">2_annthyroid</option>
+                        <option value="Multivariate/VLDB/30_satellite.csv">30_satellite</option>
+                        <option value="Multivariate/VLDB/31_satimage-2.csv">31_satimage-2</option>
+                        <option value="Multivariate/VLDB/32_shuttle.csv">32_shuttle</option>
+                        <option value="Multivariate/VLDB/33_skin.csv">33_skin</option>
+                        <option value="Multivariate/VLDB/34_smtp.csv">34_smtp</option>
+                        <option value="Multivariate/VLDB/35_SpamBase.csv">35_SpamBase</option>
+                        <option value="Multivariate/VLDB/36_speech.csv">36_speech</option>
+                        <option value="Multivariate/VLDB/37_Stamps.csv">37_Stamps</option>
+                        <option value="Multivariate/VLDB/38_thyroid.csv">38_thyroid</option>
+                        <option value="Multivariate/VLDB/39_vertebral.csv">39_vertebral</option>
+                        <option value="Multivariate/VLDB/3_backdoor.csv">3_backdoor</option>
+                        <option value="Multivariate/VLDB/40_vowels.csv">40_vowels</option>
+                        <option value="Multivariate/VLDB/41_Waveform.csv">41_Waveform</option>
+                        <option value="Multivariate/VLDB/42_WBC.csv">42_WBC</option>
+                        <option value="Multivariate/VLDB/43_WDBC.csv">43_WDBC</option>
+                        <option value="Multivariate/VLDB/44_Wilt.csv">44_Wilt</option>
+                        <option value="Multivariate/VLDB/45_wine.csv">45_wine</option>
+                        <option value="Multivariate/VLDB/46_WPBC.csv">46_WPBC</option>
+                        <option value="Multivariate/VLDB/47_yeast.csv">47_yeast</option>
+                        <option value="Multivariate/VLDB/48_CIFAR10.csv">48_CIFAR10</option>
+                        <option value="Multivariate/VLDB/49_FashionMNIST.csv">49_FashionMNIST</option>
+                        <option value="Multivariate/VLDB/4_breastw.csv">4_breastw</option>
+                        <option value="Multivariate/VLDB/50_MNIST-C.csv">50_MNIST-C</option>
+                        <option value="Multivariate/VLDB/51_MVTec-AD.csv">51_MVTec-AD</option>
+                        <option value="Multivariate/VLDB/52_SVHN.csv">52_SVHN</option>
+                        <option value="Multivariate/VLDB/53_Agnews.csv">53_Agnews</option>
+                        <option value="Multivariate/VLDB/54_Amazon.csv">54_Amazon</option>
+                        <option value="Multivariate/VLDB/55_Imdb.csv">55_Imdb</option>
+                        <option value="Multivariate/VLDB/56_Yelp.csv">56_Yelp</option>
+                        <option value="Multivariate/VLDB/57_20newsgroups.csv">57_20newsgroups</option>
+                        <option value="Multivariate/VLDB/5_campaign.csv">5_campaign</option>
+                        <option value="Multivariate/VLDB/6_cardio.csv">6_cardio</option>
+                        <option value="Multivariate/VLDB/7_Cardiotocography.csv">7_Cardiotocography</option>
+                        <option value="Multivariate/VLDB/8_celeba.csv">8_celeba</option>
+                    </optgroup>
+                </select>
             </div>
             <div class="form-item">
                 <button type="submit" class="learn-more">Visualize Results</button>
@@ -30,30 +130,6 @@
         </form>
     </div>
     
-    <div class="my-form" id="multi-form" style="display: none;">
-        <form action="/inputs" method="post" enctype="multipart/form-data">
-            <div class="form-item">
-                <label class="form-title" for="algo">Select Model(s) of your choice</label>
-                {% for a in algos %}
-                    <div class="checkbox-item">
-                        <input type="checkbox" name="algo" value="{{ a }}">
-                        <label for="{{ a }}">{{ a }}</label>
-                    </div>
-                {% endfor %}
-                <div class="checkbox-item">
-                    <input type="checkbox" id="select-all-checkbox" onclick="toggleCheckboxes()">
-                    <label for="select-all-checkbox">Select All</label>
-                </div>
-            </div>
-            <div class="form-item">
-                <label for="file" class="form-title">Upload a dataset</label>
-                <input type="file" name="dataset" accept=".csv">
-            </div>
-            <div class="form-item">
-                <button type="submit" class="learn-more">Visualize Results</button>
-            </div>
-        </form>
-    </div>
     {% if error %}
         <h1 class="tc">{{ error }}</h1>
     {% endif %}

@@ -2,7 +2,6 @@
 import pandas as pd
 
 from flask import Flask, render_template, request
-import concurrent.futures
 
 from models.gan import GAN
 from models.lof import Lof
@@ -82,7 +81,7 @@ def datavis():
     
 
 
-def train_model(algo, dataset, selected_algo, plots, model):
+def train_model(dataset, selected_algo, plots, model):
     plot_model = Gen_Plot()
     model_class = ALGO[model]
     model_instance = model_class(dataset)
@@ -105,26 +104,24 @@ def train_model(algo, dataset, selected_algo, plots, model):
 
 @app.route("/inputs", methods=["POST"])
 def inputs():
-    file = request.files.get("dataset")
+    # file = request.files.get("dataset")
+    file = request.form.get("dataset")
     algo = request.form.getlist("algo")
     
     if not file:
         return render_template("input_form.html", error="Please upload a CSV file", algos=ALGO, selected_algo=algo)
     
-    data = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
-    dataset = pd.read_csv(data)
-    #x=5
+    # data = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
+    url = "https://raw.githubusercontent.com/varad0207/Anomaly-Benchmarking-Datasets/main/Datasets/"
+
+    dataset = pd.read_csv(url + file)
+
     plot_model = Gen_Plot()
     plots = dict()
     selected_algo = dict()
-        
-    with concurrent.futures.ThreadPoolExecutor() as e:
-        futures = []
-        for model in algo:
-            f = e.submit(train_model, algo, dataset, selected_algo, plots, model)
-            futures.append(f)
-        
-        concurrent.futures.wait(futures)
+
+    for model in algo:
+        train_model(dataset, selected_algo, plots, model)
     
     if plots:
         if len(plots) == 1:    
