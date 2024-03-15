@@ -138,13 +138,14 @@ def inputs():
 
 @app.route("/datavis", methods=["POST"])
 def dataVis():
-    file = request.files.get("dataset")
+    file = request.form.get("dataset")
+
     if not file:
-        return render_template("visualize_data.html", error="Please upload a csv file")
+        return render_template("visualize_data.html", error="Please select a csv file")
     
     plot = list()
-    dataset = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
-    plot_graph = Gen_Plot1(dataset)
+    url = "https://raw.githubusercontent.com/varad0207/Anomaly-Benchmarking-Datasets/main/Datasets/"
+    plot_graph = Gen_Plot1(url + file)
     plot.append(plot_graph.scatterplot())
     plot.append(plot_graph.histogram())
 

@@ -17,8 +17,8 @@ class Gen_Plot1():
 
     def scatterplot(self):
         fig, ax = plt.subplots(figsize=(12, 8), tight_layout=True, dpi=100)
-        sns.scatterplot(data=self.non_anomalies_df['Value'], label='Normal Data', ax=ax, color='skyblue')
-        sns.scatterplot(data=self.anomalies_df['Value'], label='Anomalies', ax=ax, color='crimson')
+        sns.scatterplot(data=self.non_anomalies_df.iloc[:, 0], label='Normal Data', ax=ax, color='skyblue')
+        sns.scatterplot(data=self.anomalies_df.iloc[:, 0], label='Anomalies', ax=ax, color='crimson')
         ax.set_title('Data with Labeled Anomalies', fontsize=16, pad=20)
         ax.set_xlabel('Index')
         ax.set_ylabel('Value')
@@ -31,7 +31,7 @@ class Gen_Plot1():
 
     def histogram(self):
         fig, ax = plt.subplots(figsize=(12, 8), tight_layout=True, dpi=100)
-        sns.histplot(data=self.df['Value'], kde=True, ax=ax, color='cornflowerblue')
+        sns.histplot(data=self.df.iloc[:, :-1], kde=True, ax=ax, color='cornflowerblue')
         ax.set_title('Data distribution', fontsize=16, pad=20)
         ax.set_xlabel('Value')
         ax.set_ylabel('Count')
