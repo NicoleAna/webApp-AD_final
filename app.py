@@ -148,6 +148,7 @@ def dataVis():
     plot_graph = Gen_Plot1(url + file)
     plot.append(plot_graph.scatterplot())
     plot.append(plot_graph.histogram())
+    plot.append(plot_graph.boxplot())
 
     if plot:    
         return render_template("visualize_data.html", plot=plot, submitted=True)

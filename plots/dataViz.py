@@ -2,8 +2,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from sklearn.metrics import confusion_matrix, classification_report
-
 from io import BytesIO
 import base64
 
@@ -19,7 +17,7 @@ class Gen_Plot1():
         fig, ax = plt.subplots(figsize=(12, 8), tight_layout=True, dpi=100)
         sns.scatterplot(data=self.non_anomalies_df.iloc[:, 0], label='Normal Data', ax=ax, color='skyblue')
         sns.scatterplot(data=self.anomalies_df.iloc[:, 0], label='Anomalies', ax=ax, color='crimson')
-        ax.set_title('Data with Labeled Anomalies', fontsize=16, pad=20)
+        ax.set_title('Scatter Plot', fontsize=20, pad=20)
         ax.set_xlabel('Index')
         ax.set_ylabel('Value')
         ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.1))
@@ -32,9 +30,20 @@ class Gen_Plot1():
     def histogram(self):
         fig, ax = plt.subplots(figsize=(12, 8), tight_layout=True, dpi=100)
         sns.histplot(data=self.df.iloc[:, :-1], kde=True, ax=ax, color='cornflowerblue')
-        ax.set_title('Data distribution', fontsize=16, pad=20)
+        ax.set_title('Histogram with KDE', fontsize=20, pad=20)
         ax.set_xlabel('Value')
         ax.set_ylabel('Count')
+
+        buf = BytesIO()
+        fig.savefig(buf, format="png", bbox_inches='tight')
+        plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
+        return plot
+    
+    def boxplot(self):
+        fig, ax = plt.subplots(figsize=(12, 8), tight_layout=True, dpi=100)
+        sns.boxplot(data=self.df.iloc[:, :-1], orient='h', ax=ax, palette='mako')
+        ax.set_title('Boxplot', fontsize=20, pad=20)
+        ax.set_xlabel('Value')
 
         buf = BytesIO()
         fig.savefig(buf, format="png", bbox_inches='tight')
