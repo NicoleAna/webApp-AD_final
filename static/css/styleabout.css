@@ -27,13 +27,13 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin-top: 150px;
+  margin-top: 15px;
   margin-right: auto;
   margin-bottom: 150px;
   margin-left: auto;
   background: #939393;
   background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
-  border-radius: 10px;
+  border-radius: 40px;
 }
 
 .text-blk.heading {
