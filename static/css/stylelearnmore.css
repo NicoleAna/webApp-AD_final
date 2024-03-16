@@ -7,10 +7,18 @@
 .article-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 6rem;
     margin: 2rem;
 }
 
+.article-grid1 {
+
+    gap: 2rem;
+    margin: 1rem;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .article-card {
     background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
     color: #474747;
@@ -23,6 +31,7 @@
     display: flex;
     flex-direction: column;
 }
+
 
 .article-thumbnail-wrap {
     position: relative;
@@ -47,6 +56,8 @@ img.article-thumbnail {
     display: flex;
     flex-direction: column;
 }
+
+
 
 .article-article p {
     color: #474747;
