@@ -23,11 +23,11 @@
   padding: 10px 30px;
 }
 .responsive-container-block.Container {
-  max-width: 800px;
+  max-width: 1300px;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin-top: 15px;
+  margin-top: 150px;
   margin-right: auto;
   margin-bottom: 15px;
   margin-left: auto;
