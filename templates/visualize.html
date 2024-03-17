@@ -25,21 +25,40 @@
   {% endfor %} 
   </div>
   
-  {% if auc_plot %}
-    <h1 class="f2 lh-copy">AUC-ROC of models</h1>
-    <img class="plot-img1" src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve" />
+  {% if table_result %}
+    <div class="table-container">
+      <div class="table table-stripped">
+          {{ table_result|safe }}
+      </div>
+  </div>
   {% endif %}
+
   {% if prec_plot %}
     <h1 class="f2 lh-copy">Precision of models</h1>
     <img class="plot-img1" src="data:image/png;base64,{{ prec_plot }}" alt="PRECISION" />
   {% endif %}
+
   {% if recall_plot %}
     <h1 class="f2 lh-copy">Recall of models</h1>
     <img class="plot-img1" src="data:image/png;base64,{{ recall_plot }}" alt="RECALL" />
   {% endif %}
+
   {% if f1_plot %}
     <h1 class="f2 lh-copy">F1 Score of models</h1>
     <img class="plot-img1" src="data:image/png;base64,{{ f1_plot }}" alt="F1" />
   {% endif %}
+
+  {% if auc_roc_plots %}
+  <h1 class="f2 lh-copy">AUC ROC of models</h1>
+  <img class="plot-img1" src="data:image/png;base64,{{ auc_roc_plots }}" alt="AUC ROC" />
+  {% endif %}
+
+  {% if auc_plot %}
+    <h1 class="f2 lh-copy">AUC-ROC of models</h1>
+    <img class="plot-img1" src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve" />
+  {% endif %}
+
+
+
 </div>
 {% endblock %}
