@@ -129,3 +129,40 @@ class Gen_Plot():
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
         plt.close(fig)  # Close the figure to release memory
         return plot
+    
+    def comp_auc_roc(self, selected_algo):
+        fig, ax = plt.subplots(figsize=(12, 12), dpi=100)
+
+        models = []
+        auc = []
+
+        for model, metric in selected_algo.items():
+            auc_roc = metric['auc_roc']
+            models.append(model)
+            auc.append(auc_roc)
+
+        ax.bar(models, auc, color='khaki')
+
+        ax.set_xlabel('Algorithms', fontsize=14, labelpad=15)
+        ax.set_ylabel('AUC ROC', fontsize=14, labelpad=15)
+        ax.set_title('AUC ROC of Different Algorithms', fontsize=16, pad=20)
+        ax.tick_params(axis='x', rotation=45)
+
+        buf = BytesIO()  
+        fig.savefig(buf, format="png", bbox_inches='tight')
+        plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
+        plt.close(fig)  # Close the figure to release memory
+        return plot
+    
+    def print_metrics_table(self, selected_algo):
+        data = []
+        for model, metric in selected_algo.items():
+            precision = metric['precision']
+            recall = metric['recall']
+            f1_score = metric['f1_score']
+            auc = metric['auc_roc']
+            data.append([model, precision, recall, f1_score, auc])
+
+        df = pd.DataFrame(data, columns=['Algorithm', 'Precision', 'Recall', 'F1-Score', 'AUC'])
+        print(df)
+        return df
