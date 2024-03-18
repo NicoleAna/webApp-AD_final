@@ -5,8 +5,6 @@
     <div class="my-form">
         <form action="/datavis" method="post" enctype="multipart/form-data">
             <div class="form-item">
-                <!-- <label for="file" class="form-title">Upload a dataset</label>
-                <input type="file" name="dataset" accept=".csv"> -->
                 <select name="dataset" id="dataset">
                     <option value="">Please Select a dataset</option>
                     <option value="Univariate/aws1.csv">aws1</option>
@@ -49,7 +47,6 @@
     {% if submitted %}
     <div class="data-plots">
         <h1 class="f1 b tc">Data Visualization</h1>
-        <!-- <h1 class="f2 lh-copy">Visualization of Univariate Data</h1> -->
         {% for p in plot %}
         <img class="plot-img1" src="data:image/png;base64,{{ p }}" alt="Data Visualization"> 
         {% endfor %}    
@@ -58,4 +55,6 @@
     {% if error %}
         <h1 class="tc">{{ error }}</h1>
     {% endif %}
+    {% block footer %}
+    {% endblock %}
 {% endblock %}

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/css/styleabout.css">
     <link rel="stylesheet" href="/static/css/styleindex.css">
     <link rel="stylesheet" href="/static/css/stylelearnmore.css">
+    <link rel="stylesheet" href="/static/css/styledatachar.css">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
     <link rel="icon" type="image/x-icon" href="/static/images/icons8-black-hole-16.png">
 </head>
@@ -33,10 +34,31 @@
             </div>
         </div>
     </nav>
+    {% block body %}
+    {% endblock %}
+    {% block footer%}
+    <footer>
+        <div class="footer-container">
+            <div class="footer-card footer-item">
+                <h3>About Our Project</h3>
+                <p>Anomaly detection hub harnessing machine learning to uncover hidden patterns in datasets, providing dynamic visualizations for instant insights and trend interpretation. Upload your data and explore anomalies effortlessly!</p>
+            </div>
+            <div class="footer-card">
+                <h3>Our work</h3>
+                <li><a href="/input_form">Result Visualizations</a></li>
+                <li><a href="/visualizedata">Data Visualizations</a></li>
+            </div>
+            <div class="footer-card">
+                <h3>What we offer</h3>
+                <li><a href="/learn_more">Learn more about our Models</a></li>
+                <li><a href="/dataset_char">Data characterization</a></li>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    {% block body %}
-    {% endblock %}
+    
 </body>
 </html>

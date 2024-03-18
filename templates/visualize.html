@@ -49,8 +49,8 @@
   {% endif %}
 
   {% if auc_roc_plots %}
-  <h1 class="f2 lh-copy">AUC ROC of models</h1>
-  <img class="plot-img1" src="data:image/png;base64,{{ auc_roc_plots }}" alt="AUC ROC" />
+    <h1 class="f2 lh-copy">AUC ROC of models</h1>
+    <img class="plot-img1" src="data:image/png;base64,{{ auc_roc_plots }}" alt="AUC ROC" />
   {% endif %}
 
   {% if auc_plot %}
@@ -58,7 +58,7 @@
     <img class="plot-img1" src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve" />
   {% endif %}
 
-
-
+  {% block footer %}
+  {% endblock %}
 </div>
 {% endblock %}
