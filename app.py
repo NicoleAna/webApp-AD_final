@@ -50,11 +50,6 @@ def aboutus():
     return render_template("aboutus.html")
 
 
-@app.route("/blog", methods=["GET"])
-def blog():
-    return render_template("blog.html")
-
-
 @app.route("/learn_more", methods=["GET"])
 def learn_more():
     return render_template("learn_more.html")
