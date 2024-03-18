@@ -1,158 +1,74 @@
-.text-blk {
-  margin: 0px;
-  padding: 0px;
-  line-height: 25px;
-  text-align: justify;
+.model-title {
+    font-size: 52px;
+    font-weight: 600;
+    text-align: center;
 }
 
-.responsive-container-block {
-  min-height: 75px;
-  height: fit-content;
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 0px;
-  margin-right: auto;
-  margin-bottom: 0px;
-  margin-left: auto;
-  justify-content: flex-start;
+.about-container {
+  margin: 2rem 0;
 }
 
-.responsive-container-block.bigContainer {
-  padding: 10px 30px;
-}
-.responsive-container-block.Container {
-  max-width: 1300px;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  margin-top: 150px;
-  margin-right: auto;
-  margin-bottom: 15px;
-  margin-left: auto;
-  background: #939393;
-  background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
-  border-radius: 40px;
-}
-
-.text-blk.heading {
-  font-size: 36px;
-  line-height: 45px;
-  font-weight: 800;
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 30px;
-  margin-left: 0px;
+.about-content {
+    background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+    color: #474747;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    margin: 1rem 6rem;
+    padding: 0 2rem;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: justify;
 }
 
-.text-blk.subHeading {
-  text-align: center;
-  font-size: 18px;
-  line-height: 26px;
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 60px;
-  margin-left: 0px;
+.about-content h3 {
+    color: #474747;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    padding: 1rem;
 }
 
-.socialIcon {
-  width: 33px;
-  height: 33px;
+.team-body {
+    display: flex;
+    margin: 1rem 6rem;
+    gap: 10px;
 }
 
-.social-icons-container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+.team-card {
+    background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+    color: #474747;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    text-align: center;
+    transition: all 0.5s ease;
 }
 
-.social-icon {
-  margin: 0 50px 0 50px;
+.team-card h3 {
+    font-size: 36px;
+    font-weight: 600;
 }
 
-.social-icon:hover {
-  cursor: pointer;
+.team-card:hover {
+    transform: scale(1.1);
 }
 
-@media (max-width: 768px) {
-  .text-blk.heading {
-    font-size: 55px;
-    line-height: 65px;
-  }
-
-  .text-blk.subHeading {
-    font-size: 18px;
-    line-height: 24px;
-  }
-
-  .socialIcon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .text-blk.subHeading {
-    line-height: 27px;
-  }
-
-  .text-blk.heading {
-    font-size: 32px;
-    line-height: 40px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 20px;
-    margin-left: 0px;
-  }
-
-  .social-icon {
-    margin: 0 25px 0 25px;
-  }
+@media screen and (max-width: 768px) {
+    .team-body {
+        flex-direction: column; 
+        margin: 1rem 2rem; 
+    }
 }
 
-@media (max-width: 500px) {
-  .responsive-container-block.bigContainer {
-    padding-top: 10px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-  }
-
-  .text-blk.heading {
-    font-size: 45px;
-    line-height: 55px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 20px;
-    margin-left: 0px;
-  }
-
-  .text-blk.subHeading {
-    font-size: 14px;
-    line-height: 22px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 30px;
-    margin-left: 0px;
-  }
-
-  .social-icons-container {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .text-blk.subHeading {
-    font-size: 16px;
-    line-height: 23px;
-  }
-
-  .text-blk.heading {
-    font-size: 26px;
-    line-height: 30px;
-  }
-
-  .social-icon {
-    margin: 0 20px 0 20px;
-  }
+.team-card a {
+  display: inline-block;
+  vertical-align: middle;
 }
-

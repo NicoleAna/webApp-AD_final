@@ -81,37 +81,3 @@
     font-size: 20px;
     line-height: normal;
 }
-
-.footer-container {
-    display: grid;
-    padding: 3rem 6rem;
-    background: rgba(0, 0, 0, 0.95);
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
-    gap: 20px;
-}
-
-.footer-card {
-    flex: 1;
-    font-size: 18px;
-}
-
-.footer-item {
-    flex-grow: 3;
-}
-
-.footer-card p {
-    text-align: justify;
-    color: #adadad;
-}
-
-.footer-card li {
-    text-decoration: none;
-    list-style-type: none;
-    text-align: left;
-    align-items: left;
-    color: #adadad;
-}
