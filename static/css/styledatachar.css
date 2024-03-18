@@ -1,0 +1,42 @@
+.model-title {
+    font-size: 52px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.data-container {
+    margin: 2rem 12rem;
+}
+
+.data-card {
+    background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+    color: #474747;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    margin: 2rem 0;
+    padding: 2rem 6rem;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: justify;
+}
+
+.data-card h3 {
+    color: #000;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .data-container {
+        margin: auto;
+    }
+    .data-card {
+        padding: 1rem;
+    }
+}
