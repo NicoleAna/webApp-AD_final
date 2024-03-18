@@ -478,3 +478,512 @@ function showForm(option) {
         opt.style.display = "none"
     }
 }
+
+<div class="breadcrumb__text">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <div class="content" style="position: absolute; top: 8%; left: 50%; transform: translateX(-50%)">
+        <h1>About Us</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+<div class="responsive-container-block bigContainer">
+    <div class="responsive-container-block Container">
+      <p class="text-blk tc heading">
+        Uncover Anomalies : Discover the Unseen.
+      </p>
+      <div class="text-blk subHeading">
+        <div class="section-title">
+            <span></span>
+        </div>
+      <p class="text-blk desc">
+        Welcome to our anomaly detection hub, where the realms of data science and machine learning converge to unveil the hidden stories within datasets. A go-to destination for anomaly detection with desired machine learning algorithms. Explore anomalies at a glance! Upload your dataset and dive into dynamic visualizations showcasing machine learning-driven anomaly detection results. Once you've uploaded your dataset, our platform seamlessly integrates AI algorithms to detect anomalies and reveal patterns that may go unnoticed. The 'Visualize Results' section provides a dynamic and interactive environment to explore the outcomes of anomaly detection on your uploaded datasets.Gain instant insights, interpret trends, and uncover patterns with ease. Your data, visualized and understood like never before.
+      </p>
+
+      <p class="text-blk tc heading"; >
+        OUR TEAM 
+      </p>
+      
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <a href="#">
+        <img src="static/images/user.jpg" alt="profile picture" style="width:100%">
+      </a>
+       <div class="container">
+        <h2 >Nicole</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <a href="#">
+        <img src="static/images/user.jpg" alt="profile picture" style="width:100%">
+    </a>
+      <div class="container">
+        <h2>Nitya</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <a href="#">
+        <img src="static/images/user.jpg" alt="profile picture" style="width:100%">
+    </a>
+      <div class="container">
+        <h2>Rafath</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <a href="#">
+        <img src="static/images/user.jpg" alt="profile picture" style="width:100%">
+    </a>
+      <div class="container">
+        <h2>Srushti</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <a href="#">
+        <img src="static/images/user.jpg" alt="profile picture" style="width:100%">
+    </a>
+      <div class="container">
+        <h2>Varad</h2>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+.breadcrumb__text h1 {
+  font-weight: bold;
+  font-size: 80px;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.text-blk  {
+  margin-bottom: 80px;
+}
+
+.column {
+  float: left;
+  width: 20%; 
+  padding: 0 15px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* @media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+} */
+
+.text-blk {
+  margin: 0px;
+  padding: 0px;
+  line-height: 25px;
+  text-align: justify;
+}
+
+.responsive-container-block {
+  min-height: 75px;
+  height: fit-content;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  justify-content: flex-start;
+}
+
+.responsive-container-block.bigContainer {
+  padding: 10px 30px;
+}
+.responsive-container-block.Container {
+  max-width: 1300px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 150px;
+  margin-right: auto;
+  margin-bottom: 15px;
+  margin-left: auto;
+  background: #939393;
+  background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+  border-radius: 40px;
+}
+
+.text-blk.heading {
+  font-size: 36px;
+  line-height: 45px;
+  font-weight: 800;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 30px;
+  margin-left: 0px;
+}
+
+.text-blk.subHeading {
+  text-align: center;
+  font-size: 18px;
+  line-height: 26px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 60px;
+  margin-left: 0px;
+}
+
+.socialIcon {
+  width: 33px;
+  height: 33px;
+}
+
+.social-icons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.social-icon {
+  margin: 0 50px 0 50px;
+}
+
+.social-icon:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .text-blk.heading {
+    font-size: 55px;
+    line-height: 65px;
+  }
+
+  .text-blk.subHeading {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .socialIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .text-blk.subHeading {
+    line-height: 27px;
+  }
+
+  .text-blk.heading {
+    font-size: 32px;
+    line-height: 40px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+  }
+
+  .social-icon {
+    margin: 0 25px 0 25px;
+  }
+}
+
+@media (max-width: 500px) {
+  .responsive-container-block.bigContainer {
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+  }
+
+  .text-blk.heading {
+    font-size: 45px;
+    line-height: 55px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+  }
+
+  .text-blk.subHeading {
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+  }
+
+  .social-icons-container {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text-blk.subHeading {
+    font-size: 16px;
+    line-height: 23px;
+  }
+
+  .text-blk.heading {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .social-icon {
+    margin: 0 20px 0 20px;
+  }
+}
+
+<footer class="footer">
+        <div class="container">
+            <!-- <div class="footer__top">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6"></div>
+                </div>
+            </div> -->
+        </div>
+            <div class="footer__option">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__option__item">
+                            <a href="/about"><h5>About us</h5></a>
+                            <p>Anomaly detection hub harnessing machine learning to uncover hidden patterns in datasets, providing dynamic visualizations for instant insights and trend interpretation. Upload your data and explore anomalies effortlessly!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="footer__option__item">
+                            <h5>We Have</h5>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="/about">About Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="footer__option__item">
+                            <h5>Our work</h5>
+                            <ul>
+                                <li><a href="/input_form">Result Visualizations</a></li>
+                                <li><a href="/visualizedata">Data Visualizations</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__option__item">
+                            <h5>What we provide</h5>
+                            <ul>
+                                <li><a href="/learn_more">Learn more about our Models</a></li>
+                                <li><a href="/dataset_char">Data characterization</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+.footer {
+    background: #0e0c0c70;
+  }
+  
+  .footer__top {
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer__top__logo {
+    line-height: 40px;
+  }
+  .footer__top__logo a {
+    display: inline-block;
+  }
+  
+  .footer__top__social {
+    text-align: right;
+  }
+  .footer__top__social a {
+    display: inline-block;
+    font-size: 15px;
+    color: #ffffff;
+    height: 40px;
+    width: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    line-height: 44px;
+    text-align: center;
+    margin-right: 6px;
+  }
+  .footer__top__social a:last-child {
+    margin-right: 0;
+  }
+  
+  .footer__option {
+    padding-bottom: 35px;
+    padding-top: 75px;
+  }
+  
+  .footer__option__item {
+    margin-bottom: 35px;
+  }
+  
+  .footer__option__item h5 {
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 35px;
+  }
+  
+  .footer__option__item p {
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  
+  .footer__option__item .read__more {
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .footer__option__item .read__more span {
+    font-size: 16px;
+    color: #ffffff;
+    opacity: 0.5;
+    position: relative;
+    top: 4px;
+    margin-left: 5px;
+  }
+  
+  .footer__option__item ul li {
+    list-style: none;
+  }
+  
+  .footer__option__item ul li a {
+    color: #adadad;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 32px;
+  }
+  
+  .footer__option__item form {
+    position: relative;
+  }
+  
+  .footer__option__item form input {
+    height: 50px;
+    width: 100%;
+    padding-left: 20px;
+    border: 1px solid #544E5E;
+    background: transparent;
+    font-size: 16px;
+    color: #adadad;
+  }
+  .footer__option__item form input::-webkit-input-placeholder {
+    color: #adadad;
+  }
+  .footer__option__item form input::-moz-placeholder {
+    color: #adadad;
+  }
+  .footer__option__item form input:-ms-input-placeholder {
+    color: #adadad;
+  }
+  .footer__option__item form input::-ms-input-placeholder {
+    color: #adadad;
+  }
+  .footer__option__item form input::placeholder {
+    color: #adadad;
+  }
+  .footer__option__item form button {
+    font-size: 20px;
+    color: #ffffff;
+    border: none;
+    height: 50px;
+    width: 50px;
+    background: #00bfe7;
+    line-height: 50px;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .footer__copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 0;
+  }
+  
+  .footer__copyright__text {
+    margin-bottom: 0;
+    font-weight: 300;
+  }
+  .footer__copyright__text i {
+    color: #00bfe7;
+  }
+  .footer__copyright__text a {
+    color: #00bfe7;
+  }

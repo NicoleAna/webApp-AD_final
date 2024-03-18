@@ -5,20 +5,13 @@
 }
 
 .article-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 6rem;
-    margin: 2rem;
-}
-
-.article-grid1 {
-
-    gap: 2rem;
-    margin: 1rem;
     display: flex;
-  justify-content: center;
-  align-items: center;
+    gap: 1rem;
+    margin: 1rem 6rem;
+    flex-direction: row;
+    justify-content: center;
 }
+
 .article-card {
     background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
     color: #474747;
@@ -28,10 +21,18 @@
     overflow: hidden;
     -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
     filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
-    display: flex;
-    flex-direction: column;
+    flex: 1;
 }
 
+@media screen and (max-width: 768px) {
+    .article-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .article-card {
+        flex-basis: calc(50% - 0.5rem); 
+    }
+}
 
 .article-thumbnail-wrap {
     position: relative;
@@ -57,8 +58,6 @@ img.article-thumbnail {
     flex-direction: column;
 }
 
-
-
 .article-article p {
     color: #474747;
     font-size: 40px;
@@ -68,7 +67,9 @@ img.article-thumbnail {
 .card-content {
     color: #474747;
     text-align: justify;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .author-row {
