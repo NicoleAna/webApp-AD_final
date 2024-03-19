@@ -2,41 +2,114 @@
     font-size: 52px;
     font-weight: 600;
     text-align: center;
+    color: #fffffa;
 }
 
 .data-container {
-    margin: 2rem 12rem;
+    /* width: 100%; */
+    margin: 2rem 10rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.data-card {
-    background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
-    color: #474747;
-    border-radius: 8px;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
-    margin: 2rem 0;
-    padding: 2rem 6rem;
+.data-container .main-content {
+    color: #fffffa;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
+    line-height: normal;
+    text-align: justify;
+    padding: 10px;
+    /* border: 1px solid #ddd;
+    border-radius: 2px; */
+}
+
+.data-item {
+    /* border: 1px solid #fffffa; */
+    /* background-color: #36454f; */
+    color: #fffffa;
+    /* border-radius: 2px; */
+    margin-bottom: 10px;
+}
+
+.data-header {
+    padding: 10px;
+    cursor: pointer;
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: row;
+}
+
+.data-header img {
+    height: 32px;
+    width: 32px;
+    /* padding: 5px; */
+    margin: 5px;
+    align-self: center;
+}
+
+.data-header h3 {
+    font-size: 32px;
+    align-self: center;
+    vertical-align: middle;
+}
+
+.data-content {
+    display: none;
+    font-size: 20px;
+    font-weight: 500;
     line-height: normal;
     text-align: justify;
 }
 
-.data-card h3 {
+.data-item.active .data-content {
+    display: block;
+    margin: 1rem 3rem;
+}
+
+.divTable {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
     color: #000;
-    text-align: center;
-    font-size: 36px;
-    font-weight: 500;
+    font-size: 20px;
+}
+
+.col-header {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.row {
+    display: table-row;
+}
+
+.row > div:nth-child(1) {
+    width: 40%;
+}
+.row > div:nth-child(2) {
+    width: 15%;
+}
+.row > div:nth-child(3) {
+    width: 15%;
+}
+.row > div:nth-child(4) {
+    width: 15%;
+}
+.row > div:nth-child(5) {
+    width: 15%;
+}
+
+.cell {
+    padding: 5px 10px;
+    border: 1px solid #36454f;
+    text-align: left;
+    display: table-cell;
 }
 
 @media screen and (max-width: 768px) {
     .data-container {
         margin: auto;
-    }
-    .data-card {
-        padding: 1rem;
     }
 }

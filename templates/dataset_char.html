@@ -3,24 +3,830 @@
 {% block body %}
 <div class="data-container">
     <h1 class="model-title">Dataset Insight : Exploring Dataset Characteristics</h1>
-    <div class="data-card">
-        <p>Our anomaly detection benchmark study encompasses a wide-ranging compilation of datasets, thoughtfully curated from multiple sources, including the Very Large Databases (VLDB) repository, Yahoo Webscope S5, Machine Temperature Sensor datasets, AWS CloudWatch datasets, biological datasets, and datasets from the Singapore University of Technology and Design (SUTD). This expansive dataset collection establishes a solid foundation for a rigorous evaluation of anomaly detection methods across diverse domains, data types, and characteristics.</p>
-    </div>    
-    <div class="data-card">
-        <h3>Versatile VLDB Datasets</h3>
-        <p>The VLDB datasets encapsulate a broad spectrum of domains, each serving as a cornerstone for advancing research and development in their respective fields. These encompass healthcare (e.g., annthyroid, breastw, cardio), finance (fraud, campaign), network security (backdoor, smtp), image processing (celeba, optdigits, CIFAR10), natural language processing (Agnews, Imdb, Yelp), document analysis (PageBlocks, SpamBase, Stamps), linguistics (speech, vowels), astronomy (landsat, shuttle), biology (yeast, vertebral), physics (Waveform), chemistry (musk, wine), and more. By providing rich and diverse data sources, these datasets empower researchers, engineers, and practitioners to tackle complex challenges, drive innovation, and unlock new insights across a wide range of disciplines.</p>
+    <p class="main-content">Our anomaly detection benchmark study encompasses a wide-ranging compilation of datasets, thoughtfully curated from multiple sources, including the Very Large Databases (VLDB) repository, Yahoo Webscope S5, Machine Temperature Sensor datasets, AWS CloudWatch datasets, biological datasets, and datasets from the Singapore University of Technology and Design (SUTD). This expansive dataset collection establishes a solid foundation for a rigorous evaluation of anomaly detection methods across diverse domains, data types, and characteristics.</p>
+    <div class="data-item">
+        <div class="data-header">
+            <img src="/static/images/icons8-arrow-32.png" alt="expand-arrow">
+            <h3>Multivariate Dataset Characterization</h3>
+        </div>
+        <div class="data-content">
+            <div class="divTable">
+                <div class="row col-header">
+                    <div class="cell">Dataset Name</div>
+                    <div class="cell">Dataset Size</div>
+                    <div class="cell">Dimension</div>
+                    <div class="cell">Number of Anomalies</div>
+                    <div class="cell">Percentage of Anomalies</div>
+                    <div class="cell">Domain</div>
+                </div>
+                <div class="row">
+                    <div class="cell">ALOI</div>
+                    <div class="cell">49534</div>
+                    <div class="cell">27</div>
+                    <div class="cell">1508</div>
+                    <div class="cell">3.04</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">annthyroid</div>
+                    <div class="cell">7200</div>
+                    <div class="cell">6</div>
+                    <div class="cell">534</div>
+                    <div class="cell">7.42</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">backdoor</div>
+                    <div class="cell">95329</div>
+                    <div class="cell">196</div>
+                    <div class="cell">2329</div>
+                    <div class="cell">2.44</div>
+                    <div class="cell">Network</div>
+                </div>
+                <div class="row">
+                    <div class="cell">breastw</div>
+                    <div class="cell">683</div>
+                    <div class="cell">9</div>
+                    <div class="cell">239</div>
+                    <div class="cell">34.99</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">campaign</div>
+                    <div class="cell">41188</div>
+                    <div class="cell">62</div>
+                    <div class="cell">4640</div>
+                    <div class="cell">11.27</div>
+                    <div class="cell">Finance</div>
+                </div>
+                <div class="row">
+                    <div class="cell">cardio</div>
+                    <div class="cell">1831</div>
+                    <div class="cell">21</div>
+                    <div class="cell">176</div>
+                    <div class="cell">9.61</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Cardiotocography</div>
+                    <div class="cell">2114</div>
+                    <div class="cell">21</div>
+                    <div class="cell">466</div>
+                    <div class="cell">22.04</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">celeba</div>
+                    <div class="cell">202599</div>
+                    <div class="cell">39</div>
+                    <div class="cell">4547</div>
+                    <div class="cell">2.24</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">cover</div>
+                    <div class="cell">286048</div>
+                    <div class="cell">10</div>
+                    <div class="cell">2747</div>
+                    <div class="cell">0.96</div>
+                    <div class="cell">Botany</div>
+                </div>
+                <div class="row">
+                    <div class="cell">donors</div>
+                    <div class="cell">619326</div>
+                    <div class="cell">10</div>
+                    <div class="cell">36710</div>
+                    <div class="cell">5.93</div>
+                    <div class="cell">Sociology</div>
+                </div>
+                <div class="row">
+                    <div class="cell">fault</div>
+                    <div class="cell">1941</div>
+                    <div class="cell">27</div>
+                    <div class="cell">673</div>
+                    <div class="cell">34.67</div>
+                    <div class="cell">Physical</div>
+                </div>
+                <div class="row">
+                    <div class="cell">fraud</div>
+                    <div class="cell">284807</div>
+                    <div class="cell">29</div>
+                    <div class="cell">492</div>
+                    <div class="cell">0.17</div>
+                    <div class="cell">Finance</div>
+                </div>
+                <div class="row">
+                    <div class="cell">glass</div>
+                    <div class="cell">214</div>
+                    <div class="cell">7</div>
+                    <div class="cell">9</div>
+                    <div class="cell">4.21</div>
+                    <div class="cell">Forensic</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Hepatitis</div>
+                    <div class="cell">80</div>
+                    <div class="cell">19</div>
+                    <div class="cell">13</div>
+                    <div class="cell">16.25</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">http</div>
+                    <div class="cell">567498</div>
+                    <div class="cell">3</div>
+                    <div class="cell">2211</div>
+                    <div class="cell">0.39</div>
+                    <div class="cell">Web</div>
+                </div>
+                <div class="row">
+                    <div class="cell">InternetAds</div>
+                    <div class="cell">1966</div>
+                    <div class="cell">1555</div>
+                    <div class="cell">368</div>
+                    <div class="cell">18.72</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Ionosphere</div>
+                    <div class="cell">351</div>
+                    <div class="cell">33</div>
+                    <div class="cell">126</div>
+                    <div class="cell">35.9</div>
+                    <div class="cell">Mineralogy</div>
+                </div>
+                <div class="row">
+                    <div class="cell">landsat</div>
+                    <div class="cell">6435</div>
+                    <div class="cell">36</div>
+                    <div class="cell">1333</div>
+                    <div class="cell">20.71</div>
+                    <div class="cell">Astronautics</div>
+                </div>
+                <div class="row">
+                    <div class="cell">letter</div>
+                    <div class="cell">1600</div>
+                    <div class="cell">32</div>
+                    <div class="cell">100</div>
+                    <div class="cell">6.25</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Lymphography</div>
+                    <div class="cell">148</div>
+                    <div class="cell">18</div>
+                    <div class="cell">6</div>
+                    <div class="cell">4.05</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">magic.gamma</div>
+                    <div class="cell">19020</div>
+                    <div class="cell">6</div>
+                    <div class="cell">260</div>
+                    <div class="cell">1.37</div>
+                    <div class="cell">Physical</div>
+                </div>
+                <div class="row">
+                    <div class="cell">mammography</div>
+                    <div class="cell">11183</div>
+                    <div class="cell">6</div>
+                    <div class="cell">260</div>
+                    <div class="cell">2.32</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">mnist</div>
+                    <div class="cell">7603</div>
+                    <div class="cell">100</div>
+                    <div class="cell">700</div>
+                    <div class="cell">9.21</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">musk</div>
+                    <div class="cell">3062</div>
+                    <div class="cell">166</div>
+                    <div class="cell">97</div>
+                    <div class="cell">3.17</div>
+                    <div class="cell">Chemistry</div>
+                </div>
+                <div class="row">
+                    <div class="cell">optdigits</div>
+                    <div class="cell">5216</div>
+                    <div class="cell">64</div>
+                    <div class="cell">150</div>
+                    <div class="cell">2.88</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">PageBlocks</div>
+                    <div class="cell">5393</div>
+                    <div class="cell">10</div>
+                    <div class="cell">510</div>
+                    <div class="cell">9.46</div>
+                    <div class="cell">Document</div>
+                </div>
+                <div class="row">
+                    <div class="cell">pendigits</div>
+                    <div class="cell">6870</div>
+                    <div class="cell">16</div>
+                    <div class="cell">156</div>
+                    <div class="cell">2.27</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Pima</div>
+                    <div class="cell">768</div>
+                    <div class="cell">8</div>
+                    <div class="cell">268</div>
+                    <div class="cell">34.9</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">satellite</div>
+                    <div class="cell">6435</div>
+                    <div class="cell">36</div>
+                    <div class="cell">2036</div>
+                    <div class="cell">31.64</div>
+                    <div class="cell">Astronautics</div>
+                </div>
+                <div class="row">
+                    <div class="cell">satimage-2</div>
+                    <div class="cell">5803</div>
+                    <div class="cell">36</div>
+                    <div class="cell">71</div>
+                    <div class="cell">1.22</div>
+                    <div class="cell">Astronautics</div>
+                </div>
+                <div class="row">
+                    <div class="cell">shuttle</div>
+                    <div class="cell">49097</div>
+                    <div class="cell">9</div>
+                    <div class="cell">3511</div>
+                    <div class="cell">7.15</div>
+                    <div class="cell">Astronautics</div>
+                </div>
+                <div class="row">
+                    <div class="cell">skin</div>
+                    <div class="cell">245057</div>
+                    <div class="cell">3</div>
+                    <div class="cell">50859</div>
+                    <div class="cell">20.75</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">smtp</div>
+                    <div class="cell">95156</div>
+                    <div class="cell">3</div>
+                    <div class="cell">30</div>
+                    <div class="cell">0.03</div>
+                    <div class="cell">Web</div>
+                </div>
+                <div class="row">
+                    <div class="cell">SpamBase</div>
+                    <div class="cell">4207</div>
+                    <div class="cell">57</div>
+                    <div class="cell">1679</div>
+                    <div class="cell">39.91</div>
+                    <div class="cell">Document</div>
+                </div>
+                <div class="row">
+                    <div class="cell">speech</div>
+                    <div class="cell">3686</div>
+                    <div class="cell">400</div>
+                    <div class="cell">61</div>
+                    <div class="cell">1.65</div>
+                    <div class="cell">Linguistics</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Stamps</div>
+                    <div class="cell">340</div>
+                    <div class="cell">9</div>
+                    <div class="cell">31</div>
+                    <div class="cell">9.12</div>
+                    <div class="cell">Document</div>
+                </div>
+                <div class="row">
+                    <div class="cell">thyroid</div>
+                    <div class="cell">3772</div>
+                    <div class="cell">6</div>
+                    <div class="cell">93</div>
+                    <div class="cell">2.47</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">vertebral</div>
+                    <div class="cell">240</div>
+                    <div class="cell">6</div>
+                    <div class="cell">30</div>
+                    <div class="cell">12.5</div>
+                    <div class="cell">Biology</div>
+                </div>
+                <div class="row">
+                    <div class="cell">vowels</div>
+                    <div class="cell">1456</div>
+                    <div class="cell">12</div>
+                    <div class="cell">50</div>
+                    <div class="cell">3.43</div>
+                    <div class="cell">Linguistics</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Waveform</div>
+                    <div class="cell">3443</div>
+                    <div class="cell">21</div>
+                    <div class="cell">100</div>
+                    <div class="cell">2.9</div>
+                    <div class="cell">Physics</div>
+                </div>
+                <div class="row">
+                    <div class="cell">WBC</div>
+                    <div class="cell">223</div>
+                    <div class="cell">9</div>
+                    <div class="cell">10</div>
+                    <div class="cell">4.48</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">WDBC</div>
+                    <div class="cell">367</div>
+                    <div class="cell">30</div>
+                    <div class="cell">10</div>
+                    <div class="cell">2.72</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Wilt</div>
+                    <div class="cell">4819</div>
+                    <div class="cell">5</div>
+                    <div class="cell">257</div>
+                    <div class="cell">5.33</div>
+                    <div class="cell">Botany</div>
+                </div>
+                <div class="row">
+                    <div class="cell">wine</div>
+                    <div class="cell">129</div>
+                    <div class="cell">13</div>
+                    <div class="cell">10</div>
+                    <div class="cell">7.75</div>
+                    <div class="cell">Chemistry</div>
+                </div>
+                <div class="row">
+                    <div class="cell">WPBC</div>
+                    <div class="cell">198</div>
+                    <div class="cell">33</div>
+                    <div class="cell">47</div>
+                    <div class="cell">23.74</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yeast</div>
+                    <div class="cell">1484</div>
+                    <div class="cell">8</div>
+                    <div class="cell">507</div>
+                    <div class="cell">34.16</div>
+                    <div class="cell">Biology</div>
+                </div>
+                <div class="row">
+                    <div class="cell">CIFAR10</div>
+                    <div class="cell">5263</div>
+                    <div class="cell">512</div>
+                    <div class="cell">263</div>
+                    <div class="cell">5</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">FashionMNIST</div>
+                    <div class="cell">6315</div>
+                    <div class="cell">512</div>
+                    <div class="cell">315</div>
+                    <div class="cell">5</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">MNIST-C</div>
+                    <div class="cell">10000</div>
+                    <div class="cell">512</div>
+                    <div class="cell">500</div>
+                    <div class="cell">5</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">MVTec-AD</div>
+                    <div class="cell">292</div>
+                    <div class="cell">512</div>
+                    <div class="cell">63</div>
+                    <div class="cell">21.5</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">SVHN</div>
+                    <div class="cell">5208</div>
+                    <div class="cell">512</div>
+                    <div class="cell">260</div>
+                    <div class="cell">5</div>
+                    <div class="cell">Image</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Agnews</div>
+                    <div class="cell">10000</div>
+                    <div class="cell">768</div>
+                    <div class="cell">500</div>
+                    <div class="cell">5</div>
+                    <div class="cell">NLP</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Amazon</div>
+                    <div class="cell">10000</div>
+                    <div class="cell">768</div>
+                    <div class="cell">500</div>
+                    <div class="cell">5</div>
+                    <div class="cell">NLP</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Imdb</div>
+                    <div class="cell">10000</div>
+                    <div class="cell">768</div>
+                    <div class="cell">500</div>
+                    <div class="cell">5</div>
+                    <div class="cell">NLP</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Yelp</div>
+                    <div class="cell">10000</div>
+                    <div class="cell">768</div>
+                    <div class="cell">500</div>
+                    <div class="cell">5</div>
+                    <div class="cell">NLP</div>
+                </div>
+                <div class="row">
+                    <div class="cell">20newsgroups</div>
+                    <div class="cell">3090</div>
+                    <div class="cell">768</div>
+                    <div class="cell">155</div>
+                    <div class="cell">5</div>
+                    <div class="cell">NLP</div>
+                </div>
+                <div class="row">
+                    <div class="cell">BATADAL  04</div>
+                    <div class="cell">4177</div>
+                    <div class="cell">43</div>
+                    <div class="cell">219</div>
+                    <div class="cell">5.24</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">SWaT  1</div>
+                    <div class="cell">50400</div>
+                    <div class="cell">51</div>
+                    <div class="cell">4466</div>
+                    <div class="cell">8.86</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">SWaT  2</div>
+                    <div class="cell">86400</div>
+                    <div class="cell">51</div>
+                    <div class="cell">4216</div>
+                    <div class="cell">4.88</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">SWaT  3</div>
+                    <div class="cell">86400</div>
+                    <div class="cell">51</div>
+                    <div class="cell">3075</div>
+                    <div class="cell">3.56</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">SWaT  4</div>
+                    <div class="cell">86319</div>
+                    <div class="cell">51</div>
+                    <div class="cell">37559</div>
+                    <div class="cell">43.51</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">SWaT  5</div>
+                    <div class="cell">86400</div>
+                    <div class="cell">51</div>
+                    <div class="cell">2167</div>
+                    <div class="cell">2.51</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">SWaT  6</div>
+                    <div class="cell">54000</div>
+                    <div class="cell">51</div>
+                    <div class="cell">3138</div>
+                    <div class="cell">5.81</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">ecoli</div>
+                    <div class="cell">336</div>
+                    <div class="cell">7</div>
+                    <div class="cell">9</div>
+                    <div class="cell">2.68</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">cmc</div>
+                    <div class="cell">1473</div>
+                    <div class="cell">9</div>
+                    <div class="cell">17</div>
+                    <div class="cell">1.15</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">lympho  h</div>
+                    <div class="cell">148</div>
+                    <div class="cell">18</div>
+                    <div class="cell">6</div>
+                    <div class="cell">4.05</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+                <div class="row">
+                    <div class="cell">wbc  h</div>
+                    <div class="cell">378</div>
+                    <div class="cell">30</div>
+                    <div class="cell">21</div>
+                    <div class="cell">5.56</div>
+                    <div class="cell">Healthcare</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="data-card">
-        <h3>Key Time-Series and Sensor Datasets for Algorithmic Anomaly Detection</h3>
-        <p>The AWS CloudWatch dataset, derived from the Numenta Anomaly Benchmark (NAB), offers time-series data on AWS server metrics like CPU utilization and disk write bytes. With 17 CSV files and anomalies injected synthetically, it's vital for evaluating anomaly detection algorithms. Sensor datasets (Sensor1, Sensor2) provide machine sensor data, with anomalies including planned shutdowns and catastrophic failures, contributing to algorithm efficacy testing amidst diverse real-world scenarios.</p>
+    <div class="data-item">
+        <div class="data-header">
+            <img src="/static/images/icons8-arrow-32.png" alt="expand-arrow">
+            <h3>Univariate Dataset Characterization</h3>
+        </div>
+        <div class="data-content">
+            <div class="divTable">
+                <div class="row col-header">
+                    <div class="cell">Dataset Name</div>
+                    <div class="cell">Dataset Size</div>
+                    <div class="cell">Number of Anomalies</div>
+                    <div class="cell">Percentage of Anomalies</div>
+                    <div class="cell">Domain</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo1</div>
+                    <div class="cell">1420</div>
+                    <div class="cell">2</div>
+                    <div class="cell">0.14</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo2</div>
+                    <div class="cell">1461</div>
+                    <div class="cell">8</div>
+                    <div class="cell">0.55</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo3</div>
+                    <div class="cell">1439</div>
+                    <div class="cell">8</div>
+                    <div class="cell">0.56</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo5</div>
+                    <div class="cell">1421</div>
+                    <div class="cell">9</div>
+                    <div class="cell">0.63</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo6</div>
+                    <div class="cell">1421</div>
+                    <div class="cell">4</div>
+                    <div class="cell">0.28</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo7</div>
+                    <div class="cell">1680</div>
+                    <div class="cell">11</div>
+                    <div class="cell">0.65</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo8</div>
+                    <div class="cell">1680</div>
+                    <div class="cell">10</div>
+                    <div class="cell">0.60</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo9</div>
+                    <div class="cell">1680</div>
+                    <div class="cell">8</div>
+                    <div class="cell">0.48</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Speed  6005</div>
+                    <div class="cell">2500</div>
+                    <div class="cell">1</div>
+                    <div class="cell">0.04</div>
+                    <div class="cell">Non-Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Speed  7578</div>
+                    <div class="cell">1127</div>
+                    <div class="cell">4</div>
+                    <div class="cell">0.35</div>
+                    <div class="cell">Non-Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Speed  t4013</div>
+                    <div class="cell">2495</div>
+                    <div class="cell">2</div>
+                    <div class="cell">0.08</div>
+                    <div class="cell">Non-Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">TravelTime  387</div>
+                    <div class="cell">2500</div>
+                    <div class="cell">3</div>
+                    <div class="cell">0.12</div>
+                    <div class="cell">Non-Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">TravelTime  451</div>
+                    <div class="cell">2162</div>
+                    <div class="cell">1</div>
+                    <div class="cell">0.05</div>
+                    <div class="cell">Non-Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Occupancy  6005</div>
+                    <div class="cell">2380</div>
+                    <div class="cell">1</div>
+                    <div class="cell">0.04</div>
+                    <div class="cell">Non-Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Occupancy  t4013</div>
+                    <div class="cell">2500</div>
+                    <div class="cell">2</div>
+                    <div class="cell">0.08</div>
+                    <div class="cell">Non-Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo  syn1</div>
+                    <div class="cell">1420</div>
+                    <div class="cell">12</div>
+                    <div class="cell">0.85</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo  syn2</div>
+                    <div class="cell">1461</div>
+                    <div class="cell">18</div>
+                    <div class="cell">1.23</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo  syn3</div>
+                    <div class="cell">1449</div>
+                    <div class="cell">18</div>
+                    <div class="cell">1.24</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo  syn5</div>
+                    <div class="cell">1431</div>
+                    <div class="cell">19</div>
+                    <div class="cell">1.33</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo  syn6</div>
+                    <div class="cell">1431</div>
+                    <div class="cell">14</div>
+                    <div class="cell">0.98</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo  syn7</div>
+                    <div class="cell">1690</div>
+                    <div class="cell">21</div>
+                    <div class="cell">1.24</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo  syn8</div>
+                    <div class="cell">1690</div>
+                    <div class="cell">20</div>
+                    <div class="cell">1.18</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">yahoo  syn9</div>
+                    <div class="cell">1690</div>
+                    <div class="cell">18</div>
+                    <div class="cell">1.07</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">aws1</div>
+                    <div class="cell">1049</div>
+                    <div class="cell">1</div>
+                    <div class="cell">0.10</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">aws2</div>
+                    <div class="cell">2486</div>
+                    <div class="cell">2</div>
+                    <div class="cell">0.08</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">aws3</div>
+                    <div class="cell">1499</div>
+                    <div class="cell">1</div>
+                    <div class="cell">0.07</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">aws  syn1</div>
+                    <div class="cell">1049</div>
+                    <div class="cell">10</div>
+                    <div class="cell">1.05</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">aws  syn2</div>
+                    <div class="cell">2486</div>
+                    <div class="cell">20</div>
+                    <div class="cell">0.88</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">aws  syn3</div>
+                    <div class="cell">1499</div>
+                    <div class="cell">10</div>
+                    <div class="cell">0.73</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Industrial  1</div>
+                    <div class="cell">544</div>
+                    <div class="cell">8</div>
+                    <div class="cell">1.47</div>
+                    <div class="cell">Industrial</div>
+                </div>
+                <div class="row">
+                    <div class="cell">Industrial  2</div>
+                    <div class="cell">1609</div>
+                    <div class="cell">3</div>
+                    <div class="cell">0.19</div>
+                    <div class="cell">Industrial</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="data-card">
-        <h3>Outlier Labeling Strategies in Biological Datasets for Classification</h3>
-        <p>The biological datasets provided are multiclass classification datasets where classes with limited instances are categorized as outliers. In the Lympho dataset, small classes are merged and considered outliers, while in the WBC dataset, the malignant class is downsampled for outlier designation. Similarly, in the Wine dataset, one class is downsized to outliers, and in the Ecoli dataset, minority classes are labeled as outliers. The CMC dataset, derived from a survey,with certain categories designated as outliers based on demographic and socio-economic characteristics.</p>
+    <div class="data-item">
+        <div class="data-header">
+            <img src="/static/images/icons8-arrow-32.png" alt="expand-arrow">
+            <h3>Versatile VLDB Datasets</h3>
+        </div>
+        <div class="data-content">
+            <p>The VLDB datasets encapsulate a broad spectrum of domains, each serving as a cornerstone for advancing research and development in their respective fields. These encompass healthcare (e.g., annthyroid, breastw, cardio), finance (fraud, campaign), network security (backdoor, smtp), image processing (celeba, optdigits, CIFAR10), natural language processing (Agnews, Imdb, Yelp), document analysis (PageBlocks, SpamBase, Stamps), linguistics (speech, vowels), astronomy (landsat, shuttle), biology (yeast, vertebral), physics (Waveform), chemistry (musk, wine), and more. By providing rich and diverse data sources, these datasets empower researchers, engineers, and practitioners to tackle complex challenges, drive innovation, and unlock new insights across a wide range of disciplines.</p>
+        </div>
     </div>
-    <div class="data-card">
-        <h3>Yahoo Webscope: Anomaly Identification Catalyst</h3>
-        <p>The dataset provided by Yahoo through the Webscope program serves as a catalyst for advancing anomaly identification research. It comprises a blend of real-time and synthetic time-series data collected from Yahoo server web traffic. With four benchmark categories (A1 to A4), where A1 contains actual production traffic data and A2-A4 are synthetic datasets, anomalies in the A1 category are manually labeled. These datasets feature three fields: timestamps, values, and an indicator for anomalies (is_anomaly), marked with either 0 or 1. Our experimentation includes several datasets from the A1 benchmark (Yahoo Dataset1 to Yahoo Dataset3) and A2 benchmarks (Yahoo Dataset4 to Yahoo Dataset6), showcasing diverse distributions such as Weibull, Log-normal, and Gamma.</p>
+    <div class="data-item">
+        <div class="data-header">
+            <img src="/static/images/icons8-arrow-32.png" alt="expand-arrow">
+            <h3>Key Time-Series and Sensor Datasets for Algorithmic Anomaly Detection</h3>
+        </div>
+        <div class="data-content">
+            <p>The AWS CloudWatch dataset, derived from the Numenta Anomaly Benchmark (NAB), offers time-series data on AWS server metrics like CPU utilization and disk write bytes. With 17 CSV files and anomalies injected synthetically, it's vital for evaluating anomaly detection algorithms. Sensor datasets (Sensor1, Sensor2) provide machine sensor data, with anomalies including planned shutdowns and catastrophic failures, contributing to algorithm efficacy testing amidst diverse real-world scenarios.</p>
+        </div>
+    </div>
+    <div class="data-item">
+        <div class="data-header">
+            <img src="/static/images/icons8-arrow-32.png" alt="expand-arrow">
+            <h3>Outlier Labeling Strategies in Biological Datasets for Classification</h3>
+        </div>
+        <div class="data-content">
+            <p>The biological datasets provided are multiclass classification datasets where classes with limited instances are categorized as outliers. In the Lympho dataset, small classes are merged and considered outliers, while in the WBC dataset, the malignant class is downsampled for outlier designation. Similarly, in the Wine dataset, one class is downsized to outliers, and in the Ecoli dataset, minority classes are labeled as outliers. The CMC dataset, derived from a survey,with certain categories designated as outliers based on demographic and socio-economic characteristics.</p>
+        </div>
+    </div>
+    <div class="data-item">
+        <div class="data-header">
+            <img src="/static/images/icons8-arrow-32.png" alt="expand-arrow">
+            <h3>Yahoo Webscope: Anomaly Identification Catalyst</h3>
+        </div>
+        <div class="data-content">
+            <p>The dataset provided by Yahoo through the Webscope program serves as a catalyst for advancing anomaly identification research. It comprises a blend of real-time and synthetic time-series data collected from Yahoo server web traffic. With four benchmark categories (A1 to A4), where A1 contains actual production traffic data and A2-A4 are synthetic datasets, anomalies in the A1 category are manually labeled. These datasets feature three fields: timestamps, values, and an indicator for anomalies (is_anomaly), marked with either 0 or 1. Our experimentation includes several datasets from the A1 benchmark (Yahoo Dataset1 to Yahoo Dataset3) and A2 benchmarks (Yahoo Dataset4 to Yahoo Dataset6), showcasing diverse distributions such as Weibull, Log-normal, and Gamma.</p>
+        </div>
     </div>
 </div>
 {% endblock %}

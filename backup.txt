@@ -1066,3 +1066,95 @@ function showForm(option) {
       </p>
     </div>
   </div>
+
+  <div class="data-container">
+    <h1 class="model-title">Dataset Insight : Exploring Dataset Characteristics</h1>
+    <div class="data-card-cont">
+        <div class="data-card">
+            <p>Our anomaly detection benchmark study encompasses a wide-ranging compilation of datasets, thoughtfully curated from multiple sources, including the Very Large Databases (VLDB) repository, Yahoo Webscope S5, Machine Temperature Sensor datasets, AWS CloudWatch datasets, biological datasets, and datasets from the Singapore University of Technology and Design (SUTD). This expansive dataset collection establishes a solid foundation for a rigorous evaluation of anomaly detection methods across diverse domains, data types, and characteristics.</p>
+        </div>
+    </div>
+    <div class="data-card-cont">
+        <!-- <div class="data-img">
+            <img src="/static/images/vldb.png" alt="vldb">
+        </div> -->
+        <div class="data-card">
+            <h3>Versatile VLDB Datasets</h3>
+            <p>The VLDB datasets encapsulate a broad spectrum of domains, each serving as a cornerstone for advancing research and development in their respective fields. These encompass healthcare (e.g., annthyroid, breastw, cardio), finance (fraud, campaign), network security (backdoor, smtp), image processing (celeba, optdigits, CIFAR10), natural language processing (Agnews, Imdb, Yelp), document analysis (PageBlocks, SpamBase, Stamps), linguistics (speech, vowels), astronomy (landsat, shuttle), biology (yeast, vertebral), physics (Waveform), chemistry (musk, wine), and more. By providing rich and diverse data sources, these datasets empower researchers, engineers, and practitioners to tackle complex challenges, drive innovation, and unlock new insights across a wide range of disciplines.</p>
+        </div>
+    </div>
+        
+    <div class="data-card-cont">
+        <div class="data-card">
+            <h3>Key Time-Series and Sensor Datasets for Algorithmic Anomaly Detection</h3>
+            <p>The AWS CloudWatch dataset, derived from the Numenta Anomaly Benchmark (NAB), offers time-series data on AWS server metrics like CPU utilization and disk write bytes. With 17 CSV files and anomalies injected synthetically, it's vital for evaluating anomaly detection algorithms. Sensor datasets (Sensor1, Sensor2) provide machine sensor data, with anomalies including planned shutdowns and catastrophic failures, contributing to algorithm efficacy testing amidst diverse real-world scenarios.</p>
+        </div>
+    </div>
+    
+    <div class="data-card-cont">
+        <div class="data-card">
+            <h3>Outlier Labeling Strategies in Biological Datasets for Classification</h3>
+            <p>The biological datasets provided are multiclass classification datasets where classes with limited instances are categorized as outliers. In the Lympho dataset, small classes are merged and considered outliers, while in the WBC dataset, the malignant class is downsampled for outlier designation. Similarly, in the Wine dataset, one class is downsized to outliers, and in the Ecoli dataset, minority classes are labeled as outliers. The CMC dataset, derived from a survey,with certain categories designated as outliers based on demographic and socio-economic characteristics.</p>
+        </div>
+    </div>
+
+    <div class="data-card-cont">
+        <div class="data-card">
+            <h3>Yahoo Webscope: Anomaly Identification Catalyst</h3>
+            <p>The dataset provided by Yahoo through the Webscope program serves as a catalyst for advancing anomaly identification research. It comprises a blend of real-time and synthetic time-series data collected from Yahoo server web traffic. With four benchmark categories (A1 to A4), where A1 contains actual production traffic data and A2-A4 are synthetic datasets, anomalies in the A1 category are manually labeled. These datasets feature three fields: timestamps, values, and an indicator for anomalies (is_anomaly), marked with either 0 or 1. Our experimentation includes several datasets from the A1 benchmark (Yahoo Dataset1 to Yahoo Dataset3) and A2 benchmarks (Yahoo Dataset4 to Yahoo Dataset6), showcasing diverse distributions such as Weibull, Log-normal, and Gamma.</p>
+        </div>
+    </div>
+</div>
+
+.data-card-cont
+{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin: 2rem 0;
+    padding: 2rem 6rem;
+    gap: 10px;
+}
+
+.data-card-cont img
+{
+    height: 200px;
+    width: auto;
+}
+
+.data-img {
+    flex: 1;
+    align-self: center;
+}
+
+.data-card {
+    /* background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+    color: #474747; */
+    background-color: #000;
+    color: white;
+    width: 60%;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: justify;
+    flex: 1;
+    flex-grow: 2;
+    padding: 0 6rem;
+}
+
+.data-card h3 {
+    color: #f6f6f6;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+
+

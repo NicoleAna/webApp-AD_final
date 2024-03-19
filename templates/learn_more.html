@@ -13,18 +13,12 @@
         </div>  
     </article>
     <article class="article-card article" id="m3">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="/static/iforest.png" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://ieeexplore.ieee.org/abstract/document/4781136" target="_blank"><p>Isolation Forest</p></a>
             <div class="card-content">Isolation Forest is an ensemble-based unsupervised algorithm for anomaly detection. It isolates anomalies by constructing decision trees and averaging their predictions, without requiring a predefined notion of 'normal' data. This approach offers a robust and efficient method for identifying outliers in datasets.</div>
         </div>
     </article>
     <article class="article-card article" id="m4">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="/static/elliptic.png" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://aiblog.co.za/technology/elliptic-envelope-anomaly-detection" target="_blank"><p>Elliptic Envelope</p></a>
             <div class="card-content">Elliptic Envelope is a statistical anomaly detection method designed for multivariate data presumed to follow a normal distribution. By fitting an ellipse to central data points, outliers outside this boundary are flagged as potential anomalies, making it robust for applications like fraud or network intrusion detection, especially when data adheres to Gaussian assumptions.</div>
@@ -34,28 +28,18 @@
 <h1 class="model-title">Deep Learning Models</h1>
 <div class="article-grid">
     <article class="article-card article" id="m1">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="/static/gan.jpeg" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://dl.acm.org/doi/abs/10.1145/3422622" target="_blank"><p>GAN</p></a>
             <div class="card-content">Generative Adversarial Networks (GANs) employ two models, a generator (G) and a discriminator (D), in a minimax game to capture and distinguish data distribution respectively. G is trained to maximize D's error, resulting in G recovering the training data distribution while D approaches 1/2 accuracy. With multilayer perceptrons defining G and D, the system is trainable via backpropagation.</div>
-            <!-- <div class="author-row">Ian J. Goodfellow</div> -->
         </div>
     </article>
     <article class="article-card article" id="m6">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="/static/autoencoders.png" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://dl.acm.org/doi/abs/10.1145/3097983.3098052" target="_blank"><p>AutoEncoders</p></a>
             <div class="card-content">Autoencoders is a neural network variant which excel in unsupervised tasks like anomaly detection. By compressing and reconstructing data, they learn normal patterns through minimizing reconstruction errors. Adaptable to diverse anomaly severities, enhancements like convolutional layers bolster their proficiency in capturing and identifying deviations, rendering autoencoders a potent tool for anomaly detection in unlabeled datasets.</div>
         </div>
     </article>
     <article class="article-card article" id="m5">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="/static/dagmm.png" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://openreview.net/forum?id=BJJLHbb0-" target="_blank"><p>DAGMM</p></a>
             <div class="card-content">Deep Autoencoding Gaussian Mixture Model (DAGMM) integrates deep autoencoder design with Gaussian mixture modeling for anomaly detection. By concurrently reconstructing data and estimating latent space density, DAGMM identifies anomalies as points with low probability, enabling unsupervised detection across domains. DAGMM's ability to detect anomalies without labeled data renders it valuable for diverse unsupervised anomaly detection tasks.</div>
@@ -64,18 +48,12 @@
 </div>
 <div class="article-grid">
     <article class="article-card article" id="m7">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="/static/lstm.png" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://ieeexplore.ieee.org/abstract/document/8836638" target="_blank"><p>LSTM</p></a>
             <div class="card-content">Long Short-Term Memory (LSTM) networks is a form of recurrent neural network, specialize in capturing temporal dependencies, ideal for time-series anomaly detection. By training on normal sequences and detecting significant deviations from predicted values, LSTMs excel in recognizing anomalies. Widely applicable in finance, cybersecurity, and industrial monitoring, LSTMs are valued for their capacity to discern complex patterns in sequential data.</div>
         </div>
     </article>
     <article class="article-card article" id="m8">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="/static/qreg.png" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://link.springer.com/article/10.1007/s42979-021-00866-4" target="_blank"><p>Quantile Regression</p></a>
             <div class="card-content">Quantile regression for anomaly detection models conditional quantiles, enabling outlier detection. By comparing predicted quantiles with actual observations, it captures anomalies often missed by mean-based methods. This versatile approach offers flexibility across domains by focusing on specific quantiles relevant to the application.</div>
@@ -85,18 +63,12 @@
 <h1 class="model-title">Tree Based Models</h1>
 <div class="article-grid">
     <article class="article-card article" id="m9">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://link.springer.com/article/10.1007/s10489-022-03940-3" target="_blank"><p>MG Tree</p></a>
             <div class="card-content">MGTree, a multi-generations binary tree approach, tackles false alarms in industrial anomaly detection. Effective on large and small datasets, it outperforms iForest, OCSVM, and Elliptic Envelope in correctly identifying anomalies. Applied across various industrial datasets like Yahoo, AWS, and machine sensors, MGTree proves its efficacy in empirical evaluations.</div>
         </div>
     </article>
     <article class="article-card article1" id="m10">
-        <!-- <div class="articel-thumbnail-wrap">
-            <img src="" alt="some-image">
-        </div> -->
         <div class="article-article">
             <a href="https://link.springer.com/chapter/10.1007/978-3-030-79463-7_44" target="_blank"><p>D-BTAI</p></a>
             <div class="card-content">The D-BTAI algorithm combines Binary Anomaly Trees (BAT) and ECBLOF for industrial anomaly detection. It constructs a tree from input data clusters, identifying anomalies at leaf nodes meeting specific conditions. Anomalies are determined by normalized ECBLOF scores, with selection based on both clustering and score deviation.

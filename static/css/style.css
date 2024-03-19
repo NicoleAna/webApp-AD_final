@@ -4,6 +4,13 @@ body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
   padding: 0;
+  background-color: black;
+}
+
+main
+{
+  position: relative;
+  margin-bottom: 20rem;
 }
 
 h1, h2 {
@@ -48,8 +55,8 @@ a:active, a:focus {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  font-size: larger;
-  font-weight: 400;
+  font-size: 24px;
+  font-weight: 500;
   background: rgba(0, 0, 0, 0.8);
   background-image: paint(fleck);
   border-bottom: 0.5px solid #676767
@@ -159,10 +166,10 @@ a:active, a:focus {
   position: fixed; /* Fixed positioning so it covers the entire window */
   top: 0;
   left: 0;
+  object-fit: cover;
   min-width: 100%; /* Minimum width to cover the entire viewport */
   min-height: 100%; /* Minimum height to cover the entire viewport */
-  width: auto; /* Allow the width to adjust proportionally */
-  height: auto; /* Allow the height to adjust proportionally */
+  height: 100vh; /* Allow the height to adjust proportionally */
   z-index: -1; /* Set a lower z-index to keep it behind other content */
 }
 
