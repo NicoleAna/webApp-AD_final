@@ -51,15 +51,15 @@ a:active, a:focus {
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  font-size: 24px;
-  font-weight: 500;
-  background: rgba(0, 0, 0, 0.8);
-  background-image: paint(fleck);
-  border-bottom: 0.5px solid #676767
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: 24px;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.8);
+    background-image: paint(fleck);
+    border-bottom: 0.5px solid #808080;
 }
 
 .navbar li {
@@ -67,10 +67,6 @@ a:active, a:focus {
   margin-right: 1rem;
   text-decoration: none;
   list-style-type: none;
-}
-
-.dropdown-menu li {
-  color: black;
 }
 
 .left, .right {
@@ -277,7 +273,7 @@ button {
   justify-content: space-around;
   align-items: stretch;
   gap: 20px;
-  border-top: 0.5px solid #676767;
+  border-top: 0.5px solid #808080;
 }
 
 .footer-card {
@@ -291,7 +287,7 @@ button {
 
 .footer-card p {
   text-align: justify;
-  color: #adadad;
+  color: #ccc;
 }
 
 .footer-card li {
@@ -299,5 +295,5 @@ button {
   list-style-type: none;
   text-align: left;
   align-items: left;
-  color: #adadad;
+  color: #ccc;
 }

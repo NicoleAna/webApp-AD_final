@@ -10,20 +10,31 @@ function toggleCheckboxes() {
 const dataItems = document.querySelectorAll('.data-item');
 
 dataItems.forEach(item => {
-    // item.addEventListener('click', () => {
-    //     const isItemOpen = item.classList.contains('active');
+    item.addEventListener('click', () => {
+        const isItemOpen = item.classList.contains('active');
+        dataItems.forEach(item => item.classList.remove('active'));
+        if(!isItemOpen) {
+            item.classList.toggle('active');
+        }
+    });
+
+    // item.addEventListener('mouseover', () => {
     //     dataItems.forEach(item => item.classList.remove('active'));
-    //     if(!isItemOpen) {
-    //         item.classList.toggle('active');
-    //     }
+    //     item.classList.add('active');
     // });
 
-    item.addEventListener('mouseover', () => {
-        dataItems.forEach(item => item.classList.remove('active'));
-        item.classList.add('active');
-    });
+    // item.addEventListener('mouseleave', () => {
+    //     item.classList.remove('active');
+    // });
+});
 
-    item.addEventListener('mouseleave', () => {
-        item.classList.remove('active');
-    });
+const modelCards = document.querySelectorAll('.model-card');
+
+modelCards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.classList.add('flip');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.classList.remove('flip');
+  });
 });

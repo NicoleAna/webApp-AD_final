@@ -1,297 +1,3 @@
-const form = document.getElementsByClassName("my-form");
-const loader = document.getElementById('loader');
-const socket = new WebSocket('ws://localhost:5000/long-process');
-
-document.getElementById('myForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-    loader.style.display = 'block'; 
-    socket.send(JSON.stringify({ status: 'form_submitted' }));            
-    this.submit();
-});
-
-socket.onopen = function(event) {
-    loader.style.display = 'block';
-};
-
-socket.onmessage = function(event) {
-const data = JSON.parse(event.data);
-console.log('Received message:', data);
-
-if (data.status === 'complete') {
-    loader.style.display = 'none';
-}
-};
-
-socket.onerror = function(error) {
-console.error('WebSocket error:', error);
-};
-
-@sockets.route('/long-process')
-def long_process(ws):
-    for i in range(1, 11):
-        time.sleep(1)
-        ws.send(json.dumps({'status': 'progress', 'message': f'Processing step {i}/10...'}))
-    ws.send(json.dumps({'status': 'complete', 'message': 'Processing complete.'}))
-
-
-server = pywsgi.WSGIServer(('localhost', 5000), app, handler_class=WebSocketHandler)
-print("Server running at http://localhost:5000")
-server.serve_forever()
-
-
-#loader {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-}
-
-
-
-
-for model in algo:
-        if model == "Generative Adversarial Networks(GAN)":
-            subplot = list()
-            gan_model = GAN(dataset)
-            gan_model.train(epochs=50, batch_size=32)
-            gan_res = gan_model.test()
-            selected_algo[model] = gan_res
-            subplot.append(plot_model.gen_auc_plot(gan_res))
-            subplot.append(plot_model.gen_confusion_matrix(gan_res))
-            plots[model] = subplot
-        
-        elif model == "Local Outlier Factor(LOF)":
-            subplot = list()
-            lof_model = Lof(dataset)
-            lof_res = lof_model.train_test()
-            selected_algo[model] = lof_res
-            subplot.append(plot_model.gen_auc_plot(lof_res))
-            subplot.append(plot_model.gen_confusion_matrix(lof_res))
-            plots[model] = subplot
-
-        elif model == "Isolation Forest(IForest)":
-            subplot = list()
-            iforest_model = iForest(dataset)
-            iforest_res = iforest_model.train_test()
-            selected_algo[model] = iforest_res
-            subplot.append(plot_model.gen_auc_plot(iforest_res))
-            subplot.append(plot_model.gen_confusion_matrix(iforest_res))
-            plots[model] = subplot
-
-        elif model == "AutoEncoders":
-            subplot = list()
-            auto_model = AutoEncoder(dataset)
-            auto_model.build_model()
-            auto_res = auto_model.train_test(epochs=50, batch_size=64)
-            selected_algo[model] = auto_res
-            subplot.append(plot_model.gen_auc_plot(auto_res))
-            subplot.append(plot_model.gen_confusion_matrix(auto_res))
-            plots[model] = subplot
-
-        elif model == "DevNet":
-            subplot = list()
-            devnet_model = Devnet(dataset)
-            devnet_res = devnet_model.train_test(epochs=10)
-            selected_algo[model] = devnet_res
-            subplot.append(plot_model.gen_auc_plot(devnet_res))
-            subplot.append(plot_model.gen_confusion_matrix(devnet_res))
-            plots[model] = subplot
-
-        elif model == "Elliptic Envelope":
-            subplot = list()
-            env_model = ellipticEnvelope(dataset)
-            env_res = env_model.train_test()
-            selected_algo[model] = env_res
-            subplot.append(plot_model.gen_auc_plot(env_res))
-            subplot.append(plot_model.gen_confusion_matrix(env_res))
-            plots[model] = subplot
-
-        elif model == "DAGMM":
-            subplot = list()
-            dagmm_model = Dagmm1(dataset)
-            dagmm_res = dagmm_model.train_test()
-            selected_algo[model] = dagmm_res
-            subplot.append(plot_model.gen_auc_plot(dagmm_res))
-            subplot.append(plot_model.gen_confusion_matrix(dagmm_res))
-            plots[model] = subplot
-
-        elif model == "Quantile Regression":
-            subplot = list()
-            qreg_model = QReg(dataset)
-            qreg_model.build_model()
-            qreg_res = qreg_model.train_test()
-            selected_algo[model] = qreg_res
-            subplot.append(plot_model.gen_auc_plot(qreg_res))
-            subplot.append(plot_model.gen_confusion_matrix(qreg_res))
-            plots[model] = subplot
-
-        elif model == "Long Short Term Memory(LSTM)":
-            subplot = list()
-            lstm_model = Lstm(dataset)
-            lstm_model.build_model()
-            lstm_res = lstm_model.train_test(epochs=50, batch_size=64)
-            selected_algo[model] = lstm_res
-            subplot.append(plot_model.gen_auc_plot(lstm_res))
-            subplot.append(plot_model.gen_confusion_matrix(lstm_res))
-            plots[model] = subplot
-
-        elif model == "MGBTAI":
-            subplot = list()
-            mgbtai_model = MGBTAI(dataset)
-            mgbtai_model.train()
-            mgbtai_res = mgbtai_model.test()
-            selected_algo[model] = mgbtai_res
-            subplot.append(plot_model.gen_auc_plot(mgbtai_res))
-            subplot.append(plot_model.gen_confusion_matrix(mgbtai_res))
-            plots[model] = subplot
-
-        elif model == "DBTAI":
-            subplot = list()
-            dbtai_model = DBTAI(dataset)
-            dbtai_model.train()
-            dbtai_res = dbtai_model.test()
-            selected_algo[model] = dbtai_res
-            subplot.append(plot_model.gen_auc_plot(dbtai_res))
-            subplot.append(plot_model.gen_confusion_matrix(dbtai_res))
-            plots[model] = subplot
-        
-        else:
-            return render_template("visualize.html", error="Some error occured", algos=ALGO)
-        
-
-
-
-.navbar {
-  color: white; /* Set the color of the text inside the navbar to white */
-}
-
-.navbar a {
-  color: white; /* Set the color of the links inside the navbar to white */
-}
-
-.header {
-  color: white;
-  /* Set the color of the text to white */
-}
-.container {
-  color: white; /* Set the color of the text inside the container to white */
-}
-
-.container h1 {
-  color: white; /* Set the color of the h1 elements inside the container to white */
-}
-
-.form-item {
-  margin-bottom: 20px;
-}
-.card {
-  --background: linear-gradient(to left, #6c0e40 0%, #041a87 100%);
-  width: 230px;
-  height: 265px;
-  padding: 5px;
-  border-radius: 1rem;
-  box-shadow: 0 4px 8px rgba(161, 15, 15, 2);
-  transition: transform 0.3s, box-shadow 0.3s;
-  overflow: visible;
-  background: #f7ba2b;
-  background: var(--background);
-  position: relative;
-  z-index: 1;
-  
- }
- .nav-links {
-  display: flex; /* Use flexbox to align items */
-  gap: 10px; /* Add gap between buttons */
-  vertical-align: middle;
-  align-items: center;
-  
-}
- .nav-link {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px; /* Adjust padding to increase button size */
-  /* background-color: #e0b010; Set button background color */
-  color: #fff; /* Set button text color */
-  text-decoration: none; /* Remove default underline */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Add border radius for rounded corners */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
-  margin-right: 20px; /* Add some margin between buttons */
-  text-align: center; /* Center the text horizontally */
-  width: 150px; /* Set fixed width for the buttons */
-  height: 60px; /* Set fixed height for the buttons */
-  line-height: 40px; /* Align text vertically in the center */
-
-  
-}
-
-.nav-link:hover {
-  background-color: #373738; /* Change background color on hover */
-}
-
- /* .card::after {
-  position: absolute;
-  content: "";
-  top: 30px;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  transform: scale(0.8);
-  filter: blur(25px);
-  background: #f7ba2b;
-  background: var(--background);
-  transition: opacity .5s;
- } */
- .card-container {
-  display: flex;
-  justify-content: center; /* Horizontally center the cards */
-  align-items: center; /* Vertically center the cards */
-  gap: 60px;
-}
-  .card-info {
-  --color: #181818;
-  background: var(--color);
-  color: var(--color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  border-radius: .7rem;
- 
-  text-align: center; /* Center the text horizontally */
-}
-.card:hover {
-  transform: scale(1.1); /* Enlarge the card being hovered */
-  /* transform: translateY(-5px); */
-
-  box-shadow: 0 8px 16px rgba(161, 15, 15, 2); /* Make the shadow more prominent */
-}
-.card:hover .title {
-  color: #2eb7f2;
-}
- 
- 
-.card .title {
-  font-weight: bold;
-  letter-spacing: .1em;
-  color:white;
- }
-
- /*Hover*/
- /* .card:hover::after {
-  opacity: 0;
- }
- 
- .card:hover .card-info {
-  color: #f7ba2b;
-  transition: color 1s;
- } */
 
 /* Assuming your video element has the id 'background-video' */
 
@@ -1156,5 +862,166 @@ function showForm(option) {
     font-weight: 500;
 }
 
+<h1 class="model-title">Classical Machine Learning Models</h1>
+<div class="article-grid">
+    <article class="article-card article" id="m2">
+        <!-- <div class="articel-thumbnail-wrap">
+            <img src="/static/lof.png" alt="some-image">
+        </div> -->
+        <div class="article-article">
+            <a href="https://dl.acm.org/doi/10.1145/335191.335388" target="_blank"><p>Local Outlier</p></a>
+            <div class="card-content">The Local Outlier Factor (LOF) algorithm is an unsupervised anomaly detection method which computes the local density deviation of a given data point with respect to its neighbors. It considers as outliers the samples that have a substantially lower density than their neighbors.</div>
+        </div>  
+    </article>
+    <article class="article-card article" id="m3">
+        <div class="article-article">
+            <a href="https://ieeexplore.ieee.org/abstract/document/4781136" target="_blank"><p>Isolation Forest</p></a>
+            <div class="card-content">Isolation Forest is an ensemble-based unsupervised algorithm for anomaly detection. It isolates anomalies by constructing decision trees and averaging their predictions, without requiring a predefined notion of 'normal' data. This approach offers a robust and efficient method for identifying outliers in datasets.</div>
+        </div>
+    </article>
+    <article class="article-card article" id="m4">
+        <div class="article-article">
+            <a href="https://aiblog.co.za/technology/elliptic-envelope-anomaly-detection" target="_blank"><p>Elliptic Envelope</p></a>
+            <div class="card-content">Elliptic Envelope is a statistical anomaly detection method designed for multivariate data presumed to follow a normal distribution. By fitting an ellipse to central data points, outliers outside this boundary are flagged as potential anomalies, making it robust for applications like fraud or network intrusion detection, especially when data adheres to Gaussian assumptions.</div>
+        </div>
+    </article>
+</div>
+<h1 class="model-title">Deep Learning Models</h1>
+<div class="article-grid">
+    <article class="article-card article" id="m1">
+        <div class="article-article">
+            <a href="https://dl.acm.org/doi/abs/10.1145/3422622" target="_blank"><p>GAN</p></a>
+            <div class="card-content">Generative Adversarial Networks (GANs) employ two models, a generator (G) and a discriminator (D), in a minimax game to capture and distinguish data distribution respectively. G is trained to maximize D's error, resulting in G recovering the training data distribution while D approaches 1/2 accuracy. With multilayer perceptrons defining G and D, the system is trainable via backpropagation.</div>
+        </div>
+    </article>
+    <article class="article-card article" id="m6">
+        <div class="article-article">
+            <a href="https://dl.acm.org/doi/abs/10.1145/3097983.3098052" target="_blank"><p>AutoEncoders</p></a>
+            <div class="card-content">Autoencoders is a neural network variant which excel in unsupervised tasks like anomaly detection. By compressing and reconstructing data, they learn normal patterns through minimizing reconstruction errors. Adaptable to diverse anomaly severities, enhancements like convolutional layers bolster their proficiency in capturing and identifying deviations, rendering autoencoders a potent tool for anomaly detection in unlabeled datasets.</div>
+        </div>
+    </article>
+    <article class="article-card article" id="m5">
+        <div class="article-article">
+            <a href="https://openreview.net/forum?id=BJJLHbb0-" target="_blank"><p>DAGMM</p></a>
+            <div class="card-content">Deep Autoencoding Gaussian Mixture Model (DAGMM) integrates deep autoencoder design with Gaussian mixture modeling for anomaly detection. By concurrently reconstructing data and estimating latent space density, DAGMM identifies anomalies as points with low probability, enabling unsupervised detection across domains. DAGMM's ability to detect anomalies without labeled data renders it valuable for diverse unsupervised anomaly detection tasks.</div>
+        </div>
+    </article>
+</div>
+<div class="article-grid">
+    <article class="article-card article" id="m7">
+        <div class="article-article">
+            <a href="https://ieeexplore.ieee.org/abstract/document/8836638" target="_blank"><p>LSTM</p></a>
+            <div class="card-content">Long Short-Term Memory (LSTM) networks is a form of recurrent neural network, specialize in capturing temporal dependencies, ideal for time-series anomaly detection. By training on normal sequences and detecting significant deviations from predicted values, LSTMs excel in recognizing anomalies. Widely applicable in finance, cybersecurity, and industrial monitoring, LSTMs are valued for their capacity to discern complex patterns in sequential data.</div>
+        </div>
+    </article>
+    <article class="article-card article" id="m8">
+        <div class="article-article">
+            <a href="https://link.springer.com/article/10.1007/s42979-021-00866-4" target="_blank"><p>Quantile Regression</p></a>
+            <div class="card-content">Quantile regression for anomaly detection models conditional quantiles, enabling outlier detection. By comparing predicted quantiles with actual observations, it captures anomalies often missed by mean-based methods. This versatile approach offers flexibility across domains by focusing on specific quantiles relevant to the application.</div>
+        </div>
+    </article>
+</div>
+<h1 class="model-title">Tree Based Models</h1>
+<div class="article-grid">
+    <article class="article-card article" id="m9">
+        <div class="article-article">
+            <a href="https://link.springer.com/article/10.1007/s10489-022-03940-3" target="_blank"><p>MG Tree</p></a>
+            <div class="card-content">MGTree, a multi-generations binary tree approach, tackles false alarms in industrial anomaly detection. Effective on large and small datasets, it outperforms iForest, OCSVM, and Elliptic Envelope in correctly identifying anomalies. Applied across various industrial datasets like Yahoo, AWS, and machine sensors, MGTree proves its efficacy in empirical evaluations.</div>
+        </div>
+    </article>
+    <article class="article-card article1" id="m10">
+        <div class="article-article">
+            <a href="https://link.springer.com/chapter/10.1007/978-3-030-79463-7_44" target="_blank"><p>D-BTAI</p></a>
+            <div class="card-content">The D-BTAI algorithm combines Binary Anomaly Trees (BAT) and ECBLOF for industrial anomaly detection. It constructs a tree from input data clusters, identifying anomalies at leaf nodes meeting specific conditions. Anomalies are determined by normalized ECBLOF scores, with selection based on both clustering and score deviation.
+            </div>
+        </div>
+    </article>
+</div>
 
+.model-title {
+    font-size: 52px;
+    font-weight: 600;
+    text-align: center;
+}
 
+.article-grid {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 6rem;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.article-card {
+    /* background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
+    color: #474747; */
+    color: #f1f1f1;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
+    flex: 1;
+    border: 1px solid #f1f1f1;
+    border-radius: 15px;
+    transition: transform 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    .article-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .article-card {
+        flex-basis: calc(50% - 0.5rem); 
+    }
+}
+
+.article-thumbnail-wrap {
+    position: relative;
+}
+
+img.article-thumbnail {
+    height: 150px;
+}
+
+img.article-thumbnail {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.article-article {
+    flex: 1;
+    position: relative;
+    z-index: 5;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-article p {
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.card-content {
+    color: #f1f1f1;
+    text-align: justify;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.author-row {
+    margin-block-start: auto;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 0.5rem;
+    align-items: center;
+    color: #565656;
+    line-height: 1.3;
+    padding-top: 0.5rem;
+} 
