@@ -38,7 +38,7 @@
                     <option value="Univariate/TravelTime_451.csv">TravelTime_451</option>
                 </select>
             </div>
-            <div class="form-item">
+            <div class="form-item form-button">
                 <button type="submit" class="learn-more">Visualize Univariate Data</button>
             </div>
         </form>
@@ -46,9 +46,10 @@
     {% endif %}
     {% if submitted %}
     <div class="data-plots">
-        <h1 class="f1 b tc">Data Visualization</h1>
-        {% for p in plot %}
-        <img class="plot-img1" src="data:image/png;base64,{{ p }}" alt="Data Visualization"> 
+        <h1 class="model-title">Data Visualization</h1>
+        {% for p_name, p_img in plot.items() %}
+        <div class="metric-name"><h3>{{ p_name }}</h3></div>
+        <img class="plot-img1" src="data:image/png;base64,{{ p_img }}" alt="Data Visualization"> 
         {% endfor %}    
     </div>  
     {% endif %}

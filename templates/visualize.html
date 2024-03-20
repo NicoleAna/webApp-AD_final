@@ -2,63 +2,62 @@
 
 {% block body %}
 <div class="data-plots">
-  <h1 class="f1 b tc">Result Visualization</h1>
-  <div class="results-container">
-    {% for a in algos %}
-    <div class="results-item {% if algos|length % 2 == 1 %} child {% endif %}">
-      <p class="f2 lh-copy">{{ a }}</p>
-      <div class="clf-report">
-        {% for k,i in selected_algo[a].items() %}
-          {% if k=='precision' %}
-            <p>Precision: {{ i }}</p>
-          {% elif k=='recall' %}
-            <p>Recall: {{ i }}</p>
-          {% elif k=='f1_score' %}
-            <p>F1-score: {{ i }}</p>
-          {% endif %}
-        {% endfor %}
-      </div>
-      {% for p in plot[a] %}
-        <img class="plot-img" src="data:image/png;base64,{{ p }}" alt="{{ a }} plots" />
-      {% endfor %} 
+    <h1 class="model-title">Result Visualization</h1>
+    <div class="results-container">
+        {% for a in algos %}
+            <div class="results-item {% if algos|length % 2 == 1 %} child {% endif %}">
+                <p class="model-name">{{ a }}</p>
+                <div class="clf-report">
+                    {% for k,i in selected_algo[a].items() %}
+                      {% if k=='precision' %}
+                        <p>Precision: {{ i }}</p>
+                      {% elif k=='recall' %}
+                        <p>Recall: {{ i }}</p>
+                      {% elif k=='f1_score' %}
+                        <p>F1-score: {{ i }}</p>
+                      {% endif %}
+                    {% endfor %}
+                </div>
+                {% for p_name, p_img in plot[a].items() %}
+                  <p class="model-name">{{ p_name }}</p>
+                  <img class="plot-img" src="data:image/png;base64,{{ p_img }}" alt="{{ a }} plots" />
+                {% endfor %} 
+            </div>
+        {% endfor %} 
     </div>
-  {% endfor %} 
-  </div>
-  
-  {% if table_result %}
-    <div class="table-container">
-      <div class="table table-stripped">
-          {{ table_result|safe }}
-      </div>
-  </div>
-  {% endif %}
+    
+    {% if table_result %}
+        <div class="table-container">
+                {{ table_result|safe }}
+        </div>
+    {% endif %}
 
-  {% if prec_plot %}
-    <h1 class="f2 lh-copy">Precision of models</h1>
-    <img class="plot-img1" src="data:image/png;base64,{{ prec_plot }}" alt="PRECISION" />
-  {% endif %}
+    {% if prec_plot %}
+      <div class="metric-name"><h3>Precision of models</h3></div>
+      <img class="plot-img1" src="data:image/png;base64,{{ prec_plot }}" alt="PRECISION" />
+    {% endif %}
 
-  {% if recall_plot %}
-    <h1 class="f2 lh-copy">Recall of models</h1>
-    <img class="plot-img1" src="data:image/png;base64,{{ recall_plot }}" alt="RECALL" />
-  {% endif %}
+    {% if recall_plot %}
+      <div class="metric-name"><h3>Recall of models</h3></div>
+      <img class="plot-img1" src="data:image/png;base64,{{ recall_plot }}" alt="RECALL" />
+    {% endif %}
 
-  {% if f1_plot %}
-    <h1 class="f2 lh-copy">F1 Score of models</h1>
-    <img class="plot-img1" src="data:image/png;base64,{{ f1_plot }}" alt="F1" />
-  {% endif %}
+    {% if f1_plot %}
+      <div class="metric-name"><h3>F1 Score of models</h3></div>
+      <img class="plot-img1" src="data:image/png;base64,{{ f1_plot }}" alt="F1" />
+    {% endif %}
 
-  {% if auc_roc_plots %}
-    <h1 class="f2 lh-copy">AUC ROC of models</h1>
-    <img class="plot-img1" src="data:image/png;base64,{{ auc_roc_plots }}" alt="AUC ROC" />
-  {% endif %}
+    {% if auc_roc_plots %}
+      <div class="metric-name"><h3>AUC ROC Score of models</h3></div>
+      <img class="plot-img1" src="data:image/png;base64,{{ auc_roc_plots }}" alt="AUC ROC" />
+    {% endif %}
 
-  {% if auc_plot %}
-    <h1 class="f2 lh-copy">AUC-ROC of models</h1>
-    <img class="plot-img1" src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve" />
-  {% endif %}
+    {% if auc_plot %}
+      <div class="metric-name"><h3>Precision of models</h3></div>
+      <img class="plot-img1" src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve" />
+    {% endif %}
 
-  {% block footer %}
-  {% endblock %}
+    {% block footer %}
+    {% endblock %}
 </div>
 {% endblock %}

@@ -80,7 +80,7 @@ def train_model(dataset, selected_algo, plots, model):
     plot_model = Gen_Plot()
     model_class = ALGO[model]
     model_instance = model_class(dataset)
-    subplot = []
+    subplot = dict()
 
     if hasattr(model_instance, 'train'):
         model_instance.train()
@@ -92,21 +92,19 @@ def train_model(dataset, selected_algo, plots, model):
         res = model_instance.train_test()
 
     selected_algo[model] = res
-    subplot.append(plot_model.gen_auc_plot(res))
-    subplot.append(plot_model.gen_confusion_matrix(res))
+    subplot['ROC_Curve'] = plot_model.gen_auc_plot(res)
+    subplot['Confusion Matrix'] = plot_model.gen_confusion_matrix(res)
     plots[model] = subplot
 
 
 @app.route("/inputs", methods=["POST"])
 def inputs():
-    # file = request.files.get("dataset")
     file = request.form.get("dataset")
     algo = request.form.getlist("algo")
     
     if not file:
         return render_template("input_form.html", error="Please upload a CSV file", algos=ALGO, selected_algo=algo)
     
-    # data = io.StringIO(file.stream.read().decode("UTF8"), newline=None)
     url = "https://raw.githubusercontent.com/varad0207/Anomaly-Benchmarking-Datasets/main/Datasets/"
 
     dataset = pd.read_csv(url + file)
@@ -141,12 +139,15 @@ def dataVis():
     if not file:
         return render_template("visualize_data.html", error="Please select a csv file")
     
-    plot = list()
+    plot = dict()
     url = "https://raw.githubusercontent.com/varad0207/Anomaly-Benchmarking-Datasets/main/Datasets/"
     plot_graph = Gen_Plot1(url + file)
-    plot.append(plot_graph.scatterplot())
-    plot.append(plot_graph.histogram())
-    plot.append(plot_graph.boxplot())
+    # plot.append(plot_graph.scatterplot())
+    # plot.append(plot_graph.histogram())
+    # plot.append(plot_graph.boxplot())
+    plot['Scatter Plot'] = plot_graph.scatterplot()
+    plot['Histogram with KDE'] = plot_graph.histogram()
+    plot['Boxplot'] = plot_graph.boxplot()
 
     if plot:    
         return render_template("visualize_data.html", plot=plot, submitted=True)

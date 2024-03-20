@@ -9,10 +9,9 @@
 }
 
 .about-content {
-    /* background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
-    color: #474747; */
-    color: #f1f1f1;
-    border: 1px solid #f1f1f1;
+    background-color: #0e1e3a;
+    color: #ccc;
+    border: 1px solid #808080;
     border-radius: 8px;
     position: relative;
     z-index: 1;
@@ -28,7 +27,7 @@
 }
 
 .about-content h3 {
-    color: #f1f1f1;
+    color: #ccc;
     font-size: 40px;
     font-weight: 600;
     text-align: center;
@@ -42,8 +41,8 @@
 }
 
 .team-card {
-    background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);
-    color: #474747;
+    background-color: #0e1e3a;
+    color: #ccc;
     border-radius: 8px;
     position: relative;
     z-index: 1;
