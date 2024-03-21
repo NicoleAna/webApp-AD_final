@@ -4,3 +4,4 @@ models/__pycache__
 plots/__pycache__
 .venv
 flask_session
+*.txt
