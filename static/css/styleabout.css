@@ -36,30 +36,31 @@
 
 .team-body {
     display: flex;
-    margin: 1rem 6rem;
+    flex-direction: column;
+    margin: 2rem 0;
     gap: 10px;
+}
+
+.team-img {
+    margin: 0 6rem;
 }
 
 .team-card {
     background-color: #0e1e3a;
     color: #ccc;
+    border: 1px solid #808080;
     border-radius: 8px;
     position: relative;
     z-index: 1;
     overflow: hidden;
     -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
     filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
-    text-align: center;
-    transition: all 0.5s ease;
-}
-
-.team-card h3 {
-    font-size: 36px;
-    font-weight: 600;
-}
-
-.team-card:hover {
-    transform: scale(1.1);
+    margin: 0 6rem;
+    padding: 2rem;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: justify;
 }
 
 @media screen and (max-width: 768px) {

@@ -72,7 +72,7 @@ a:active, a:focus {
 }
 
 .footer-item {
-  flex-grow: 3;
+  flex-grow: 2.5;
 }
 
 .footer-card p {
