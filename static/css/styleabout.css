@@ -18,7 +18,7 @@
     overflow: hidden;
     -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
     filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
-    margin: 1rem 10rem;
+    margin: 1rem 6rem;
     padding: 0 2rem;
     font-size: 20px;
     font-weight: 400;
@@ -42,7 +42,7 @@
 }
 
 .team-img {
-    margin: 0 10rem;
+    margin: 0 6rem;
 }
 
 .team-card {
@@ -55,7 +55,7 @@
     overflow: hidden;
     -webkit-filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
     filter: drop-shadow(0 5px 15px rgba(0,0,0,.24));
-    margin: 0 10rem;
+    margin: 0 6rem;
     padding: 2rem;
     font-size: 20px;
     font-weight: 400;
