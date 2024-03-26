@@ -45,45 +45,52 @@ a:active, a:focus {
 }
 
 .left, .right {
-  display: flex;
+    display: flex;
+    padding: 0;
+    margin: 0;
 }
 
 .right {
-  margin-left: auto;
-  font-size: larger;
+    margin-left: auto;
+    font-size: larger;
+}
+
+.navbar-brand img {
+    height: 70px;
+    width: auto;
 }
  
 .footer-container {
-  display: grid;
-  padding: 3rem 6rem;
-  background: rgba(0, 0, 0, 0.95);
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: stretch;
-  gap: 20px;
-  border-top: 0.5px solid #808080;
+    display: grid;
+    padding: 3rem 6rem;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 20px;
+    border-top: 0.5px solid #808080;
 }
 
 .footer-card {
-  flex: 1;
-  font-size: 18px;
+    flex: 1;
+    font-size: 18px;
 }
 
 .footer-item {
-  flex-grow: 2.5;
+    flex-grow: 2.5;
 }
 
 .footer-card p {
-  text-align: justify;
-  color: #ccc;
+    text-align: justify;
+    color: #ccc;
 }
 
 .footer-card li {
-  text-decoration: none;
-  list-style-type: none;
-  text-align: left;
-  align-items: left;
-  color: #ccc;
+    text-decoration: none;
+    list-style-type: none;
+    text-align: left;
+    align-items: left;
+    color: #ccc;
 }
