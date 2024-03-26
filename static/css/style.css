@@ -13,6 +13,27 @@ main
   margin-bottom: 20rem;
 }
 
+.navbar-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-brand img {
+  width: 50px;
+  height: auto;
+  /* top: 1px;
+  position:relative; */
+}
+
+.navbar-brand p {
+  color: whitesmoke;
+  vertical-align: middle;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
 a {
   text-decoration: none;
 }
