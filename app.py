@@ -75,7 +75,6 @@ def datavis():
     return render_template("visualize_data.html")
     
 
-
 def train_model(dataset, selected_algo, plots, model):
     plot_model = Gen_Plot()
     model_class = ALGO[model]

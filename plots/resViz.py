@@ -22,7 +22,6 @@ class Gen_Plot():
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
-        plt.close(fig) 
         return plot
 
     def gen_confusion_matrix(self, res_dic):
@@ -39,7 +38,6 @@ class Gen_Plot():
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
-        plt.close(fig) 
         return plot
     
     def comp_auc(self, selected_algo):
@@ -55,7 +53,6 @@ class Gen_Plot():
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
-        plt.close(fig) 
         return plot
     
     def comp_precision(self, selected_algo):
@@ -78,7 +75,6 @@ class Gen_Plot():
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
-        plt.close(fig) 
         return plot
     
     def comp_recall(self, selected_algo):
@@ -101,7 +97,6 @@ class Gen_Plot():
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
-        plt.close(fig) 
         return plot
     
     def comp_f1(self, selected_algo):
@@ -124,7 +119,6 @@ class Gen_Plot():
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
-        plt.close(fig)  
         return plot
     
     def comp_auc_roc(self, selected_algo):
@@ -147,7 +141,6 @@ class Gen_Plot():
         buf = BytesIO()  
         fig.savefig(buf, format="png", bbox_inches='tight')
         plot = base64.b64encode(buf.getbuffer()).decode("ascii") 
-        plt.close(fig)  
         return plot
     
     def print_metrics_table(self, selected_algo):
