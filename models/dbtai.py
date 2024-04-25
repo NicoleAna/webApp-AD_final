@@ -14,9 +14,7 @@ class DBTAI():
         self.leaf_nodes = []
         self.child_tree = []
         
-        self.X = df.iloc[:, :-1]
-        self.X = np.array(self.X)
-        self.y_true = df.iloc[:, -1]
+        self.df = df
 
     def binary_tree(self, result, final_cluster, count, tree_dic):
         first_cluster = []
@@ -123,16 +121,24 @@ class DBTAI():
     def train(self):
         count = 0
         tree_dic = {}
-        data_size = len(self.X)
+        df = self.df
+        df = np.array(df)
+        st_ts = df.tolist()
+        st_ts = sorted(st_ts)
+        st_ts = np.array(st_ts)
+        self.actual = st_ts[:, -1]
+        self.ts = self.df.iloc[:, :-1]
+        self.ts = np.array(self.ts)
+        data_size = len(self.ts)
 
         kmeans = KMeans(n_clusters=2, random_state=0)
-        kmeans.fit(self.X)
+        kmeans.fit(self.ts)
         small_cluster_threshold = math.floor(0.02 * data_size)
         self.leaf_level_threshold = 3
         self.min_cluster_threshold = math.floor(0.1 * data_size)
 
         final_cluster = kmeans.labels_
-        self.binary_tree(self.X, final_cluster, count, tree_dic)
+        self.binary_tree(self.ts, final_cluster, count, tree_dic)
         min_key = math.inf
         tot_cluster_len = 0
 
@@ -204,7 +210,7 @@ class DBTAI():
         ind = []
         count = 0
         y_anom1 = np.vstack(self.y_anom)
-        st_ts = self.X.tolist()
+        st_ts = self.ts.tolist()
         st_ts = sorted(st_ts)
         st_ts = np.array(st_ts)
         st_ft = y_anom1.tolist()
@@ -219,11 +225,11 @@ class DBTAI():
                     i = i + 1
                 count = count + 1
 
-        y_pred = np.zeros(len(self.X), dtype=int)
+        y_pred = np.zeros(len(self.ts), dtype=int)
         y_pred[ind] = 1
 
-        precision_dbtai, recall_dbtai, f1_score_dbtai, _ = metrics.precision_recall_fscore_support(self.y_true, y_pred, average='binary')
-        fpr, tpr, _ = metrics.roc_curve(self.y_true, y_pred)
+        precision_dbtai, recall_dbtai, f1_score_dbtai, _ = metrics.precision_recall_fscore_support(self.actual, y_pred, average='binary')
+        fpr, tpr, _ = metrics.roc_curve(self.actual, y_pred)
         auc_roc_dbtai = metrics.auc(fpr, tpr)
 
         print("Classification Report (DBTAI): ")
@@ -233,7 +239,7 @@ class DBTAI():
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_dbtai))
 
         dbtai_res = {
-            'y_true' : self.y_true,
+            'y_true' : self.actual,
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,

@@ -13,9 +13,7 @@ class MGBTAI():
         self.child_tree = []
         self.leaf_level_threshold = 4
 
-        self.X = df.iloc[:, :-1]
-        self.X = np.array(self.X)
-        self.y_true = df.iloc[:, -1]
+        self.df = df
 
     def binary_tree(self, result, final_cluster, count, tree_dic):
         first_cluster = []
@@ -25,9 +23,8 @@ class MGBTAI():
         else:
             k = max(tree_dic) + 1
             tree_dic[k] = result
-        
-        kmeans = KMeans(n_clusters=2, random_state=0)
-        kmeans.fit(result)
+
+        kmeans = KMeans(n_clusters=2, random_state=0).fit(result)
         score = 0.1
 
         if score < 0.9 or count == 0:
@@ -48,7 +45,7 @@ class MGBTAI():
 
                 if count <= self.leaf_level_threshold:
                     self.child_tree.extend(first_cluster)
-            
+
             if len(second_cluster) > self.min_cluster_threshold:
                 kmeans = KMeans(n_clusters=2, random_state=0).fit(second_cluster)
                 self.binary_tree(second_cluster, kmeans.labels_, count, tree_dic)
@@ -59,22 +56,28 @@ class MGBTAI():
 
                 if count <= self.leaf_level_threshold:
                     self.child_tree.extend(second_cluster)
-        
+
         else:
             k = max(tree_dic)
             self.leaf_nodes.append(k)
-    
+
     def train(self):
+        df = np.array(self.df)
+        st_ts = df.tolist()
+        st_ts = sorted(st_ts)
+        st_ts = np.array(st_ts)
+        self.actual = st_ts[:, -1]
+        self.ts = self.df.iloc[:, :-1]
+        self.ts = np.array(self.ts)
         count = 0
         tree_dic = {}
-        data_size = len(self.X)
+        data_size = len(self.ts)
 
-        kmeans = KMeans(n_clusters=2, random_state=0)
-        kmeans.fit(self.X)
+        kmeans = KMeans(n_clusters=2, random_state=0).fit(self.ts)
         self.min_cluster_threshold = math.floor(0.2 * data_size)
 
         final_cluster = kmeans.labels_
-        self.binary_tree(self.X, final_cluster, count, tree_dic)
+        self.binary_tree(self.ts, final_cluster, count, tree_dic)
         min_key = math.inf
         tot_cluster_len = 0
 
@@ -99,7 +102,7 @@ class MGBTAI():
                 self.min_cluster_threshold = math.floor(thresholds[curr_itr] * len(child_tree_copy))
             else:
                 self.min_cluster_threshold = math.floor(thresholds[-1] * len(child_tree_copy))
-            
+
             kmeans = KMeans(n_clusters=2, random_state=0).fit(child_tree_copy)
             final_cluster = kmeans.labels_
             self.binary_tree(child_tree_copy, final_cluster, count, tree_dic)
@@ -114,14 +117,14 @@ class MGBTAI():
                 if len(tree_dic[k]) < len(min_arr):
                     min_key = k
                     min_arr = tree_dic[k]
-            
+
             curr_itr = curr_itr + 1
 
     def test(self):
         childtree = np.vstack(self.child_tree)
         ind = []
         count = 0
-        st_ts = self.X.tolist()
+        st_ts = self.ts.tolist()
         st_ts = sorted(st_ts)
         st_ts = np.array(st_ts)
         st_ft = childtree.tolist()
@@ -136,12 +139,10 @@ class MGBTAI():
                     i = i + 1
                 count = count + 1
 
-        print('Number of Anomalies: ', count)
-        y_pred = np.zeros(len(self.X), dtype=int)
+        y_pred = np.zeros(len(self.ts), dtype=int)
         y_pred[ind] = 1
-
-        precision_mgbtai, recall_mgbtai, f1_score_mgbtai, _ = metrics.precision_recall_fscore_support(self.y_true, y_pred, average='binary')
-        fpr, tpr, _ = metrics.roc_curve(self.y_true, y_pred)
+        precision_mgbtai, recall_mgbtai, f1_score_mgbtai, _ = metrics.precision_recall_fscore_support(self.actual, y_pred, average='binary')
+        fpr, tpr, _ = metrics.roc_curve(self.actual, y_pred)
         auc_roc_mgbtai = metrics.auc(fpr, tpr)
 
         print("Classification Report (MGBTAI): ")
@@ -151,7 +152,7 @@ class MGBTAI():
         print('AUC-ROC socre: {:.4f}'.format(auc_roc_mgbtai))
 
         mgbtai_res = {
-            'y_true' : self.y_true,
+            'y_true' : self.actual,
             'y_pred' : y_pred,
             'fpr' : fpr,
             'tpr' : tpr,

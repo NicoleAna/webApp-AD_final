@@ -78,7 +78,7 @@ def datavis():
 def train_model(dataset, selected_algo, plots, model):
     plot_model = Gen_Plot()
     model_class = ALGO[model]
-    model_instance = model_class(dataset)
+    model_instance = model_class(dataset)    
     subplot = dict()
 
     if hasattr(model_instance, 'train'):
@@ -141,9 +141,6 @@ def dataVis():
     plot = dict()
     url = "https://raw.githubusercontent.com/varad0207/Anomaly-Benchmarking-Datasets/main/Datasets/"
     plot_graph = Gen_Plot1(url + file)
-    # plot.append(plot_graph.scatterplot())
-    # plot.append(plot_graph.histogram())
-    # plot.append(plot_graph.boxplot())
     plot['Scatter Plot'] = plot_graph.scatterplot()
     plot['Histogram with KDE'] = plot_graph.histogram()
     plot['Boxplot'] = plot_graph.boxplot()
