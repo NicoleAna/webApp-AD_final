@@ -76,6 +76,7 @@ a:active, a:focus {
  
 .footer-container {
   display: grid;
+  margin-bottom: 0;
   padding: 3rem 6rem;
   background: rgba(0, 0, 0, 0.95);
   color: white;
@@ -107,4 +108,8 @@ a:active, a:focus {
   text-align: left;
   align-items: left;
   color: #ccc;
+}
+
+.footer-header {
+  color: rgb(255, 153, 0);
 }
