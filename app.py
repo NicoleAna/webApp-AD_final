@@ -39,6 +39,28 @@ ALGO = {
     "DBTAI": DBTAI
 }
 
+ALGO_UNI = {
+    "Generative Adversarial Networks(GAN)": GAN,
+    "Local Outlier Factor(LOF)": Lof,
+    "Isolation Forest(IForest)": iForest,
+    "AutoEncoders": AutoEncoder,
+    "Elliptic Envelope": ellipticEnvelope,
+    "DAGMM": Dagmm1,
+    "Quantile Regression": QReg,
+    "Long Short Term Memory(LSTM)": Lstm,
+}
+
+ALGO_MULTI = {
+    "Generative Adversarial Networks(GAN)": GAN,
+    "Local Outlier Factor(LOF)": Lof,
+    "Isolation Forest(IForest)": iForest,
+    "AutoEncoders": AutoEncoder,
+    "Elliptic Envelope": ellipticEnvelope,
+    "DAGMM": Dagmm1,
+    "MGBTAI": MGBTAI,
+    "DBTAI": DBTAI
+}
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -60,9 +82,19 @@ def dataset_char():
     return render_template("dataset_char.html")
     
 
-@app.route("/input_form")
+@app.route("/input_choice")
+def ip_choide():
+    return render_template("input_choice.html")
+
+
+@app.route("/input_form", methods=["GET", "POST"])
 def ip_form():
-    return render_template("input_form.html", algos=ALGO, loading=False)
+    choice = request.form["button_clicked"]
+    # print('button clicked', choice)
+    if choice == 'uni':
+        return render_template("input_form.html", algos=ALGO_UNI, loading=False, choice='uni')
+    elif choice == 'multi':
+        return render_template("input_form.html", algos=ALGO_MULTI, loading=False, choice='multi')
 
 
 @app.route("/visualize", methods=["GET", "POST"])
@@ -70,9 +102,14 @@ def visual():
     return render_template("visualize.html", algos=ALGO)
 
 
-@app.route("/visualizedata", methods=["GET", "POST"])
-def datavis():
-    return render_template("visualize_data.html")
+@app.route("/input_vis", methods=["GET", "POST"])
+def ip_vis():
+    return render_template("input_vis.html")
+
+
+# @app.route("/visualizedata", methods=["GET", "POST"])
+# def datavis():
+#     return render_template("visualize_data.html")
     
 
 def train_model(dataset, selected_algo, plots, model):
@@ -146,6 +183,6 @@ def dataVis():
     plot['Boxplot'] = plot_graph.boxplot()
 
     if plot:    
-        return render_template("visualize_data.html", plot=plot, submitted=True)
+        return render_template("visualize_data.html", plot=plot)
     else:
         return render_template("visualize_data.html", error="Some error occured")

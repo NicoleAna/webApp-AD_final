@@ -17,15 +17,6 @@ dataItems.forEach(item => {
             item.classList.toggle('active');
         }
     });
-
-    // item.addEventListener('mouseover', () => {
-    //     dataItems.forEach(item => item.classList.remove('active'));
-    //     item.classList.add('active');
-    // });
-
-    // item.addEventListener('mouseleave', () => {
-    //     item.classList.remove('active');
-    // });
 });
 
 const modelCards = document.querySelectorAll('.model-card');

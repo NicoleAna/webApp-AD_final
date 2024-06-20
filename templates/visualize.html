@@ -1,5 +1,14 @@
 {% extends "layout.html" %} 
 
+{% block nav_right %}
+    <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/input_choice">Back</a>
+    </li>
+{% endblock %}
+
 {% block body %}
 <div class="data-plots">
     <h1 class="model-title">Result Visualization</h1>
@@ -53,7 +62,7 @@
     {% endif %}
 
     {% if auc_plot %}
-      <div class="metric-name"><h3>Precision of models</h3></div>
+      <div class="metric-name"><h3>AUC-ROC plots of models</h3></div>
       <img class="plot-img1" src="data:image/png;base64,{{ auc_plot }}" alt="AUC-ROC Curve" />
     {% endif %}
 

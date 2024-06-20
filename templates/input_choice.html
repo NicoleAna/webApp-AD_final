@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block nav_right %}
+    <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <form action="/input_form" class="my-form" method="post" enctype="multipart/form-data">
+        <div class="form-item form-button">
+            <button type="submit" class="learn-more" name="button_clicked" value="uni">Visualize Univariate Results</button>
+        </div>
+        <div class="form-item form-button">
+            <button type="submit" class="learn-more" name="button_clicked" value="multi">Visualize Multivariate Results</button>
+        </div>
+    </form>
+    
+    {% if error %}
+        <h1 class="tc">{{ error }}</h1>
+    {% endif %}
+
+    {% block footer %}
+    {% endblock %}
+{% endblock %}

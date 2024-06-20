@@ -1,5 +1,14 @@
 {% extends "layout.html" %}
 
+{% block nav_right %}
+    <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/input_choice">Back</a>
+    </li>
+{% endblock %}
+
 {% block body %}
     <form action="/inputs" class="my-form" method="post" enctype="multipart/form-data">
         <h3>Select Model(s) of your choice</h3>
@@ -19,6 +28,7 @@
             <label for="file">Select a dataset :</label>
             <select name="dataset" id="dataset">
                 <option value="">Please Select a dataset</option>
+                {% if choice=='uni' %}
                 <optgroup label="Univariate">
                     <option value="Univariate/aws1.csv">aws1</option>
                     <option value="Univariate/aws2.csv">aws2</option>
@@ -50,6 +60,7 @@
                     <option value="Univariate/TravelTime_387.csv">TravelTime_387</option>
                     <option value="Univariate/TravelTime_451.csv">TravelTime_451</option>
                 </optgroup>
+                {% elif choice=='multi' %}
                 <optgroup label="Multivariate">
                     <option value="Multivariate/Health/cmc.csv">cmc</option>
                     <option value="Multivariate/Health/ecoli.csv">ecoli</option>
@@ -119,6 +130,7 @@
                     <option value="Multivariate/VLDB/7_Cardiotocography.csv">7_Cardiotocography</option>
                     <option value="Multivariate/VLDB/8_celeba.csv">8_celeba</option>
                 </optgroup>
+                {% endif %}
             </select>
         </div>
         <div class="form-item form-button">

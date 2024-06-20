@@ -24,12 +24,14 @@
                 <a class="navbar-brand" href="/"><img src="/static/images/logo.jpg" alt="Logo"><p>DETECTIFY</p></a>
             </div>
             <div class="right">
+                {% block nav_right %}
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About Us</a>
                 </li>
+                {% endblock %}
             </div>
         </div>
     </nav>
@@ -46,15 +48,14 @@
                 <p>Unleash the power of machine learning at our anomaly detection hub! Dive into the datasets and watch as hidden patterns are revealed through dynamic visualizations, providing instant insights and trend interpretation.</p>
             </div>
             <div class="footer-card">
-                <h3 class="footer-header">Our work</h3>
-                <li><a href="/input_form">Result Visualizations</a></li>
-                <li><a href="/visualizedata">Data Visualizations</a></li>
+                <h3 class="footer-header">Explore Our work</h3>
+                <li><a href="/input_choice">Result Visualizations</a></li>
+                <li><a href="/input_vis">Data Visualizations</a></li>
             </div>
             <div class="footer-card">
-                <h3 class="footer-header">Discover Our Services</h3>
+                <h3 class="footer-header">Models & Datasets</h3>
                 <li><a href="/learn_more">Advanced Algorithms</a></li>
                 <li><a href="/dataset_char">Data characterization</a></li>
-                <!-- <li><a href="/visualizedata">Dynamic Data Visualizations</a></li> -->
             </div>
         </div>
     </footer>

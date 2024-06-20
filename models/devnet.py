@@ -25,8 +25,8 @@ class Devnet():
         self.test_feat = dataset.iloc[:, :-1].values
         self.test_lab = dataset.iloc[:, -1].values
 
-    def train_test(self, epochs):
-        clf = DevNet(epochs=epochs)
+    def train_test(self):
+        clf = DevNet(epochs=10)
         clf.fit(self.X_train, self.y_train)
 
         preds = clf.predict(self.test_feat)

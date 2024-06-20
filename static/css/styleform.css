@@ -75,6 +75,7 @@ button[type="submit"] {
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100%;
 }
 
 button[type="submit"]:hover {

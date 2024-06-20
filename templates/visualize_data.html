@@ -1,50 +1,15 @@
 {% extends "layout.html" %}
 
+{% block nav_right %}
+    <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/input_vis">Back</a>
+    </li>
+{% endblock %}
+
 {% block body %}
-    {% if not submitted %}
-    <div class="my-form">
-        <form action="/datavis" method="post" enctype="multipart/form-data">
-            <div class="form-item">
-                <select name="dataset" id="dataset">
-                    <option value="">Please Select a dataset</option>
-                    <option value="Univariate/aws1.csv">aws1</option>
-                    <option value="Univariate/aws2.csv">aws2</option>
-                    <option value="Univariate/aws3.csv">aws3</option>
-                    <option value="Univariate/aws_syn1.csv">aws_syn1</option>
-                    <option value="Univariate/aws_syn2.csv">aws_syn2</option>
-                    <option value="Univariate/aws_syn3.csv">aws_syn3</option>
-                    <option value="Univariate/yahoo1.csv">yahoo1</option>
-                    <option value="Univariate/yahoo2.csv">yahoo2</option>
-                    <option value="Univariate/yahoo3.csv">yahoo3</option>
-                    <option value="Univariate/yahoo5.csv">yahoo5</option>
-                    <option value="Univariate/yahoo6.csv">yahoo6</option>
-                    <option value="Univariate/yahoo7.csv">yahoo7</option>
-                    <option value="Univariate/yahoo8.csv">yahoo8</option>
-                    <option value="Univariate/yahoo9.csv">yahoo9</option>
-                    <option value="Univariate/yahoo_syn1.csv">yahoo_syn1</option>
-                    <option value="Univariate/yahoo_syn2.csv">yahoo_syn2</option>
-                    <option value="Univariate/yahoo_syn3.csv">yahoo_syn3</option>
-                    <option value="Univariate/yahoo_syn5.csv">yahoo_syn5</option>
-                    <option value="Univariate/yahoo_syn6.csv">yahoo_syn6</option>
-                    <option value="Univariate/yahoo_syn7.csv">yahoo_syn7</option>
-                    <option value="Univariate/yahoo_syn8.csv">yahoo_syn8</option>
-                    <option value="Univariate/yahoo_syn9.csv">yahoo_syn9</option>
-                    <option value="Univariate/Occupancy_6005.csv">Occupancy_6005</option>
-                    <option value="Univariate/Occupancy_t4013.csv">Occupancy_t4013</option>
-                    <option value="Univariate/Speed_6005.csv">Speed_6005</option>
-                    <option value="Univariate/Speed_7578.csv">Speed_7578</option>
-                    <option value="Univariate/Speed_t4013.csv">Speed_t4013</option>
-                    <option value="Univariate/TravelTime_387.csv">TravelTime_387</option>
-                    <option value="Univariate/TravelTime_451.csv">TravelTime_451</option>
-                </select>
-            </div>
-            <div class="form-item form-button">
-                <button type="submit" class="learn-more">Visualize Univariate Data</button>
-            </div>
-        </form>
-    </div>
-    {% endif %}
-    {% if submitted %}
     <div class="data-plots">
         <h1 class="model-title">Data Visualization</h1>
         {% for p_name, p_img in plot.items() %}
@@ -52,7 +17,6 @@
         <img class="plot-img1" src="data:image/png;base64,{{ p_img }}" alt="Data Visualization"> 
         {% endfor %}    
     </div>  
-    {% endif %}
     {% if error %}
         <h1 class="tc">{{ error }}</h1>
     {% endif %}
