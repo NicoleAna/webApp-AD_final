@@ -6,3 +6,4 @@ plots/__pycache__
 flask_session
 todos.txt
 backup.txt
+req.txt
