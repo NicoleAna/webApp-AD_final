@@ -6,8 +6,9 @@ from sklearn import metrics
 import tensorflow as tf
 from keras.layers import Dense, LSTM
 from keras.models import Sequential
-from keras.optimizers.legacy import Adam
+# from keras.optimizers import Adam
 from keras import backend as K
+tf.compat.v1.enable_eager_execution()
 
 import math
 import warnings
@@ -27,15 +28,15 @@ class QReg():
         self.X_test, self.y_test = self.split_sequence(X)
 
         self.q_model = self.build_model()
-        self.q_model.compile(optimizer=Adam(2e-3), loss=self.QuantileLoss())
+        self.q_model.compile(optimizer=tf.keras.optimizers.Adam(2e-3), loss=self.QuantileLoss())
 
     def split_sequence(self, sequence):
         X, y = list(), list()
         for i in range(len(sequence)):
-            end_ix = i + self.n_steps
-            if end_ix > len(sequence)-1:
+            end_ix = i + self.n_steps   # find the end of this pattern
+            if end_ix > len(sequence)-1:    # check is we are beyond the seq
                 break
-            seq_x, seq_y = sequence[i:end_ix], sequence[end_ix]
+            seq_x, seq_y = sequence[i:end_ix], sequence[end_ix]     # gather ip and op parts of the pattern
             X.append(seq_x)
             y.append(seq_y)
         return np.array(X), np.array(y)
@@ -48,6 +49,7 @@ class QReg():
         perc = perc.reshape(1, -1)
 
         def _qloss(y_true, y_pred):
+            y_true = tf.cast(y_true, tf.float32)
             I = tf.cast(y_true <= y_pred, tf.float32)
             d = K.abs(y_true - y_pred)
             correction = I * (1 - perc) + (1 - I) * perc

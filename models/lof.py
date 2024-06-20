@@ -3,36 +3,25 @@ from pyod.models.lof import LOF
 import numpy as np
 
 from sklearn import metrics
+from sklearn.model_selection import train_test_split
 
 import warnings
 warnings.filterwarnings('ignore')
 
 class Lof():
     def __init__(self, dataset) -> None:
-        self.X_data = dataset.iloc[:, :-1]
+        X_data = dataset.iloc[:, :-1]
         self.y_true = dataset.iloc[:, -1]
-        tmp = len(self.X_data)
-        df = self.X_data.astype('float32')
+        df = X_data.astype('float32')
         df = np.array(df)
 
-        self.train_size = int(tmp * 0.7)
-        self.test_data = df
-        self.train_data = []
-
-        for i in range(self.train_size):
-            self.train_data.append(df[i])
-        self.train_data = np.array(self.train_data)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X_data, self.y_true, test_size=0.3, random_state=42)
+        self.X_test = X_data
 
     def train_test(self):
         clf = LOF()
-        clf.fit(self.train_data)
-        y_pred = clf.fit_predict(self.test_data)
-
-        for i in range(len(y_pred)):
-            if y_pred[i] == 1:
-                y_pred[i] = 0
-            else:
-                y_pred[i] = 1
+        clf.fit(self.X_train)
+        y_pred = clf.fit_predict(self.X_test)
 
         precision_lof = metrics.precision_score(self.y_true, y_pred)
         recall_lof = metrics.recall_score(self.y_true, y_pred)
