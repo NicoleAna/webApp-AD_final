@@ -45,6 +45,12 @@
     margin: 0 10rem;
 }
 
+.team-img img {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+}
+
 .team-card {
     background-color: #0e1e3a;
     color: #ccc;
